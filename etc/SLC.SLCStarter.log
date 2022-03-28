@@ -1,0 +1,32 @@
+220328-16:56:16 [INFO] -- 
+220328-16:56:16 [INFO] -- 
+220328-16:56:16 [INFO] -- ============================================================
+220328-16:56:16 [INFO] -- SLCStarter: Application Starting...
+220328-16:56:16 [INFO] -- timer: starting...
+220328-16:56:16 [INFO] -- TouchDisplayHandler: starting...
+220328-16:56:16 [INFO] -- BarcodeReaderDriver: starting...
+220328-16:56:16 [INFO] -- SLC: starting...
+220328-16:56:22 [INFO] -- Poll: TimesUp 63327 0
+220328-16:56:22 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:56:22 [INFO] -- TouchDisplayHandler: Handle Poll
+220328-16:56:28 [INFO] -- Poll: TimesUp 43729 0
+220328-16:56:28 [INFO] -- TouchDisplayHandler: Handle Poll
+220328-16:56:28 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:56:34 [INFO] -- Poll: TimesUp 87512 0
+220328-16:56:34 [INFO] -- TouchDisplayHandler: Handle Poll
+220328-16:56:34 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:56:40 [INFO] -- Poll: TimesUp 48632 0
+220328-16:56:40 [INFO] -- TouchDisplayHandler: Handle Poll
+220328-16:56:40 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:56:46 [INFO] -- Poll: TimesUp 91194 0
+220328-16:56:46 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:56:46 [INFO] -- TouchDisplayHandler: Handle Poll
+220328-16:56:52 [INFO] -- Poll: TimesUp 46500 0
+220328-16:56:52 [INFO] -- TouchDisplayHandler: Handle Poll
+220328-16:56:52 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:56:58 [INFO] -- Poll: TimesUp 65608 0
+220328-16:56:58 [INFO] -- TouchDisplayHandler: Handle Poll
+220328-16:56:58 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:57:04 [INFO] -- Poll: TimesUp 84844 0
+220328-16:57:04 [INFO] -- BarcodeReaderDriver: Handle Poll
+220328-16:57:04 [INFO] -- TouchDisplayHandler: Handle Poll
