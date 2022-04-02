@@ -73,6 +73,7 @@ public class TouchDisplayEmulatorController {
             }
         });
         this.selectedScreen = screenSwitcherCBox.getValue().toString();
+
     } // initialize
 
 
@@ -128,5 +129,6 @@ public class TouchDisplayEmulatorController {
         stage.show();
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     }
-    
+
+
 } // TouchDisplayEmulatorController
