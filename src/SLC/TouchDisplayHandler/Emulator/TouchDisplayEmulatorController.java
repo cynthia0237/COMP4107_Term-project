@@ -8,6 +8,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.logging.Logger;
 
 
@@ -23,6 +31,10 @@ public class TouchDisplayEmulatorController {
     private String pollResp;
     public ChoiceBox screenSwitcherCBox;
     public ChoiceBox pollRespCBox;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
 
     //------------------------------------------------------------
@@ -87,4 +99,34 @@ public class TouchDisplayEmulatorController {
 	log.fine(id + ": mouse clicked: -- (" + x + ", " + y + ")");
 	touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
     } // td_mouseClick
+
+    //----------------------------------------------------------------------
+    //switch scene
+    public void switchToConfirmation(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("TouchDisplayConfirmation.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Confirmation"));
+    }
+
+    public void switchToMainMenu_action(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("TouchDisplayMainMenu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+    }
+
+    public void switchToMainMenu_mouse(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("TouchDisplayMainMenu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+    }
+    
 } // TouchDisplayEmulatorController
