@@ -28,7 +28,7 @@ public class SLC extends AppThread {
 	log.info(id + ": starting...");
 
 	barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
-	octopuscardReaderMBox = appKickstarter.getThread("OctopuscardReaderDriver").getMBox();
+	octopuscardReaderMBox = appKickstarter.getThread("OctopusCardReaderDriver").getMBox();
 	touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
 
 	for (boolean quit = false; !quit;) {
