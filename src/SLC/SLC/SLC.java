@@ -11,6 +11,7 @@ public class SLC extends AppThread {
     private int pollingTime;
     private MBox barcodeReaderMBox;
     private MBox touchDisplayMBox;
+	private MBox octopuscardReaderMBox;
 
     //------------------------------------------------------------
     // SLC
@@ -27,6 +28,7 @@ public class SLC extends AppThread {
 	log.info(id + ": starting...");
 
 	barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
+	octopuscardReaderMBox = appKickstarter.getThread("OctopuscardReaderDriver").getMBox();
 	touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
 
 	for (boolean quit = false; !quit;) {
@@ -44,6 +46,7 @@ public class SLC extends AppThread {
 		    Timer.setTimer(id, mbox, pollingTime);
 		    log.info("Poll: " + msg.getDetails());
 		    barcodeReaderMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
+			octopuscardReaderMBox.send(new Msg(id,mbox,Msg.Type.Poll,""));
 		    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
 		    break;
 
