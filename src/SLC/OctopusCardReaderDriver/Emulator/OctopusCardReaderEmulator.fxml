@@ -25,8 +25,8 @@
         </AnchorPane>
         <AnchorPane prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
             <children>
-                <Label prefWidth="100.0" text="No.: " AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                <TextField fx:id="octopusCardNumField" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <Label prefWidth="100.0" text="Octopus Card No.: " AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <TextField fx:id="octopusCardNumField" layoutX="103.0" prefHeight="30.0" prefWidth="207.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
