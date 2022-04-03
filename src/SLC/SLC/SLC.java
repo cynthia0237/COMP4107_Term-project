@@ -12,6 +12,8 @@ public class SLC extends AppThread {
     private MBox barcodeReaderMBox;
     private MBox touchDisplayMBox;
 	private MBox octopuscardReaderMBox;
+	private MBox lockerReaderMBox;
+
 
     //------------------------------------------------------------
     // SLC
@@ -30,6 +32,7 @@ public class SLC extends AppThread {
 	barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
 	octopuscardReaderMBox = appKickstarter.getThread("OctopusCardReaderDriver").getMBox();
 	touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
+	lockerReaderMBox = appKickstarter.getThread("LockerReaderDriver").getMBox();
 
 	for (boolean quit = false; !quit;) {
 	    Msg msg = mbox.receive();
@@ -48,6 +51,7 @@ public class SLC extends AppThread {
 		    barcodeReaderMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
 			octopuscardReaderMBox.send(new Msg(id,mbox,Msg.Type.Poll,""));
 		    touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
+			lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.Poll, ""));
 		    break;
 
 		case PollAck:
@@ -63,10 +67,14 @@ public class SLC extends AppThread {
 
 			//get response from server
 			boolean serverresponse = true;
-			String passcode = "254885";
 			if(serverresponse){
-				//return the message to touchscreen
-				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.Passcode,passcode));
+				//save the locker and passcode in SLC
+
+
+				//return the message to touchscreen and give the locker to distribute the locker
+
+
+
 			}else{
 				//set go activate
 				barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoActive,""));
@@ -75,9 +83,9 @@ public class SLC extends AppThread {
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 
 
-		default:
-		    log.warning(id + ": unknown message type: [" + msg + "]");
-	    }
+			default:
+				log.warning(id + ": unknown message type: [" + msg + "]");
+		}
 	}
 
 	// declaring our departure

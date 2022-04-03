@@ -9,6 +9,8 @@ import SLC.TouchDisplayHandler.Emulator.TouchDisplayEmulator;
 import SLC.TouchDisplayHandler.TouchDisplayHandler;
 import SLC.OctopusCardReaderDriver.OctopusCardReaderDriver;
 import SLC.OctopusCardReaderDriver.Emulator.OctopusCardReaderEmulator;
+import SLC.LockerReaderDriver.LockerReaderDriver;
+import SLC.LockerReaderDriver.Emulator.LockerReaderEmulator;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -52,6 +54,7 @@ public class SLCEmulatorStarter extends SLCStarter {
 	    BarcodeReaderEmulator barcodeReaderEmulator = null;
 	    TouchDisplayEmulator touchDisplayEmulator = null;
         OctopusCardReaderEmulator octopusCardReaderEmulator = null;
+        LockerReaderEmulator lockerReaderEmulator = null;
 
 	    // create emulators
 	    try {
@@ -60,11 +63,13 @@ public class SLCEmulatorStarter extends SLCStarter {
 	        barcodeReaderEmulator = new BarcodeReaderEmulator("BarcodeReaderDriver", slcEmulatorStarter);
 	        touchDisplayEmulator = new TouchDisplayEmulator("TouchDisplayHandler", slcEmulatorStarter);
             octopusCardReaderEmulator = new OctopusCardReaderEmulator("OctopusCardReaderDriver", slcEmulatorStarter);
+            lockerReaderEmulator = new LockerReaderEmulator("LockerReaderDriver", slcEmulatorStarter);
 
 		// start emulator GUIs
             barcodeReaderEmulator.start();
             touchDisplayEmulator.start();
             octopusCardReaderEmulator.start();
+            lockerReaderEmulator.start();
 	    } catch (Exception e) {
             System.out.println("Emulators: start failed");
             e.printStackTrace();
@@ -75,6 +80,7 @@ public class SLCEmulatorStarter extends SLCStarter {
 	    slcEmulatorStarter.setBarcodeReaderDriver(barcodeReaderEmulator);
 	    slcEmulatorStarter.setTouchDisplayHandler(touchDisplayEmulator);
         slcEmulatorStarter.setOctopusCardReaderDriver(octopusCardReaderEmulator);
+        slcEmulatorStarter.setLockerReaderDriver(lockerReaderEmulator);
 
 	    // start threads
 	    new Thread(timer).start();
@@ -82,6 +88,7 @@ public class SLCEmulatorStarter extends SLCStarter {
         new Thread(barcodeReaderEmulator).start();
 	    new Thread(touchDisplayEmulator).start();
         new Thread(octopusCardReaderEmulator).start();
+        new Thread(lockerReaderEmulator).start();
 	} // start
     } // Emulators
 
@@ -102,5 +109,8 @@ public class SLCEmulatorStarter extends SLCStarter {
     }
     private void setOctopusCardReaderDriver(OctopusCardReaderDriver octopusCardReaderDriver) {
         this.octopusCardReaderDriver = octopusCardReaderDriver;
+    }
+    private void setLockerReaderDriver(LockerReaderDriver lockerReaderDriver) {
+        this.lockerReaderDriver = lockerReaderDriver;
     }
 } // SLCEmulatorStarter
