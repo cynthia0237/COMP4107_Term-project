@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.logging.Logger;
@@ -157,17 +158,17 @@ public class TouchDisplayEmulatorController {
     }
 
     //region Control passcode enter
-    public void onNumButtonClick(ActionEvent actionEvent)
+    public void onNumClick(MouseEvent event)
     {
-        Button btn = (Button) actionEvent.getSource();
-        textValue += btn.getText();
+        Pane pane = (Pane) event.getSource();
+        textValue += pane.getId().replace("btn", "");
         passcodeTF.setText(textValue);
     }
 
-    public void onSymbolButtonClick(ActionEvent actionEvent)
+    public void onSymbolClick(MouseEvent event)
     {
-        Button btn = (Button) actionEvent.getSource();
-        String symbol = btn.getText();
+        Pane pane = (Pane) event.getSource();
+        String symbol = pane.getId();
         switch (symbol)
         {
             case "C":
