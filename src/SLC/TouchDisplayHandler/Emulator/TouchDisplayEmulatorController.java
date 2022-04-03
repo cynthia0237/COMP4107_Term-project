@@ -5,8 +5,10 @@ import AppKickstarter.misc.MBox;
 import AppKickstarter.misc.Msg;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -31,6 +33,9 @@ public class TouchDisplayEmulatorController {
     private String pollResp;
     public ChoiceBox screenSwitcherCBox;
     public ChoiceBox pollRespCBox;
+
+    public TextField passcodeTF;
+    String textValue = "";
 
     private Stage stage;
     private Scene scene;
@@ -73,6 +78,10 @@ public class TouchDisplayEmulatorController {
                     case "Payment":
                         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
                     break;
+
+//                    case "EnterPasscode":
+//                        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
+//                        break;
                 }
             }
         });
@@ -134,5 +143,44 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     }
 
+    public void onPickupBtnClick(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("PickupPasscodeEnter.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
+    }
+
+    public void onStaffLoginBtnClick(ActionEvent event) {
+
+    }
+
+    //region Control passcode enter
+    public void onNumButtonClick(ActionEvent actionEvent)
+    {
+        Button btn = (Button) actionEvent.getSource();
+        textValue += btn.getText();
+        passcodeTF.setText(textValue);
+    }
+
+    public void onSymbolButtonClick(ActionEvent actionEvent)
+    {
+        Button btn = (Button) actionEvent.getSource();
+        String symbol = btn.getText();
+        switch (symbol)
+        {
+            case "C":
+                if(!textValue.isEmpty())
+                    textValue = textValue.substring(0,textValue.length()-1);
+                passcodeTF.setText(textValue);
+                break;
+
+            case "OK":
+                System.out.println("submitted passcode " + passcodeTF.getText());
+                break;
+        }
+    }
+    //endregion
 
 } // TouchDisplayEmulatorController
