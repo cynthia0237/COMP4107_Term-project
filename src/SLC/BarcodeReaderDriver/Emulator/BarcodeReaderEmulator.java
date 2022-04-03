@@ -71,6 +71,9 @@ public class BarcodeReaderEmulator extends BarcodeReaderDriver {
     protected void handleGoStandby() {
         // fixme
 	super.handleGoStandby();
+    //alert the barcodeGUI to set standby
+    barcodeReaderEmulatorController.goStandby_Alert();
+
 	barcodeReaderEmulatorController.appendTextArea("Barcode Reader Standby");
     } // handleGoStandby
 
