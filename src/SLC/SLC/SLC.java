@@ -58,6 +58,23 @@ public class SLC extends AppThread {
 		    quit = true;
 		    break;
 
+		case BR_BarcodeRead:
+			//send message to server and verify
+
+			//get response from server
+			boolean serverresponse = true;
+			String passcode = "254885";
+			if(serverresponse){
+				//return the message to touchscreen
+				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.Passcode,passcode));
+			}else{
+				//set go activate
+				barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoActive,""));
+			}
+			//set the barcode to standby
+			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
+
+
 		default:
 		    log.warning(id + ": unknown message type: [" + msg + "]");
 	    }
