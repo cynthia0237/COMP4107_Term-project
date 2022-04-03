@@ -8,10 +8,7 @@ import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 
 //======================================================================
@@ -106,6 +103,11 @@ public class BarcodeReaderEmulatorController {
 		break;
 	}
     } // buttonPressed
+
+    //handle alert of gostandby / goactivated
+    public void goActivated_Alert() {
+        barcodeReaderTextArea.appendText("Alert: You have to set the Activation Response to Activated");
+    }
 
 
     //------------------------------------------------------------

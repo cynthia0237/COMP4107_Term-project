@@ -3,6 +3,7 @@ package SLC.TouchDisplayHandler.Emulator;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.MBox;
 import AppKickstarter.misc.Msg;
+import SLC.BarcodeReaderDriver.BarcodeReaderDriver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
@@ -30,6 +31,7 @@ public class TouchDisplayEmulatorController {
     private Logger log;
     private TouchDisplayEmulator touchDisplayEmulator;
     private MBox touchDisplayMBox;
+    private MBox barcodeReaderMBox;
     private String selectedScreen;
     private String pollResp;
     public ChoiceBox screenSwitcherCBox;
@@ -51,6 +53,7 @@ public class TouchDisplayEmulatorController {
 	this.log = log;
 	this.touchDisplayEmulator = touchDisplayEmulator;
 	this.touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
+    this.barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
 	this.pollResp = pollRespParam;
 	this.pollRespCBox.setValue(this.pollResp);
         this.pollRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -155,6 +158,11 @@ public class TouchDisplayEmulatorController {
 
     public void onStaffLoginBtnClick(ActionEvent event) {
 
+
+    }
+    public void onPutthecargo(ActionEvent actionEvent) {
+        //(testing) Click the button to call barcode activated inorder to verify the barcode
+        barcodeReaderMBox.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoActive,""));
     }
 
     //region Control passcode enter
@@ -182,6 +190,8 @@ public class TouchDisplayEmulatorController {
                 break;
         }
     }
+
+
     //endregion
 
 } // TouchDisplayEmulatorController

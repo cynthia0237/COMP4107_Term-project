@@ -1,26 +1,84 @@
-220403-23:58:20 [INFO] -- 
-220403-23:58:20 [INFO] -- 
-220403-23:58:20 [INFO] -- ============================================================
-220403-23:58:20 [INFO] -- SLCStarter: Application Starting...
-220403-23:58:22 [INFO] -- timer: starting...
-220403-23:58:22 [INFO] -- OctopusCardReaderDriver: starting...
-220403-23:58:22 [INFO] -- TouchDisplayHandler: starting...
-220403-23:58:22 [INFO] -- BarcodeReaderDriver: starting...
-220403-23:58:22 [INFO] -- LockerReaderDriver: starting...
-220403-23:58:22 [INFO] -- SLC: starting...
-220403-23:58:22 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayEmulator.fxml
-220403-23:58:28 [INFO] -- Poll: TimesUp 19085 0
-220403-23:58:28 [INFO] -- PollAck: TouchDisplayHandler is up!
-220403-23:58:28 [INFO] -- PollAck: BarcodeReaderDriver is up!
-220403-23:58:28 [INFO] -- PollAck: OctopusCardReaderDriver is up!
-220403-23:58:28 [INFO] -- PollAck: LockerReaderDriver is up!
-220403-23:58:34 [INFO] -- Poll: TimesUp 13404 0
-220403-23:58:34 [INFO] -- PollAck: OctopusCardReaderDriver is up!
-220403-23:58:34 [INFO] -- PollAck: BarcodeReaderDriver is up!
-220403-23:58:34 [INFO] -- PollAck: LockerReaderDriver is up!
-220403-23:58:34 [INFO] -- PollAck: TouchDisplayHandler is up!
-220403-23:58:40 [INFO] -- Poll: TimesUp 46654 0
-220403-23:58:40 [INFO] -- PollAck: TouchDisplayHandler is up!
-220403-23:58:40 [INFO] -- PollAck: BarcodeReaderDriver is up!
-220403-23:58:40 [INFO] -- PollAck: OctopusCardReaderDriver is up!
-220403-23:58:40 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:17:10 [INFO] -- 
+220404-01:17:10 [INFO] -- 
+220404-01:17:10 [INFO] -- ============================================================
+220404-01:17:10 [INFO] -- SLCStarter: Application Starting...
+220404-01:17:12 [INFO] -- OctopusCardReaderDriver: starting...
+220404-01:17:12 [INFO] -- LockerReaderDriver: starting...
+220404-01:17:12 [INFO] -- timer: starting...
+220404-01:17:12 [INFO] -- SLC: starting...
+220404-01:17:12 [INFO] -- BarcodeReaderDriver: starting...
+220404-01:17:12 [INFO] -- TouchDisplayHandler: starting...
+220404-01:17:12 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayEmulator.fxml
+220404-01:17:16 [INFO] -- TouchDisplayHandler: update display -- MainMenu
+220404-01:17:16 [INFO] -- TouchDisplayHandler: loading fxml: TouchDisplayMainMenu.fxml
+220404-01:17:17 [INFO] -- BarcodeReaderDriver: Go Active
+220404-01:17:18 [INFO] -- Poll: TimesUp 53018 0
+220404-01:17:18 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:17:18 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:17:18 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:17:18 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:17:24 [INFO] -- Poll: TimesUp 72439 0
+220404-01:17:24 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:17:24 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:17:24 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:17:24 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:17:30 [INFO] -- Poll: TimesUp 83508 0
+220404-01:17:30 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:17:30 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:17:30 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:17:30 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:17:36 [INFO] -- Poll: TimesUp 71165 0
+220404-01:17:36 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:17:36 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:17:36 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:17:36 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:17:42 [INFO] -- Poll: TimesUp 20831 0
+220404-01:17:42 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:17:42 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:17:42 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:17:42 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:17:48 [INFO] -- Poll: TimesUp 41329 0
+220404-01:17:48 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:17:48 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:17:48 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:17:48 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:17:54 [INFO] -- Poll: TimesUp 21825 0
+220404-01:17:54 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:17:54 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:17:54 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:17:54 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:00 [INFO] -- Poll: TimesUp 10481 0
+220404-01:18:00 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:18:00 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:18:00 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:18:00 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:06 [INFO] -- Poll: TimesUp 16064 0
+220404-01:18:06 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:18:06 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:18:06 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:18:06 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:12 [INFO] -- Poll: TimesUp 13321 0
+220404-01:18:12 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:18:12 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:18:12 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:18:12 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:18 [INFO] -- Poll: TimesUp 92007 0
+220404-01:18:18 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:18:18 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:18:18 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:18:18 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:24 [INFO] -- Poll: TimesUp 43557 0
+220404-01:18:24 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:18:24 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:18:24 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:18:24 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:30 [INFO] -- Poll: TimesUp 31810 0
+220404-01:18:30 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:18:30 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:18:30 [INFO] -- PollAck: TouchDisplayHandler is up!
+220404-01:18:30 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:36 [INFO] -- Poll: TimesUp 19283 0
+220404-01:18:36 [INFO] -- PollAck: OctopusCardReaderDriver is up!
+220404-01:18:36 [INFO] -- PollAck: LockerReaderDriver is up!
+220404-01:18:36 [INFO] -- PollAck: BarcodeReaderDriver is up!
+220404-01:18:36 [INFO] -- PollAck: TouchDisplayHandler is up!

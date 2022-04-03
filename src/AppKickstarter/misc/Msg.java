@@ -102,7 +102,7 @@ public class Msg {
         ///** Locker Go_Open */ Locker_Go_Open,
         ///** Locker Locker_Go_Close */ Locker_Go_Close,
 
-        //test for locker
+        //test for locker(have to delete later)
         /** Locker Reader Go Activate */	Locker_GoActive,
         /** Locker Reader Go Standby */	Locker_GoStandby,
         /** Card inserted */			Locker_LockerRead,

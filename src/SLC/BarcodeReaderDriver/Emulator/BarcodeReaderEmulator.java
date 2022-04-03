@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -58,6 +59,9 @@ public class BarcodeReaderEmulator extends BarcodeReaderDriver {
     protected void handleGoActive() {
         // fixme
 	super.handleGoActive();
+    //alert the barcodeGUI to set activated
+    barcodeReaderEmulatorController.goActivated_Alert();
+
 	barcodeReaderEmulatorController.appendTextArea("Barcode Reader Activated");
     } // handleGoActive
 
