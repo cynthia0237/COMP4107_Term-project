@@ -13,6 +13,7 @@ public class SLC extends AppThread {
     private MBox touchDisplayMBox;
 	private MBox octopuscardReaderMBox;
 
+
     //------------------------------------------------------------
     // SLC
     public SLC(String id, AppKickstarter appKickstarter) throws Exception {
@@ -63,10 +64,14 @@ public class SLC extends AppThread {
 
 			//get response from server
 			boolean serverresponse = true;
-			String passcode = "254885";
 			if(serverresponse){
-				//return the message to touchscreen
-				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.Passcode,passcode));
+				//save the locker and passcode in SLC
+
+
+				//return the message to touchscreen and give the locker to distribute the locker
+
+
+
 			}else{
 				//set go activate
 				barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoActive,""));
@@ -75,9 +80,9 @@ public class SLC extends AppThread {
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 
 
-		default:
-		    log.warning(id + ": unknown message type: [" + msg + "]");
-	    }
+			default:
+				log.warning(id + ": unknown message type: [" + msg + "]");
+		}
 	}
 
 	// declaring our departure
