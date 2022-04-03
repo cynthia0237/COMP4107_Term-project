@@ -58,8 +58,18 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
     // handleGoActive
     protected void handleGoActive() {
         // fixme
-	super.handleGoActive();
-	octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Activated");
+        super.handleGoActive();
+        switch(octopusCardReaderEmulatorController.getActivationResp()){
+            case "Ignore":
+            //
+            break;
+
+            case "Activated":
+            case "Standby":
+                octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Activated");
+            break;
+        }
+        
     } // handleGoActive
 
 
@@ -67,8 +77,18 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
     // handleGoStandby
     protected void handleGoStandby() {
         // fixme
-	super.handleGoStandby();
-	octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Standby");
+        super.handleGoStandby();
+        switch(octopusCardReaderEmulatorController.getStandbyResp()){
+            case "Ignore":
+            //
+            break;
+
+            case "Activated":
+            case "Standby":
+                octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Standby");
+            break;
+        }
+        
     } // handleGoStandby
 
 

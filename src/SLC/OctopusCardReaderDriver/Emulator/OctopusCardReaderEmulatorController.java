@@ -31,6 +31,8 @@ public class OctopusCardReaderEmulatorController {
     public ChoiceBox standbyRespCBox;
     public ChoiceBox activationRespCBox;
     public ChoiceBox pollRespCBox;
+    private TextField remainingMoney;
+    private int remainingMoney_int;
 
 
     //------------------------------------------------------------
@@ -72,39 +74,57 @@ public class OctopusCardReaderEmulatorController {
     //------------------------------------------------------------
     // buttonPressed
     public void buttonPressed(ActionEvent actionEvent) {
-	// Button btn = (Button) actionEvent.getSource();
+        Button btn = (Button) actionEvent.getSource();
 
-	// switch (btn.getText()) {
-	//     case "Barcode 1":
-	//         barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode1"));
-	//         break;
+        switch (btn.getText()) {
+            case "1":
+                octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard1"));
+                //remainingMoney.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCardMoney1"));
+                //remainingMoney_int = Integer.parseInt(remainingMoney.getText());
+                break;
 
-	//     case "Barcode 2":
-	// 	barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode2"));
-	// 	break;
+            case "2":
+                octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard2"));
+                //remainingMoney.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCardMoney2"));
+                //remainingMoney_int = Integer.parseInt(remainingMoney.getText());
+            break;
 
-	//     case "Barcode 3":
-	// 	barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode3"));
-	// 	break;
+            case "3":
+                octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard3"));
+                //remainingMoney.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCardMoney3"));
+                //remainingMoney_int = Integer.parseInt(remainingMoney.getText());
+            break;
 
-	//     case "Reset":
-	// 	barcodeNumField.setText("");
-	// 	break;
+            case "Reset":
+                octopusCardNumField.setText("");
+            break;
 
-	//     case "Send Barcode":
-    //             barcodeReaderMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_BarcodeRead, barcodeNumField.getText()));
-    //             barcodeReaderTextArea.appendText("Sending barcode " + barcodeNumField.getText()+"\n");
-	// 	break;
+            case "Send":
+               if(octopusCardReaderStatusField.getText().equals("Active")){
+                octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_OctopusCardRead, octopusCardNumField.getText()));
+                octopusCardReaderTextArea.appendText("Sending octopus card number " + octopusCardNumField.getText()+"\n");
+                // remainingMoney_int -= 10;
+                // octopusCardReaderTextArea.appendText("The remaining money: " + remainingMoney_int + "\n");
+               }
+            break;
 
-	//     case "Activate/Standby":
-    //             barcodeReaderMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoActive, barcodeNumField.getText()));
-    //             barcodeReaderTextArea.appendText("Removing card\n");
-	// 	break;
+            case "Activate":
+                octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoActive, octopusCardNumField.getText()));
+                
+                //octopusCardReaderTextArea.appendText("Removing card\n");
+                goActive();
+            break;
 
-	//     default:
-	//         log.warning(id + ": unknown button: [" + btn.getText() + "]");
-	// 	break;
-	// }
+            case "Standby":
+                octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoStandby, octopusCardNumField.getText()));
+                //octopusCardReaderTextArea.appendText("Removing card\n");
+                goStandby();
+            break;
+
+            default:
+                log.warning(id + ": unknown button: [" + btn.getText() + "]");
+            break;
+        }
     } // buttonPressed
 
 
