@@ -69,6 +69,10 @@ public class TouchDisplayEmulatorController {
                     case "Confirmation":
                         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Confirmation"));
                         break;
+
+                    case "Payment":
+                        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
+                    break;
                 }
             }
         });

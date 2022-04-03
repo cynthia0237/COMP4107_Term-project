@@ -52,6 +52,7 @@
                             <String fx:value="Blank" />
                             <String fx:value="Main Menu" />
                             <String fx:value="Confirmation" />
+                            <String fx:value="Payment" />
                         </FXCollections>
                     </items>
                 </ChoiceBox>
