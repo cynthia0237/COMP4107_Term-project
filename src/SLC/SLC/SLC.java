@@ -6,6 +6,7 @@ import AppKickstarter.timer.Timer;
 import SLC.Locker.LockerManager;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -19,7 +20,7 @@ public class SLC extends AppThread {
 	private MBox lockerReaderMBox;
 
 	private LockerManager lockerMgr;
-	private HashMap lockerPasscodeMap = new HashMap<String, String>(); //id, passcode
+	private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
 
 
     //------------------------------------------------------------
@@ -146,5 +147,18 @@ public class SLC extends AppThread {
 		}
 	}
 
+	//TODO confirm which type to return
+	void checkPickupPasscode(String passcode) {
+		if (lockerPasscodeMap.containsValue(passcode)) {
+			//return ture
+			for(Map.Entry<String, String> entry: lockerPasscodeMap.entrySet()) {
+				if(entry.getValue() == passcode) {
+					//return entry.getKey();
+				}
+			}
+		}
+		//return false;
+		//return "";
+	}
 
 } // SLC
