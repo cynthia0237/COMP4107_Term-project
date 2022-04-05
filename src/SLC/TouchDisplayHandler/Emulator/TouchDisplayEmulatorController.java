@@ -160,7 +160,7 @@ public class TouchDisplayEmulatorController {
 
 
     }
-    public void onPutthecargo(ActionEvent actionEvent) {
+    public void barcodebuttonclicked(ActionEvent actionEvent) {
         //(testing) Click the button to call barcode activated inorder to verify the barcode
         barcodeReaderMBox.send(new Msg(id,touchDisplayMBox,Msg.Type.BR_GoActive,""));
     }

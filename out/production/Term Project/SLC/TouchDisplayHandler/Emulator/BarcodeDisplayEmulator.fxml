@@ -15,7 +15,7 @@
                <font>
                   <Font size="48.0" />
                </font></Label>
-                <Label fx:id="fxbarcodelabel" alignment="CENTER" layoutX="16.0" layoutY="231.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="649.0" text="dfsdfsdfsdfsdfsdfsdf" textAlignment="CENTER">
+                <Label fx:id="fxbarcodelabel" alignment="CENTER" layoutX="16.0" layoutY="231.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="649.0" text="scanning" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font></Label>
