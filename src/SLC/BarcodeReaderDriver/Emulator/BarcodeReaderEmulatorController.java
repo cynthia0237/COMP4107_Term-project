@@ -101,6 +101,15 @@ public class BarcodeReaderEmulatorController {
                 barcodeReaderMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoActive, barcodeNumField.getText()));
                 barcodeReaderTextArea.appendText("Removing card\n");
 		break;
+        case "Activate":
+            //Quick active
+            goActive();
+            break;
+
+        case "Standby":
+            //Quick standby
+            goStandby();
+            break;
 
 	    default:
 	        log.warning(id + ": unknown button: [" + btn.getText() + "]");

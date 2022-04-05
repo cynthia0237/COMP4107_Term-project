@@ -27,7 +27,7 @@
                   <Font size="27.0" />
                </font>
             </Button>
-                <Button fx:id="Putthecargo" layoutY="340.0" mnemonicParsing="false" onAction="#onPutthecargo" prefHeight="72.0" prefWidth="302.0" text="Put cargo">
+                <Button layoutY="340.0" mnemonicParsing="false" onAction="#barcodebuttonclicked" prefHeight="72.0" prefWidth="302.0" text="Scan Barcode">
                     <font>
                         <Font size="27.0" />
                     </font>
