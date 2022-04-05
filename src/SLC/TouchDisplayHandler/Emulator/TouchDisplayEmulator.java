@@ -107,6 +107,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 reloadStage("PickupPasscodeEnter.fxml");
                 break;
 
+            case "Barcodepage":
+                reloadStage("BarcodeDisplayEmulator.fxml");
+                break;
+
             default:
                 log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
                 break;

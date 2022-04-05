@@ -71,6 +71,25 @@ public class SLC extends AppThread {
 		    quit = true;
 		    break;
 
+		// if receive BR_GoActive_Response,
+		case BR_GoActive_Response:
+			switch (msg.getDetails()){
+				case "Activated":
+					//Go_to_Barcodescreen
+					touchDisplayMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.TD_UpdateDisplay, "Barcodepage"));
+					break;
+				case "Standby":
+					//return error of standby and set active alert
+					break;
+				case "Ignore":
+					//return error of ignore and set active alert
+					break;
+
+			}
+			break;
+		// if receive BR_GoStandby_Response
+
+
 		case BR_BarcodeRead:
 			//send message to server and verify
 

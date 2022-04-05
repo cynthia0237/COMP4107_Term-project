@@ -19,6 +19,7 @@ public class BarcodeReaderEmulatorController {
     private Logger log;
     private BarcodeReaderEmulator barcodeReaderEmulator;
     private MBox barcodeReaderMBox;
+    private MBox SLC;
     private String activationResp;
     private String standbyResp;
     private String pollResp;
@@ -38,10 +39,12 @@ public class BarcodeReaderEmulatorController {
 	this.log = log;
 	this.barcodeReaderEmulator = barcodeReaderEmulator;
 	this.barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
+    this.SLC = appKickstarter.getThread("SLC").getMBox();
         this.activationRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 activationResp = activationRespCBox.getItems().get(newValue.intValue()).toString();
+                SLC.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoActive_Response,activationResp));
                 appendTextArea("Activation Response set to " + activationRespCBox.getItems().get(newValue.intValue()).toString());
             }
         });
@@ -49,6 +52,7 @@ public class BarcodeReaderEmulatorController {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 standbyResp = standbyRespCBox.getItems().get(newValue.intValue()).toString();
+                SLC.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoStandby_Response,standbyResp));
                 appendTextArea("Standby Response set to " + standbyRespCBox.getItems().get(newValue.intValue()).toString());
             }
         });

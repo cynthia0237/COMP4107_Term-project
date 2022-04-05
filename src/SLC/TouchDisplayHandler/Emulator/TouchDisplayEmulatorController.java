@@ -162,7 +162,7 @@ public class TouchDisplayEmulatorController {
     }
     public void onPutthecargo(ActionEvent actionEvent) {
         //(testing) Click the button to call barcode activated inorder to verify the barcode
-        barcodeReaderMBox.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoActive,""));
+        barcodeReaderMBox.send(new Msg(id,touchDisplayMBox,Msg.Type.BR_GoActive,""));
     }
 
     //region Control passcode enter
