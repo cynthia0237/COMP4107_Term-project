@@ -3,6 +3,10 @@ package SLC.SLC;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
 import AppKickstarter.timer.Timer;
+import SLC.Locker.LockerManager;
+
+import java.util.HashMap;
+import java.util.Random;
 
 
 //======================================================================
@@ -14,12 +18,17 @@ public class SLC extends AppThread {
 	private MBox octopuscardReaderMBox;
 	private MBox lockerReaderMBox;
 
+	private LockerManager lockerMgr;
+	private HashMap lockerPasscodeMap = new HashMap<String, String>(); //id, passcode
+
 
     //------------------------------------------------------------
     // SLC
     public SLC(String id, AppKickstarter appKickstarter) throws Exception {
 	super(id, appKickstarter);
 	pollingTime = Integer.parseInt(appKickstarter.getProperty("SLC.PollingTime"));
+
+	lockerMgr = new LockerManager();
     } // SLC
 
 
@@ -99,4 +108,24 @@ public class SLC extends AppThread {
     private void processMouseClicked(Msg msg) {
 	// *** process mouse click here!!! ***
     } // processMouseClicked
+
+	void genPickupPasscode(String lockerId) {
+		Random rand = new Random();
+		int number = rand.nextInt(99999999);
+
+		String passcode = String.format("%08d", number);
+		System.out.println("lockerId: " + lockerId + " gen passcode: " + passcode);
+		lockerPasscodeMap.put(lockerId, passcode);
+	}
+
+	void removeUsedPasscode(String lockerId) {
+		if (lockerPasscodeMap.containsKey(lockerId)) {
+			lockerPasscodeMap.remove(lockerId);
+		}
+		else {
+			System.out.println("cannot find key " + lockerId + " in lockerPasscodeMap");
+		}
+	}
+
+
 } // SLC
