@@ -4,6 +4,8 @@ import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
 import AppKickstarter.timer.Timer;
 import SLC.Locker.LockerManager;
+import SLC.Utility.Callback;
+import SLC.Utility.StaffPutCargoTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +21,6 @@ public class SLC extends AppThread {
 	private MBox octopuscardReaderMBox;
 	private MBox lockerReaderMBox;
 
-	private LockerManager lockerMgr;
 	private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
 
 
@@ -29,7 +30,13 @@ public class SLC extends AppThread {
 	super(id, appKickstarter);
 	pollingTime = Integer.parseInt(appKickstarter.getProperty("SLC.PollingTime"));
 
-	lockerMgr = new LockerManager();
+
+		//For test
+		LockerManager.getInstance().setCurrentHandlingLocker(4);
+		Callback cb = () -> genPickupPasscode(LockerManager.getInstance().lockers.get(LockerManager.getInstance().getCurrentHandlingLocker()).getLockerId());
+		StaffPutCargoTask staffTask = new StaffPutCargoTask();
+		staffTask.runWith(cb);
+
     } // SLC
 
 
