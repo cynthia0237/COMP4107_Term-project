@@ -93,6 +93,9 @@ public class BarcodeReaderEmulatorController {
 		break;
 
 	    case "Send Barcode":
+            //if status is activated -> send
+            if (barcodeReaderStatusField.getText()=="Active")
+                //get the barcode no and send it
                 barcodeReaderMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_BarcodeRead, barcodeNumField.getText()));
                 barcodeReaderTextArea.appendText("Sending barcode " + barcodeNumField.getText()+"\n");
 		break;
