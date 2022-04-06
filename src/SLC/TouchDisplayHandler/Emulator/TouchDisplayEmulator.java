@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
+import java.io.IOException;
+
 
 //======================================================================
 // TouchDisplayEmulator
@@ -111,13 +113,33 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 reloadStage("BarcodeDisplayEmulator.fxml");
                 break;
 
+
             default:
                 log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
                 break;
         }
     } // handleUpdateDisplay
+    //------------------------------------------------------------------------------
+    //handle UpdateBarcode status(Go active)
+    protected void handle_BR_GoActive_Status_UpdateDisplay(Msg msg){
+        log.info(id + ": Update Barcode status for go active -- " + msg.getDetails());
 
+        switch (msg.getDetails()) {
+            case "Activated":
+                touchDisplayEmulatorController.updatethegoactiveresponse(msg.getDetails());
+                break;
 
+            case "Standy":
+                touchDisplayEmulatorController.updatethegoactiveresponse(msg.getDetails());
+                break;
+
+            default:
+                //null
+                break;
+        }
+    }
+
+    //handle UpdateBarcode status
     //------------------------------------------------------------
     // handlePoll
     protected void handlePoll() {

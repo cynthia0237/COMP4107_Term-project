@@ -4,6 +4,8 @@ import SLC.HWHandler.HWHandler;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
 
+import java.io.IOException;
+
 
 //======================================================================
 // TouchDisplayHandler
@@ -27,10 +29,17 @@ public class TouchDisplayHandler extends HWHandler {
                 handleUpdateDisplay(msg);
                 break;
 
+            case BR_GoActive_Response:
+                handle_BR_GoActive_Status_UpdateDisplay(msg);
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
     } // processMsg
+
+    protected void handle_BR_GoActive_Status_UpdateDisplay(Msg msg){
+    }
 
 
     //------------------------------------------------------------

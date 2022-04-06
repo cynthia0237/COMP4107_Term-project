@@ -91,12 +91,14 @@ public class Msg {
         /** Health poll -ve acknowledgement */	PollNak,
 	/** Update Display */			TD_UpdateDisplay,
 	/** Mouse Clicked */			TD_MouseClicked,
+
         /** Barcode Reader Go Activate */	BR_GoActive,
         /** Barcode Reader Go Standby */	BR_GoStandby,
         /** Barcode Reader Go Activate Response*/	BR_GoActive_Response,
         /** Barcode Reader Go Standby Response*/	BR_GoStandby_Response,
 
         /** Card inserted */			BR_BarcodeRead,
+
         /** Octopus Card Reader Go Activate */	OCR_GoActive,
         /** Octopus Card Reader Go Standby */	OCR_GoStandby,
         /** Octopus Card inserted */			OCR_OctopusCardRead,

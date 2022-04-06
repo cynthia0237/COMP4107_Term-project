@@ -3,11 +3,11 @@ package SLC.TouchDisplayHandler.Emulator;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.MBox;
 import AppKickstarter.misc.Msg;
-import SLC.BarcodeReaderDriver.BarcodeReaderDriver;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 
@@ -36,19 +36,22 @@ public class TouchDisplayEmulatorController {
     private String pollResp;
     public ChoiceBox screenSwitcherCBox;
     public ChoiceBox pollRespCBox;
-
     public TextField passcodeTF;
     String textValue = "";
 
     private Stage stage;
     private Scene scene;
     private Parent root;
+    //--------------------------------------
+    public Label fxbarcodestatuslabel;
+
 
 
     //------------------------------------------------------------
     // initialize
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, TouchDisplayEmulator touchDisplayEmulator, String pollRespParam) {
         this.id = id;
+
 	this.appKickstarter = appKickstarter;
 	this.log = log;
 	this.touchDisplayEmulator = touchDisplayEmulator;
@@ -158,11 +161,14 @@ public class TouchDisplayEmulatorController {
 
     public void onStaffLoginBtnClick(ActionEvent event) {
 
-
     }
-    public void barcodebuttonclicked(ActionEvent actionEvent) {
-        //(testing) Click the button to call barcode activated inorder to verify the barcode
-        barcodeReaderMBox.send(new Msg(id,touchDisplayMBox,Msg.Type.BR_GoActive,""));
+    public void barcodebuttonclicked(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("BarcodeDisplayEmulator.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Barcodepage"));
     }
 
     //region Control passcode enter
@@ -190,8 +196,12 @@ public class TouchDisplayEmulatorController {
                 break;
         }
     }
-
-
+    //----------------------------------------------------------------------------
+    //update the gui of barcode status
+    public void updatethegoactiveresponse(String response){
+            //set to activated/standby
+            this.fxbarcodestatuslabel.setText(response);
+    }
     //endregion
 
 } // TouchDisplayEmulatorController
