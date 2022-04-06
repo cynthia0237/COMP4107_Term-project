@@ -112,10 +112,10 @@ public class SLC extends AppThread {
 
 
 			}else{
-				//set go activate
-				barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoActive,""));
+				//if the response is null -> restart again
+				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.BR_BarcodeRead,""));
 			}
-			//set the barcode to standby
+			//set back the barcode to standby
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 
 
