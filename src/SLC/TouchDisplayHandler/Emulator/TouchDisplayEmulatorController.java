@@ -4,6 +4,7 @@ import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.MBox;
 import AppKickstarter.misc.Msg;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ChoiceBox;
@@ -199,8 +200,8 @@ public class TouchDisplayEmulatorController {
     //----------------------------------------------------------------------------
     //update the gui of barcode status
     public void updatethegoactiveresponse(String response){
-            //set to activated/standby
-            this.fxbarcodestatuslabel.setText(response);
+        //set to activated/standby
+        Platform.runLater(() -> fxbarcodestatuslabel.setText(response));
     }
     //endregion
 
