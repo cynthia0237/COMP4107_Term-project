@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public abstract class CallbackTask {
 
-    final void runWith(Callback cb) {
+    public final void runWith(Callback cb) {
         run();
         Optional.ofNullable(cb).ifPresent(Callback::call);
     }

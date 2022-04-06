@@ -5,9 +5,23 @@ import java.util.List;
 
 public class LockerManager {
 
-    List<Locker> lockers = new ArrayList<Locker>();
+    static LockerManager instance = null;
+
+    public List<Locker> lockers = new ArrayList<>();
     int lockerCount = 6;
     LockerSize size;
+    int currentHandlingLocker;
+
+    public static LockerManager getInstance(){
+        if(instance == null){
+            synchronized(LockerManager.class){
+                if(instance == null){
+                    instance = new LockerManager();
+                }
+            }
+        }
+        return instance;
+    }
 
     public LockerManager() {
         initLockers();
@@ -28,12 +42,22 @@ public class LockerManager {
             Locker locker = new Locker(String.valueOf(i), size);
             lockers.add(locker);
         }
+
+        System.out.println("init locker done");
+    }
+
+    public void setCurrentHandlingLocker(int current) {
+        currentHandlingLocker = current;
+    }
+
+    public int getCurrentHandlingLocker() {
+        return currentHandlingLocker;
     }
 
     //Debug use
     public void printLockers() {
         for (Locker locker : lockers) {
-            System.out.println(locker.getLockerId());
+            System.out.println(locker.getLockerId() + " " + locker.getLockerStatus());
         }
     }
 
