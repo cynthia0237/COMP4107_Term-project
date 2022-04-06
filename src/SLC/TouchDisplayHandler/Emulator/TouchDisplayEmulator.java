@@ -129,7 +129,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 touchDisplayEmulatorController.updatethegoactiveresponse(msg.getDetails());
                 break;
 
-            case "Standy":
+            case "Standby":
                 touchDisplayEmulatorController.updatethegoactiveresponse(msg.getDetails());
                 break;
 

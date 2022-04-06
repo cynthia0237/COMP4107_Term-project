@@ -170,6 +170,8 @@ public class TouchDisplayEmulatorController {
         stage.setScene(scene);
         stage.show();
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Barcodepage"));
+        //send the msg to alert barcode go to active
+        barcodeReaderMBox.send(new Msg(id,touchDisplayMBox,Msg.Type.BR_GoActive,""));
     }
 
     //region Control passcode enter
