@@ -44,7 +44,8 @@ public class TouchDisplayEmulatorController {
     private Scene scene;
     private Parent root;
     //--------------------------------------
-    public Label fxbarcodestatuslabel;
+    public Label fxBarcodeStatusLabel;
+    public Label passcodeMsgLbl;
 
 
 
@@ -163,6 +164,7 @@ public class TouchDisplayEmulatorController {
     public void onStaffLoginBtnClick(ActionEvent event) {
 
     }
+
     public void barcodebuttonclicked(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("BarcodeDisplayEmulator.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -175,19 +177,16 @@ public class TouchDisplayEmulatorController {
     }
 
     //region Control passcode enter
-    public void onNumClick(MouseEvent event)
-    {
+    public void onNumClick(MouseEvent event) {
         Pane pane = (Pane) event.getSource();
         textValue += pane.getId().replace("btn", "");
         passcodeTF.setText(textValue);
     }
 
-    public void onSymbolClick(MouseEvent event)
-    {
+    public void onSymbolClick(MouseEvent event) {
         Pane pane = (Pane) event.getSource();
         String symbol = pane.getId();
-        switch (symbol)
-        {
+        switch (symbol) {
             case "C":
                 if(!textValue.isEmpty())
                     textValue = textValue.substring(0,textValue.length()-1);
@@ -195,16 +194,25 @@ public class TouchDisplayEmulatorController {
                 break;
 
             case "OK":
-                System.out.println("submitted passcode " + passcodeTF.getText());
+                //System.out.println("submitted passcode " + passcodeTF.getText());
+                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_CheckPickupPasscode, passcodeTF.getText()));
                 break;
         }
     }
+
+    public void updatePasscodeMsgLblText(String msg) {
+        Platform.runLater(() -> passcodeMsgLbl.setText(msg));
+    }
+
+    //endregion
+
     //----------------------------------------------------------------------------
     //update the gui of barcode status
-    public void updatethegoactiveresponse(String response){
+    public void updateTheGoActiveResponse(String response) {
         //set to activated/standby
-        Platform.runLater(() -> fxbarcodestatuslabel.setText(response));
+        Platform.runLater(() -> fxBarcodeStatusLabel.setText(response));
     }
-    //endregion
+
+
 
 } // TouchDisplayEmulatorController

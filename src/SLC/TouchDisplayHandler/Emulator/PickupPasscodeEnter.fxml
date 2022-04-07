@@ -153,7 +153,7 @@
                   </Pane>
                </children>
             </GridPane>
-            <Label layoutX="128.0" layoutY="24.0" text="Please enter your pickup passcode">
+            <Label fx:id="passcodeMsgLbl" layoutX="128.0" layoutY="24.0" text="Please enter your pickup passcode">
                <font>
                   <Font size="28.0" />
                </font>

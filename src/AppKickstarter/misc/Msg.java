@@ -80,24 +80,26 @@ public class Msg {
      * @see Msg
      */
     public enum Type {
-        /** Terminate the running thread */	Terminate,
-	/** Generic error msg */		Error,
-	/** Set a timer */			SetTimer,
-	/** Set a timer */			CancelTimer,
-	/** Timer clock ticks */		Tick,
-	/** Time's up for the timer */		TimesUp,
-	/** Health poll */			Poll,
-	/** Health poll +ve acknowledgement */	PollAck,
+        /** Terminate the running thread */	    Terminate,
+	    /** Generic error msg */		        Error,
+	    /** Set a timer */			            SetTimer,
+	    /** Set a timer */			            CancelTimer,
+	    /** Timer clock ticks */		        Tick,
+	    /** Time's up for the timer */		    TimesUp,
+	    /** Health poll */			            Poll,
+	    /** Health poll +ve acknowledgement */	PollAck,
         /** Health poll -ve acknowledgement */	PollNak,
-	/** Update Display */			TD_UpdateDisplay,
-	/** Mouse Clicked */			TD_MouseClicked,
+	    /** Update Display */			        TD_UpdateDisplay,
+	    /** Mouse Clicked */			        TD_MouseClicked,
+        /** Check pickup passcode */            TD_CheckPickupPasscode,
+        /** passcode input error */             TD_WrongPasscode,
 
-        /** Barcode Reader Go Activate */	BR_GoActive,
-        /** Barcode Reader Go Standby */	BR_GoStandby,
+        /** Barcode Reader Go Activate */	    BR_GoActive,
+        /** Barcode Reader Go Standby */	    BR_GoStandby,
         /** Barcode Reader Go Activate Response*/	BR_GoActive_Response,
         /** Barcode Reader Go Standby Response*/	BR_GoStandby_Response,
 
-        /** Card inserted */			BR_BarcodeRead,
+        /** Card inserted */			        BR_BarcodeRead,
 
         /** Octopus Card Reader Go Activate */	OCR_GoActive,
         /** Octopus Card Reader Go Standby */	OCR_GoStandby,
@@ -107,10 +109,11 @@ public class Msg {
         ///** Locker Go_Open */ Locker_Go_Open,
         ///** Locker Locker_Go_Close */ Locker_Go_Close,
 
+
         //test for locker(have to delete later)
-        /** Locker Reader Go Activate */	Locker_GoActive,
-        /** Locker Reader Go Standby */	Locker_GoStandby,
-        /** Card inserted */			Locker_LockerRead,
+        /** Locker Reader Go Activate */	    Locker_GoActive,
+        /** Locker Reader Go Standby */	        Locker_GoStandby,
+        /** Card inserted */			        Locker_LockerRead,
 
     } // Type
 } // Msg

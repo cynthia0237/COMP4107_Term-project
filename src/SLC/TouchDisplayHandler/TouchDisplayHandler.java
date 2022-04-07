@@ -33,6 +33,14 @@ public class TouchDisplayHandler extends HWHandler {
                 handle_BR_GoActive_Status_UpdateDisplay(msg);
                 break;
 
+            case TD_CheckPickupPasscode:
+                slc.send(new Msg(id, mbox, Msg.Type.TD_CheckPickupPasscode, msg.getDetails()));
+                break;
+
+            case TD_WrongPasscode:
+                handlePasscodeInput(msg);
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
@@ -41,6 +49,9 @@ public class TouchDisplayHandler extends HWHandler {
     protected void handle_BR_GoActive_Status_UpdateDisplay(Msg msg){
     }
 
+    protected void handlePasscodeInput(Msg msg) {
+        System.out.println("handlePasscodeInput");
+    }
 
     //------------------------------------------------------------
     // handleUpdateDisplay

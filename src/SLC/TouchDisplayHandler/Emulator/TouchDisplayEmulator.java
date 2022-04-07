@@ -126,16 +126,27 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 
         switch (msg.getDetails()) {
             case "Activated":
-                touchDisplayEmulatorController.updatethegoactiveresponse(msg.getDetails());
+                touchDisplayEmulatorController.updateTheGoActiveResponse(msg.getDetails());
                 break;
 
             case "Standby":
-                touchDisplayEmulatorController.updatethegoactiveresponse(msg.getDetails());
+                touchDisplayEmulatorController.updateTheGoActiveResponse(msg.getDetails());
                 break;
 
             default:
                 //null
                 break;
+        }
+    }
+
+    protected void handlePasscodeInput(Msg msg) {
+        switch (msg.getType()) {
+            case TD_WrongPasscode:
+                touchDisplayEmulatorController.updatePasscodeMsgLblText(msg.getDetails());
+                break;
+
+            default:
+                //correct
         }
     }
 

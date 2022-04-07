@@ -79,6 +79,16 @@ public class SLC extends AppThread {
 		    quit = true;
 		    break;
 
+		case TD_CheckPickupPasscode:
+			if (checkPickupPasscode(msg.getDetails())) {
+				System.out.println("correct passcode");
+				//check have payment or not
+			} else {
+				//System.out.println("wrong passcode send msg");
+				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_WrongPasscode, "Invalid Passcode Please enter again"));
+			}
+			break;
+
 		// if receive BR_GoActive_Response,
 		case BR_GoActive_Response:
 			switch (msg.getDetails()){
@@ -117,6 +127,9 @@ public class SLC extends AppThread {
 			}
 			//set back the barcode to standby
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
+			break;
+
+
 
 
 			default:
@@ -154,18 +167,16 @@ public class SLC extends AppThread {
 		}
 	}
 
-	//TODO confirm which type to return
-	void checkPickupPasscode(String passcode) {
+	public boolean checkPickupPasscode(String passcode) {
 		if (lockerPasscodeMap.containsValue(passcode)) {
-			//return ture
-			for(Map.Entry<String, String> entry: lockerPasscodeMap.entrySet()) {
-				if(entry.getValue() == passcode) {
-					//return entry.getKey();
+			for(Map.Entry<String, String> entry : lockerPasscodeMap.entrySet()) {
+				if(entry.getValue().equals(passcode)) {
+					LockerManager.getInstance().setCurrentHandlingLocker(Integer.parseInt(entry.getKey()));
+					return true;
 				}
 			}
 		}
-		//return false;
-		//return "";
+		return false;
 	}
 
 } // SLC
