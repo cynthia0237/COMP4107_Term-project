@@ -19,16 +19,12 @@ public class LockerReaderDriver extends HWHandler {
     // processMsg
     protected void processMsg(Msg msg) {
         switch (msg.getType()) {
-            case Locker_LockerRead:
-                slc.send(new Msg(id, mbox, Msg.Type.Locker_LockerRead, msg.getDetails()));
+            case OpenLocker:
+                slc.send(new Msg(id, mbox, Msg.Type.OpenLocker, msg.getDetails()));
                 break;
 
-            case Locker_GoActive:
-                handleGoActive();
-                break;
-
-            case Locker_GoStandby:
-                handleGoStandby();
+            case CloseLocker:
+                slc.send(new Msg(id, mbox, Msg.Type.CloseLocker, msg.getDetails()));
                 break;
 
             default:

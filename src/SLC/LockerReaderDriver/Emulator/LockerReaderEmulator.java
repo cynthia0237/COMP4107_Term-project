@@ -40,7 +40,7 @@ public class LockerReaderEmulator extends LockerReaderDriver {
         lockerReaderEmulatorController = (LockerReaderEmulatorController) loader.getController();
         lockerReaderEmulatorController.initialize(id, slcStarter, log, this);
         myStage.initStyle(StageStyle.DECORATED);
-        myStage.setScene(new Scene(root, 350, 470));
+        myStage.setScene(new Scene(root, 700, 600));
         myStage.setTitle("Locker Reader");
         myStage.setResizable(false);
         myStage.setOnCloseRequest((WindowEvent event) -> {
@@ -49,24 +49,6 @@ public class LockerReaderEmulator extends LockerReaderDriver {
         });
         myStage.show();
     } // LockerReaderEmulator
-
-
-    //------------------------------------------------------------
-    // handleGoActive
-    protected void handleGoActive() {
-        // fixme
-        super.handleGoActive();
-        lockerReaderEmulatorController.appendTextArea("Locker Reader Activated");
-    } // handleGoActive
-
-
-    //------------------------------------------------------------
-    // handleGoStandby
-    protected void handleGoStandby() {
-        // fixme
-        super.handleGoStandby();
-        lockerReaderEmulatorController.appendTextArea("Locker Reader Standby");
-    } // handleGoStandby
 
 
     //------------------------------------------------------------

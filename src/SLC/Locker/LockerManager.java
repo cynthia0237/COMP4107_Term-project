@@ -1,16 +1,16 @@
 package SLC.Locker;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LockerManager {
 
-    static LockerManager instance = null;
+   static LockerManager instance = null;
 
     public List<Locker> lockers = new ArrayList<>();
-    int lockerCount = 6;
-    LockerSize size;
-    int currentHandlingLocker;
+    public HashMap<String, Locker> lockerMap = new HashMap<>();
 
     public static LockerManager getInstance(){
         if(instance == null){
@@ -23,41 +23,25 @@ public class LockerManager {
         return instance;
     }
 
-    public LockerManager() {
-        initLockers();
-    }
+    public Locker reserveLocker(LockerSize size) {
 
-    void initLockers() {
-        for (int i = 0; i < lockerCount; i++) {
-            if (i < 2) {
-                size = LockerSize.S;
-            }
-            if (i >= 2 && i < 4) {
-                size = LockerSize.M;
-            }
-            if (i >= 4 && i < 6) {
-                size = LockerSize.L;
-            }
+        List<Locker> suitableLockers = lockers.stream().filter(locker -> locker.getLockerStatus() == LockerStatus.Available && locker.getLockerSize() == size).collect(Collectors.toList());
 
-            Locker locker = new Locker(String.valueOf(i), size);
-            lockers.add(locker);
+        if (suitableLockers.size() > 0) {
+            return suitableLockers.get(0);
+        } else {
+            return null;
         }
-
-        System.out.println("init locker done");
     }
 
-    public void setCurrentHandlingLocker(int current) {
-        currentHandlingLocker = current;
-    }
-
-    public int getCurrentHandlingLocker() {
-        return currentHandlingLocker;
+    public Locker getLockerById(String id) {
+        return lockerMap.getOrDefault(id, null);
     }
 
     //Debug use
     public void printLockers() {
         for (Locker locker : lockers) {
-            System.out.println(locker.getLockerId() + " " + locker.getLockerStatus());
+            System.out.println(locker.getLockerId() + " " + locker.getLockerSize());
         }
     }
 

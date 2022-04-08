@@ -3,7 +3,9 @@ package SLC.SLC;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
 import AppKickstarter.timer.Timer;
+import SLC.Locker.Locker;
 import SLC.Locker.LockerManager;
+import SLC.Locker.LockerStatus;
 import SLC.Utility.Callback;
 import SLC.Utility.StaffPutCargoTask;
 
@@ -32,10 +34,10 @@ public class SLC extends AppThread {
 
 
 		//For test
-		LockerManager.getInstance().setCurrentHandlingLocker(4);
-		Callback cb = () -> genPickupPasscode(LockerManager.getInstance().lockers.get(LockerManager.getInstance().getCurrentHandlingLocker()).getLockerId());
-		StaffPutCargoTask staffTask = new StaffPutCargoTask();
-		staffTask.runWith(cb);
+		//LockerManager.getInstance().setCurrentHandlingLocker(4);
+		//Callback cb = () -> genPickupPasscode(LockerManager.getInstance().lockers.get(LockerManager.getInstance().getCurrentHandlingLocker()).getLockerId());
+		//StaffPutCargoTask staffTask = new StaffPutCargoTask();
+		//staffTask.runWith(cb);
 
     } // SLC
 
@@ -129,8 +131,16 @@ public class SLC extends AppThread {
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 			break;
 
+			case OpenLocker:
+				Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
+				locker.setLockerStatus(LockerStatus.Open);
+				break;
 
-
+			case CloseLocker:
+				locker = LockerManager.getInstance().getLockerById(msg.getDetails());
+				locker.setLockerStatus(LockerStatus.Available);
+				locker.setLock(true);
+				break;
 
 			default:
 				log.warning(id + ": unknown message type: [" + msg + "]");
@@ -171,7 +181,7 @@ public class SLC extends AppThread {
 		if (lockerPasscodeMap.containsValue(passcode)) {
 			for(Map.Entry<String, String> entry : lockerPasscodeMap.entrySet()) {
 				if(entry.getValue().equals(passcode)) {
-					LockerManager.getInstance().setCurrentHandlingLocker(Integer.parseInt(entry.getKey()));
+					//LockerManager.getInstance().setCurrentHandlingLocker(Integer.parseInt(entry.getKey()));
 					return true;
 				}
 			}

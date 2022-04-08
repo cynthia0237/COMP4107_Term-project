@@ -1,32 +1,464 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SLC.LockerReaderDriver.Emulator.LockerReaderEmulatorController">
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SLC.LockerReaderDriver.Emulator.LockerReaderEmulatorController">
     <children>
         <AnchorPane prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
-            <children>
-                <Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="70.0" text="Locker 1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
-                <Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="70.0" text="Locker 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
-                <Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="70.0" text="Locker 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="160.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
-                <Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="70.0" text="Reset" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
-            </children>
+         <children>
+            <GridPane prefHeight="512.0" prefWidth="300.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="153.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="157.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="86.0" minHeight="45.0" prefHeight="79.0" />
+                <RowConstraints maxHeight="74.0" minHeight="0.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="93.0" minHeight="8.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="109.0" minHeight="4.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="76.0" minHeight="0.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Pane fx:id="locker1" onMouseClicked="#onLockerClick" prefHeight="80.0" prefWidth="155.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="01" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker2" onMouseClicked="#onLockerClick" prefHeight="80.0" prefWidth="155.0" GridPane.columnIndex="1">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="02" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker3" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="1">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="03" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker4" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="04" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker5" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="2">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="05" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker6" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="06" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker7" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="3">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="07" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker8" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="08" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker9" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="4">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="09" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker10" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker11" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="5">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="11" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker12" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker13" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="6">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker14" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="14" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker15" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="7">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker16" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="16" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker17" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="8">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="17" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker18" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="18" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker19" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="9">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="19" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker20" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+            <GridPane layoutX="360.0" prefHeight="512.0" prefWidth="300.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="153.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="157.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="86.0" minHeight="45.0" prefHeight="79.0" />
+                  <RowConstraints maxHeight="74.0" minHeight="0.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="93.0" minHeight="8.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="109.0" minHeight="4.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="76.0" minHeight="0.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Pane fx:id="locker21" onMouseClicked="#onLockerClick" prefHeight="80.0" prefWidth="155.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker22" onMouseClicked="#onLockerClick" prefHeight="80.0" prefWidth="155.0" GridPane.columnIndex="1">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="80.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="22" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker23" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="1">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="23" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker24" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="24" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker25" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="2">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="25" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker26" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="26" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker27" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="3">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="27" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker28" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="28" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker29" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="4">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="29" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker30" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker31" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="5">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker32" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="32" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker33" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.rowIndex="6">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="33" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker34" onMouseClicked="#onLockerClick" prefHeight="40.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="34" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker35" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="7">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="35" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker36" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="36" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker37" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="8">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="37" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker38" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="38" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker39" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.rowIndex="9">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="39" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="locker40" onMouseClicked="#onLockerClick" prefHeight="60.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="60.0" stroke="BLACK" strokeType="INSIDE" width="155.0" />
+                        <Text layoutX="115.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="40" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+         </children>
         </AnchorPane>
-        <AnchorPane prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
-            <children>
-                <Label prefWidth="100.0" text="Locker No.: " AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                <TextField fx:id="lockerNumField" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            </children>
-        </AnchorPane>
-        <AnchorPane prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
-            <children>
-                <Button mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="310.0" text="Send Locker" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"><font><Font size="12.0" /></font></Button>
-            </children>
-        </AnchorPane>
-        <TextArea fx:id="lockerReaderTextArea" editable="false" layoutX="20.0" layoutY="169.0" AnchorPane.bottomAnchor="140" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="130.0" />
         <GridPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="136.0" />
@@ -34,35 +466,10 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Locker Reader Status:   " GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField fx:id="lockerReaderStatusField" editable="false"  GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Label text="Activation Response:   " GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <ChoiceBox fx:id="activationRespCBox" value="Activated" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Activated" />
-                            <String fx:value="Standby" />
-                            <String fx:value="Ignore" />
-                        </FXCollections>
-                    </items>
-                </ChoiceBox>
-                <Label text="Standby Response:   " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <ChoiceBox fx:id="standbyRespCBox" value="Standby" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Activated" />
-                            <String fx:value="Standby" />
-                            <String fx:value="Ignore" />
-                        </FXCollections>
-                    </items>
-                </ChoiceBox>
-                <Label text="Poll Response:   " GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <ChoiceBox fx:id="pollRespCBox" value="ACK" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <Label text="Poll Response:   " GridPane.columnIndex="0" />
+                <ChoiceBox fx:id="pollRespCBox" value="ACK" GridPane.columnIndex="1">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="ACK" />
