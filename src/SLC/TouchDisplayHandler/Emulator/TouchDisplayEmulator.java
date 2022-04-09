@@ -157,6 +157,11 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 break;
         }
     }
+    //Update Barcode No
+    protected void handle_BR_BarcodeNo_UpdateDisplay(Msg msg){
+        touchDisplayEmulatorController.updatebarcodeno(msg.getDetails());
+    }
+
     protected void handlePasscodeInput(Msg msg) {
         switch (msg.getType()) {
             case TD_WrongPasscode:

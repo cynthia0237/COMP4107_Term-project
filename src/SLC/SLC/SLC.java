@@ -131,7 +131,7 @@ public class SLC extends AppThread {
 
 
 				//return the message to touchscreen and give the locker to distribute the locker
-
+				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.BR_BarcodeRead,msg.getDetails()));
 
 
 			}else{

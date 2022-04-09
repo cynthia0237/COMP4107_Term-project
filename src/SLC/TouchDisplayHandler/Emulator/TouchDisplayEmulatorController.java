@@ -54,7 +54,7 @@ public class TouchDisplayEmulatorController {
     //barcode page variable
     public Label fxBarcodeStatusLabel;
     public Label fxbarcodeworkinglabel;
-
+    public Label fxBarcodeNoLabel;
 
     public Label passcodeMsgLbl;
     public Label openLockerLbl;
@@ -280,7 +280,11 @@ public class TouchDisplayEmulatorController {
             Platform.runLater(() -> fxbarcodeworkinglabel.setText("Not work"));
             Platform.runLater(() -> fxBarcodeStatusLabel.setText("None"));
         }
-
+    }
+    //update barcode no
+    public void updatebarcodeno(String response) {
+        //set to activated/standby
+        Platform.runLater(() -> fxBarcodeNoLabel.setText(response));
     }
 
 } // TouchDisplayEmulatorController

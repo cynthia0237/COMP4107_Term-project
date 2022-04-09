@@ -29,18 +29,19 @@ public class TouchDisplayHandler extends HWHandler {
                 handleUpdateDisplay(msg);
                 break;
 
-            //update touchscreen GUI-------------Go active
+            //update barcode touchscreen GUI-------------Go active
             case BR_GoActive_Response:
                 handle_BR_GoActive_Status_UpdateDisplay(msg);
                 break;
 
-            //update touchscreen GUI-------------Go standby
+            //update barcode touchscreen GUI-------------Go standby
             case BR_GoStandby_Response:
                 handle_BR_GoStandby_Status_UpdateDisplay(msg);
                 break;
 
-            case TD_CheckPickupPasscode:
-                slc.send(new Msg(id, mbox, Msg.Type.TD_CheckPickupPasscode, msg.getDetails()));
+            //update barcode touchscreen GUI-------------Barcode No
+            case BR_BarcodeRead:
+                handle_BR_BarcodeNo_UpdateDisplay(msg);
                 break;
 
             case TD_WrongPasscode:
@@ -59,6 +60,7 @@ public class TouchDisplayHandler extends HWHandler {
     //update barcode gui method---------Start
     protected void handle_BR_GoActive_Status_UpdateDisplay(Msg msg){}
     protected void handle_BR_GoStandby_Status_UpdateDisplay(Msg msg){}
+    protected void handle_BR_BarcodeNo_UpdateDisplay(Msg msg){}
     //update barcode gui method---------End
 
     protected void handlePasscodeInput(Msg msg) {
