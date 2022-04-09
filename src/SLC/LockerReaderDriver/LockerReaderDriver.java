@@ -21,6 +21,7 @@ public class LockerReaderDriver extends HWHandler {
         switch (msg.getType()) {
             case OpenLocker:
                 slc.send(new Msg(id, mbox, Msg.Type.OpenLocker, msg.getDetails()));
+                openLocker(msg);
                 break;
 
             case CloseLocker:
@@ -52,4 +53,8 @@ public class LockerReaderDriver extends HWHandler {
     protected void handlePoll() {
         log.info(id + ": Handle Poll");
     } // handlePoll
+
+    protected void openLocker(Msg msg) {
+        System.out.println("open locker: " + msg.getDetails());
+    }
 } // LockerReaderDriver

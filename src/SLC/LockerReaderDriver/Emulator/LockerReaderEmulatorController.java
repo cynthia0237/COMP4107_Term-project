@@ -9,18 +9,15 @@ import SLC.Locker.LockerSize;
 import SLC.Locker.LockerStatus;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
 import java.util.logging.Logger;
 
 //======================================================================
@@ -32,11 +29,9 @@ public class LockerReaderEmulatorController {
     private LockerReaderEmulator lockerReaderEmulator;
     private MBox lockerReaderMBox;
     private String pollResp;
-    public TextField lockerNumField;
-    public TextField lockerReaderStatusField;
-    public TextArea lockerReaderTextArea;
     public ChoiceBox pollRespCBox;
 
+    public GridPane lockerGp1, lockerGp2;
     int totalLocker;
 
 
@@ -60,26 +55,16 @@ public class LockerReaderEmulatorController {
 
         //Debug use
         LockerManager.getInstance().printLockers();
+        //test auto open
+        openLocker(getRectNodeInFxml("1"));
+        openLocker(getRectNodeInFxml("28"));
+
 
     } // initialize
 
 
     //------------------------------------------------------------
-    // buttonPressed
-    public void buttonPressed(ActionEvent actionEvent) {
-	Button btn = (Button) actionEvent.getSource();
 
-	switch (btn.getText()) {
-	    case "Activate/Standby":
-            lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.BR_GoActive, lockerNumField.getText()));
-            lockerReaderTextArea.appendText("Removing card\n");
-		break;
-
-	    default:
-	        log.warning(id + ": unknown button: [" + btn.getText() + "]");
-		break;
-	}
-    } // buttonPressed
 
 
     //------------------------------------------------------------
@@ -88,10 +73,6 @@ public class LockerReaderEmulatorController {
 
 
 
-    // updateLockerReaderStatus
-    private void updateLockerReaderStatus(String status) {
-        lockerReaderStatusField.setText(status);
-    } // updateLockerReaderStatus
 
 
 
@@ -114,15 +95,32 @@ public class LockerReaderEmulatorController {
 
         if (!locker.isLock()) {
             Rectangle rect = (Rectangle) pane.getChildren().get(0);
-            if (locker.getLockerStatus() == LockerStatus.InUse) {
-                rect.setFill(Color.BLACK);
-                lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.OpenLocker, lockerId));
-            }
 
             if (locker.getLockerStatus() == LockerStatus.Open) {
                 rect.setFill(Color.WHITE);
                 lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.CloseLocker, lockerId));
             }
+        }
+    }
+
+    public Node getRectNodeInFxml(String lockerId) {
+        int id = Integer. parseInt(lockerId);
+        ObservableList<Node> childs;
+        if (id > 20) {
+            childs = lockerGp2.getChildren();
+            id -= 20;
+        } else {
+            childs = lockerGp1.getChildren();
+        }
+
+        return childs.get(id-1);
+    }
+
+    public void openLocker(Node node) {
+        if (node != null) {
+            Pane pane = (Pane) node;
+            Rectangle rect = (Rectangle) pane.getChildren().get(0);
+            rect.setFill(Color.BLACK);
         }
     }
 

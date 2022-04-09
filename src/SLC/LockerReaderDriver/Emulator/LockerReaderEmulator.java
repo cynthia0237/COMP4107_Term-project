@@ -70,4 +70,8 @@ public class LockerReaderEmulator extends LockerReaderDriver {
                 break;
         }
     } // handlePoll
+
+    protected void openLocker(Msg msg) {
+        lockerReaderEmulatorController.openLocker(lockerReaderEmulatorController.getRectNodeInFxml(msg.getDetails()));
+    }
 } // LockerReaderEmulator
