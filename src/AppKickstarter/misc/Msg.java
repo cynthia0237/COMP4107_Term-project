@@ -92,7 +92,8 @@ public class Msg {
 	    /** Update Display */			        TD_UpdateDisplay,
 	    /** Mouse Clicked */			        TD_MouseClicked,
         /** Check pickup passcode */            TD_CheckPickupPasscode,
-        /** passcode input error */             TD_WrongPasscode,
+        /** Passcode input error */             TD_WrongPasscode,
+        /** Get open locker id to display */    TD_ShowOpenLocker,
 
         /** Barcode Reader Go Activate */	    BR_GoActive,
         /** Barcode Reader Go Standby */	    BR_GoStandby,
@@ -107,7 +108,7 @@ public class Msg {
         /** Passcode value */ Passcode,
 
         /** Open Locker */                      OpenLocker,
-        /** Close Locker */                     CloseLocker
+        /** Finish pickup -> close locker */    FinishPickup
 
     } // Type
 } // Msg

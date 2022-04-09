@@ -53,6 +53,7 @@ public class TouchDisplayEmulatorController {
     //--------------------------------------
     public Label fxBarcodeStatusLabel;
     public Label passcodeMsgLbl;
+    public Label openLockerLbl;
 
 
 
@@ -209,13 +210,14 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     }
 
-    public void onPickupBtnClick(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("PickupPasscodeEnter.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    //TODO put into SLC for check xy
+    public void onPickupBtnClick(ActionEvent event) {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
+    }
+
+    public void showOpenLockerScreen(String lockerId) {
+        String id = String.format("%02d", Integer.parseInt(lockerId));
+        openLockerLbl.setText("Locker " + id +" will be open");
     }
 
     public void onStaffLoginBtnClick(ActionEvent event) {

@@ -6,8 +6,6 @@ import AppKickstarter.timer.Timer;
 import SLC.Locker.Locker;
 import SLC.Locker.LockerManager;
 import SLC.Locker.LockerStatus;
-import SLC.Utility.Callback;
-import SLC.Utility.StaffPutCargoTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +32,8 @@ public class SLC extends AppThread {
 
 
 		//For test
-		//LockerManager.getInstance().setCurrentHandlingLocker(4);
-		//Callback cb = () -> genPickupPasscode(LockerManager.getInstance().lockers.get(LockerManager.getInstance().getCurrentHandlingLocker()).getLockerId());
+		genPickupPasscode("33");
+		//Callback cb = () -> genPickupPasscode("4");
 		//StaffPutCargoTask staffTask = new StaffPutCargoTask();
 		//staffTask.runWith(cb);
 
@@ -81,16 +79,6 @@ public class SLC extends AppThread {
 		    quit = true;
 		    break;
 
-		case TD_CheckPickupPasscode:
-			if (checkPickupPasscode(msg.getDetails())) {
-				System.out.println("correct passcode");
-				//check have payment or not
-			} else {
-				//System.out.println("wrong passcode send msg");
-				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_WrongPasscode, "Invalid Passcode Please enter again"));
-			}
-			break;
-
 		// if receive BR_GoActive_Response,
 		case BR_GoActive_Response:
 			switch (msg.getDetails()){
@@ -117,8 +105,8 @@ public class SLC extends AppThread {
 			//send message to server and verify
 
 			//get response from server
-			boolean serverresponse = true;
-			if(serverresponse){
+			boolean serverResponse = true;
+			if(serverResponse){
 				//save the locker and passcode in SLC
 
 
@@ -134,13 +122,31 @@ public class SLC extends AppThread {
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 			break;
 
-			case OpenLocker:
-				Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
-				locker.setLockerStatus(LockerStatus.Open);
+			case TD_CheckPickupPasscode:
+				String lockerId = checkPickupPasscode(msg.getDetails());
+				if (lockerId.equals("error")) {
+					//System.out.println("wrong passcode send msg");
+					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_WrongPasscode, "Invalid Passcode Please enter again"));
+
+				} else {
+					System.out.println("correct passcode - LockerId: " + lockerId);
+					//TODO check have payment or not
+
+					//if no payment
+					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
+					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_ShowOpenLocker, lockerId));
+					LockerManager.getInstance().getLockerById(lockerId).setLock(false);
+					LockerManager.getInstance().getLockerById(lockerId).setLockerStatus(LockerStatus.Open);
+				}
 				break;
 
-			case CloseLocker:
-				locker = LockerManager.getInstance().getLockerById(msg.getDetails());
+//			case OpenLocker:
+//				Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
+//				locker.setLockerStatus(LockerStatus.Open);
+//				break;
+
+			case FinishPickup:
+				Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
 				locker.setLockerStatus(LockerStatus.Available);
 				locker.setLock(true);
 				break;
@@ -157,12 +163,15 @@ public class SLC extends AppThread {
 
 
     //------------------------------------------------------------
-    // processMouseClicked
+    //TODO check FXML object pos
+	// processMouseClicked
     private void processMouseClicked(Msg msg) {
 	// *** process mouse click here!!! ***
     } // processMouseClicked
 
-	void genPickupPasscode(String lockerId) {
+
+	//region Locker Pickup Passcode
+	private void genPickupPasscode(String lockerId) {
 		Random rand = new Random();
 		int number = rand.nextInt(99999999);
 
@@ -171,7 +180,7 @@ public class SLC extends AppThread {
 		lockerPasscodeMap.put(lockerId, passcode);
 	}
 
-	void removeUsedPasscode(String lockerId) {
+	private void removeUsedPasscode(String lockerId) {
 		if (lockerPasscodeMap.containsKey(lockerId)) {
 			lockerPasscodeMap.remove(lockerId);
 		}
@@ -180,16 +189,16 @@ public class SLC extends AppThread {
 		}
 	}
 
-	public boolean checkPickupPasscode(String passcode) {
+	public String checkPickupPasscode(String passcode) {
 		if (lockerPasscodeMap.containsValue(passcode)) {
 			for(Map.Entry<String, String> entry : lockerPasscodeMap.entrySet()) {
 				if(entry.getValue().equals(passcode)) {
-					//LockerManager.getInstance().setCurrentHandlingLocker(Integer.parseInt(entry.getKey()));
-					return true;
+					return entry.getKey();
 				}
 			}
 		}
-		return false;
+		return "error";
 	}
+	//endregion
 
 } // SLC

@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.io.IOException;
@@ -105,14 +104,13 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 reloadStage("TouchDisplayPayment.fxml");
                 break;
 
-            case "EnterPasscode":
-                reloadStage("PickupPasscodeEnter.fxml");
-                break;
-
             case "Barcodepage":
                 reloadStage("BarcodeDisplayEmulator.fxml");
                 break;
 
+            case "EnterPasscode":
+                reloadStage("PickupPasscodeEnter.fxml");
+                break;
 
             default:
                 log.severe(id + ": update display with unknown display type -- " + msg.getDetails());
@@ -170,4 +168,11 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 break;
         }
     } // handlePoll
+
+    protected void showOpenLockScreen(Msg msg) {
+        reloadStage("TouchDisplayOpenLocker.fxml");
+        Platform.runLater(() -> {
+            touchDisplayEmulatorController.showOpenLockerScreen(msg.getDetails());
+        });
+    }
 } // TouchDisplayEmulator

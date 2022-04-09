@@ -54,10 +54,10 @@ public class LockerReaderEmulatorController {
         instantiateLocker();
 
         //Debug use
-        LockerManager.getInstance().printLockers();
-        //test auto open
-        openLocker(getRectNodeInFxml("1"));
-        openLocker(getRectNodeInFxml("28"));
+//        LockerManager.getInstance().printLockers();
+//        //test auto open
+//        openLocker(getRectNodeInFxml("1"));
+//        openLocker(getRectNodeInFxml("28"));
 
 
     } // initialize
@@ -98,7 +98,7 @@ public class LockerReaderEmulatorController {
 
             if (locker.getLockerStatus() == LockerStatus.Open) {
                 rect.setFill(Color.WHITE);
-                lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.CloseLocker, lockerId));
+                lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.FinishPickup, lockerId));
             }
         }
     }

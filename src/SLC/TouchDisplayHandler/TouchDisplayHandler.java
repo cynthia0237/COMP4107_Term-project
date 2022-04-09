@@ -41,6 +41,10 @@ public class TouchDisplayHandler extends HWHandler {
                 handlePasscodeInput(msg);
                 break;
 
+            case TD_ShowOpenLocker:
+                showOpenLockScreen(msg);
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
@@ -65,4 +69,6 @@ public class TouchDisplayHandler extends HWHandler {
     protected void handlePoll() {
         log.info(id + ": Handle Poll");
     } // handlePoll
+
+    protected void showOpenLockScreen(Msg msg){}
 } // TouchDisplayHandler
