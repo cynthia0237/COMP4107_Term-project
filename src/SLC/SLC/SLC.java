@@ -142,47 +142,36 @@ public class SLC extends AppThread {
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 			break;
 
-<<<<<<< HEAD
-			case TD_CheckPickupPasscode:
-				String lockerId = checkPickupPasscode(msg.getDetails());
-				if (lockerId.equals("error")) {
-					//System.out.println("wrong passcode send msg");
-					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_WrongPasscode, "Invalid Passcode Please enter again"));
+		case TD_CheckPickupPasscode:
+			String lockerId = checkPickupPasscode(msg.getDetails());
+			if (lockerId.equals("error")) {
+				//System.out.println("wrong passcode send msg");
+				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_WrongPasscode, "Invalid Passcode Please enter again"));
 
-				} else {
-					System.out.println("correct passcode - LockerId: " + lockerId);
-					//TODO check have payment or not
+			} else {
+				System.out.println("correct passcode - LockerId: " + lockerId);
+				//TODO check have payment or not
 
-					//if no payment
-					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
-					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_ShowOpenLocker, lockerId));
-					LockerManager.getInstance().getLockerById(lockerId).setLock(false);
-					LockerManager.getInstance().getLockerById(lockerId).setLockerStatus(LockerStatus.Open);
-				}
-				break;
-
-//			case OpenLocker:
-//				Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
-//				locker.setLockerStatus(LockerStatus.Open);
-//				break;
-
-			case FinishPickup:
-				Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
-=======
-		case OpenLocker:
-			Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
-			locker.setLockerStatus(LockerStatus.Open);
+				//if no payment
+				lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
+				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_ShowOpenLocker, lockerId));
+				LockerManager.getInstance().getLockerById(lockerId).setLock(false);
+				LockerManager.getInstance().getLockerById(lockerId).setLockerStatus(LockerStatus.Open);
+			}
 			break;
 
-		case CloseLocker:
-				locker = LockerManager.getInstance().getLockerById(msg.getDetails());
->>>>>>> 7dc4ba2d911199721534864b4a4a90226097870c
-				locker.setLockerStatus(LockerStatus.Available);
-				locker.setLock(true);
-				break;
+		case OpenLocker:
+			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Open);
+			break;
 
-			default:
-				log.warning(id + ": unknown message type: [" + msg + "]");
+		case FinishPickup:
+			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Available);
+			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(true);
+			break;
+
+
+		default:
+			log.warning(id + ": unknown message type: [" + msg + "]");
 		}
 	}
 
