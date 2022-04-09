@@ -128,14 +128,12 @@ public class SLC extends AppThread {
 			boolean serverResponse = true;
 			if(serverResponse){
 				//TODO save the locker and passcode in SLC
-				//TODO check locker availability and save it ????
+				//TODO check locker availability -> Open -> Store it????
 				String Lockerid = "";
 
 
 				//return the message to touchscreen and give the locker to distribute the locker
 				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.BR_BarcodeRead,msg.getDetails()));
-
-
 			}else{
 				//if the response is null -> restart again
 				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.BR_BarcodeRead,""));

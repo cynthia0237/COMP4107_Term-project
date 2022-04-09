@@ -286,5 +286,9 @@ public class TouchDisplayEmulatorController {
         //set to activated/standby
         Platform.runLater(() -> fxBarcodeNoLabel.setText(response));
     }
-
+    //Restart Barcode
+    //region Control passcode enter
+    public void fxBarcodeRestartPage(MouseEvent event) {
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Barcodepage"));
+    }
 } // TouchDisplayEmulatorController

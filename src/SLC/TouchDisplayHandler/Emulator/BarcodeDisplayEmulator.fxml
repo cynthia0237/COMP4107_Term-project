@@ -35,7 +35,14 @@
                 <Label fx:id="fxBarcodeLockeridLabel" alignment="CENTER" layoutX="270.0" layoutY="351.0" minWidth="-Infinity" prefHeight="38.0" prefWidth="140.0" text="Locker No id" textAlignment="CENTER">
                     <font>
                         <Font size="14.0" />
-                    </font></Label>
+                    </font>
+                </Label>
+
+                <Label alignment="CENTER" layoutX="279.0" layoutY="469.0" minWidth="-Infinity" onMouseClicked="#fxBarcodeRestartPage" prefHeight="38.0" prefWidth="140.0" text="Restart" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="30.0" />
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
