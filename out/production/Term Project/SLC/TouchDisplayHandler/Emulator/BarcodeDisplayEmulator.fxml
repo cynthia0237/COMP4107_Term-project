@@ -37,12 +37,6 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-
-                <Label alignment="CENTER" layoutX="279.0" layoutY="469.0" minWidth="-Infinity" onMouseClicked="#fxBarcodeGoBackPage" prefHeight="38.0" prefWidth="140.0" text="Restart" textAlignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="30.0" />
-                    </font>
-                </Label>
             </children>
         </AnchorPane>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />

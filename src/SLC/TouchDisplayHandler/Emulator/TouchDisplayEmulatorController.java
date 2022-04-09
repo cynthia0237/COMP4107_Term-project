@@ -286,8 +286,4 @@ public class TouchDisplayEmulatorController {
         //set to activated/standby
         Platform.runLater(() -> fxBarcodeNoLabel.setText(response));
     }
-    //Restart Barcode
-    public void fxBarcodeGoBackPage(MouseEvent event) throws IOException {
-        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
-    }
 } // TouchDisplayEmulatorController
