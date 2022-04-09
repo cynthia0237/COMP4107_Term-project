@@ -287,14 +287,7 @@ public class TouchDisplayEmulatorController {
         Platform.runLater(() -> fxBarcodeNoLabel.setText(response));
     }
     //Restart Barcode
-    public void fxBarcodeRestartPage(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("BarcodeDisplayEmulator.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Barcodepage"));
-        //send the msg to alert barcode go to active
-        barcodeReaderMBox.send(new Msg(id,touchDisplayMBox,Msg.Type.BR_GoActive,""));
+    public void fxBarcodeGoBackPage(MouseEvent event) throws IOException {
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
     }
 } // TouchDisplayEmulatorController
