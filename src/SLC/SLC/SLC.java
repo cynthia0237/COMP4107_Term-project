@@ -109,7 +109,10 @@ public class SLC extends AppThread {
 			break;
 		// if receive BR_GoStandby_Response
 
-
+		case OCR_OctopusCardRead:
+			log.info("Octopus Card Number: " + msg.getDetails());
+			break;
+			
 		case BR_BarcodeRead:
 			//send message to server and verify
 

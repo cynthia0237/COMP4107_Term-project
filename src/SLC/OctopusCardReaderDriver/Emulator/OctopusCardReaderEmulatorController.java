@@ -13,7 +13,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-
 //======================================================================
 // BarcodeReaderEmulatorController
 public class OctopusCardReaderEmulatorController {
@@ -112,13 +111,13 @@ public class OctopusCardReaderEmulatorController {
                 octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoActive, octopusCardNumField.getText()));
                 
                 //octopusCardReaderTextArea.appendText("Removing card\n");
-                goActive();
+
             break;
 
             case "Standby":
                 octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoStandby, octopusCardNumField.getText()));
                 //octopusCardReaderTextArea.appendText("Removing card\n");
-                goStandby();
+
             break;
 
             default:
@@ -133,7 +132,6 @@ public class OctopusCardReaderEmulatorController {
     public String getActivationResp() { return activationResp; }
     public String getStandbyResp()    { return standbyResp; }
     public String getPollResp()       { return pollResp; }
-
 
     //------------------------------------------------------------
     // goActive
@@ -161,4 +159,4 @@ public class OctopusCardReaderEmulatorController {
     public void appendTextArea(String status) {
         octopusCardReaderTextArea.appendText(status+"\n");
     } // appendTextArea
-} // BarcodeReaderEmulatorController
+} // OCtopusCardReaderEmulatorController

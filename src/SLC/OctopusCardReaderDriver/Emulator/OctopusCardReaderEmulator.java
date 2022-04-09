@@ -67,11 +67,11 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
             case "Activated":
             case "Standby":
                 octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Activated");
+                octopusCardReaderEmulatorController.goActive();
             break;
         }
         
     } // handleGoActive
-
 
     //------------------------------------------------------------
     // handleGoStandby
@@ -86,6 +86,7 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
             case "Activated":
             case "Standby":
                 octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Standby");
+                octopusCardReaderEmulatorController.goStandby();
             break;
         }
         

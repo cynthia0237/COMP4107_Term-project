@@ -8,16 +8,20 @@ import AppKickstarter.misc.*;
 //======================================================================
 // OctopusCardReaderDriver
 public class OctopusCardReaderDriver extends HWHandler{
+
     //------------------------------------------------------------
     // OctopusCardReaderDriver
     public OctopusCardReaderDriver(String id, AppKickstarter appKickstarter) {
 	super(id, appKickstarter);
+
     } // OctopusCardReaderDriver
 
+   
 
     //------------------------------------------------------------
     // processMsg
     protected void processMsg(Msg msg) {
+
         switch (msg.getType()) {
             case OCR_OctopusCardRead:
                 slc.send(new Msg(id, mbox, Msg.Type.OCR_OctopusCardRead, msg.getDetails()));
@@ -36,8 +40,6 @@ public class OctopusCardReaderDriver extends HWHandler{
         }
     } // processMsg
 
-
-    //------------------------------------------------------------
     // handleGoActive
     protected void handleGoActive() {
 	log.info(id + ": Go Active");
