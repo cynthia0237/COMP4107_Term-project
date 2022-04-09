@@ -127,8 +127,8 @@ public class SLC extends AppThread {
 			//get response from server
 			boolean serverResponse = true;
 			if(serverResponse){
-				//save the locker and passcode in SLC
-				//check locker availability and save it ????
+				//TODO save the locker and passcode in SLC
+				//TODO check locker availability and save it ????
 				String Lockerid = "";
 
 
