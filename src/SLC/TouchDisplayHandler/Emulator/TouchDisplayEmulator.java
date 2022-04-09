@@ -120,25 +120,45 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
         }
     } // handleUpdateDisplay
     //------------------------------------------------------------------------------
-    //handle UpdateBarcode status(Go active)
+    //handle UpdateBarcode status(Go active)------------Touch screen Barcode GUI
     protected void handle_BR_GoActive_Status_UpdateDisplay(Msg msg){
         log.info(id + ": Update Barcode status for go active -- " + msg.getDetails());
 
         switch (msg.getDetails()) {
             case "Activated":
-                touchDisplayEmulatorController.updateTheGoActiveResponse(msg.getDetails());
+                touchDisplayEmulatorController.updatebarcodestatusgui(msg.getDetails());
                 break;
 
             case "Standby":
-                touchDisplayEmulatorController.updateTheGoActiveResponse(msg.getDetails());
+                touchDisplayEmulatorController.updatebarcodestatusgui(msg.getDetails());
                 break;
 
             default:
                 //null
+                touchDisplayEmulatorController.updatebarcodestatusgui("");
                 break;
         }
     }
+    //handle UpdateBarcode status(Go standby)------------Touch screen Barcode GUI
+    protected void handle_BR_GoStandby_Status_UpdateDisplay(Msg msg){
+        log.info(id + ": Update Barcode status for go standby -- " + msg.getDetails());
 
+        switch (msg.getDetails()) {
+            case "Activated":
+                //need to update code
+                touchDisplayEmulatorController.updatebarcodestatusgui(msg.getDetails());
+                break;
+
+            case "Standby":
+                touchDisplayEmulatorController.updatebarcodestatusgui(msg.getDetails());
+                break;
+
+            default:
+                //null
+                touchDisplayEmulatorController.updatebarcodestatusgui("");
+                break;
+        }
+    }
     protected void handlePasscodeInput(Msg msg) {
         switch (msg.getType()) {
             case TD_WrongPasscode:

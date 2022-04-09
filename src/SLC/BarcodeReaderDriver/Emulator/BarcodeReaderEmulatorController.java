@@ -44,6 +44,8 @@ public class BarcodeReaderEmulatorController {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 activationResp = activationRespCBox.getItems().get(newValue.intValue()).toString();
+                //set status to standby
+                goActive();
                 SLC.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoActive_Response,activationResp));
                 appendTextArea("Activation Response set to " + activationRespCBox.getItems().get(newValue.intValue()).toString());
             }
@@ -52,6 +54,7 @@ public class BarcodeReaderEmulatorController {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 standbyResp = standbyRespCBox.getItems().get(newValue.intValue()).toString();
+                goStandby();
                 SLC.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoStandby_Response,standbyResp));
                 appendTextArea("Standby Response set to " + standbyRespCBox.getItems().get(newValue.intValue()).toString());
             }

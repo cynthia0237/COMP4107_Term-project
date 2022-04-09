@@ -9,6 +9,7 @@ import SLC.Locker.LockerStatus;
 import SLC.Utility.Callback;
 import SLC.Utility.StaffPutCargoTask;
 
+import java.lang.invoke.SwitchPoint;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -104,15 +105,34 @@ public class SLC extends AppThread {
 					break;
 				case "Ignore":
 					//return error of ignore and set active alert
+					touchDisplayMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoStandby_Response, ""));
 					break;
 			}
 			break;
+
 		// if receive BR_GoStandby_Response
+		case BR_GoStandby_Response:
+			switch (msg.getDetails()){
+				case "Activated":
+					//Change the status of barcodescreen
+					touchDisplayMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoStandby_Response, "Activated"));
+					break;
+				case "Standby":
+					//Change the status of barcodescreen
+					touchDisplayMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoStandby_Response, "Standby"));
+					break;
+				case "Ignore":
+					//return error of ignore and set active alert
+					touchDisplayMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoStandby_Response, ""));
+					break;
+				}
+			break;
 
 		case OCR_OctopusCardRead:
 			log.info("Octopus Card Number: " + msg.getDetails());
 			break;
-			
+
+		//receive the barcode no from barcodeemulator
 		case BR_BarcodeRead:
 			//send message to server and verify
 
@@ -134,12 +154,12 @@ public class SLC extends AppThread {
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 			break;
 
-			case OpenLocker:
-				Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
-				locker.setLockerStatus(LockerStatus.Open);
-				break;
+		case OpenLocker:
+			Locker locker = LockerManager.getInstance().getLockerById(msg.getDetails());
+			locker.setLockerStatus(LockerStatus.Open);
+			break;
 
-			case CloseLocker:
+		case CloseLocker:
 				locker = LockerManager.getInstance().getLockerById(msg.getDetails());
 				locker.setLockerStatus(LockerStatus.Available);
 				locker.setLock(true);
