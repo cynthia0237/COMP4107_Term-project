@@ -17,7 +17,7 @@
     <children>
         <AnchorPane prefHeight="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
          <children>
-            <GridPane prefHeight="512.0" prefWidth="300.0">
+            <GridPane fx:id="lockerGp1" prefHeight="512.0" prefWidth="300.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="153.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="157.0" />
@@ -237,7 +237,7 @@
                   </Pane>
                </children>
             </GridPane>
-            <GridPane layoutX="360.0" prefHeight="512.0" prefWidth="300.0">
+            <GridPane fx:id="lockerGp2" layoutX="360.0" prefHeight="512.0" prefWidth="300.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="153.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="157.0" />
