@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 
+
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -33,12 +34,18 @@ public class TouchDisplayEmulatorController {
     private TouchDisplayEmulator touchDisplayEmulator;
     private MBox touchDisplayMBox;
     private MBox barcodeReaderMBox;
+    private MBox octopusCardReaderMBox;
     private String selectedScreen;
     private String pollResp;
     public ChoiceBox screenSwitcherCBox;
     public ChoiceBox pollRespCBox;
     public TextField passcodeTF;
     String textValue = "";
+
+    //payment
+    public TextField lateDayField;
+    public TextField totalChargeField;
+
 
     private Stage stage;
     private Scene scene;
@@ -59,6 +66,7 @@ public class TouchDisplayEmulatorController {
 	this.touchDisplayEmulator = touchDisplayEmulator;
 	this.touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
     this.barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
+    this.octopusCardReaderMBox = appKickstarter.getThread("OctopusCardReaderDriver").getMBox();
 	this.pollResp = pollRespParam;
 	this.pollRespCBox.setValue(this.pollResp);
         this.pollRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -134,6 +142,54 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Confirmation"));
     }
 
+    //-----------------------------------
+    //octopus scene
+    public void switchToPayment(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("TouchDisplayPayment.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
+
+        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
+  
+        //setTextPayment();
+    }
+
+    public void getPaymentDetail(ActionEvent event) throws IOException {
+        setTextPayment();
+    }
+
+    public void setTextPayment(){
+        //test data
+        int totalCharge = 0;
+        String sampleLateDate = "2";
+        //
+        lateDayField.setText(sampleLateDate);
+        totalCharge = calTotalCharge(sampleLateDate);
+        totalChargeField.setText(String.valueOf("HK$"+totalCharge));
+ 
+    }
+
+    public int calTotalCharge(String lateDay){
+        int day = Integer.parseInt(lateDay);
+        return day * 10;
+    }
+
+    public void switchToMainMenu_octopus(ActionEvent event) throws IOException {
+
+        root = FXMLLoader.load(getClass().getResource("TouchDisplayMainMenu.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+
+        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoStandby,"Standby"));       
+    }
+    //-------------------------------------
+
     public void switchToMainMenu_action(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("TouchDisplayMainMenu.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -141,6 +197,7 @@ public class TouchDisplayEmulatorController {
         stage.setScene(scene);
         stage.show();
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+        
     }
 
     public void switchToMainMenu_mouse(MouseEvent event) throws IOException {
