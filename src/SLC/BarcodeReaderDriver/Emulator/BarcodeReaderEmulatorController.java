@@ -128,9 +128,11 @@ public class BarcodeReaderEmulatorController {
     //handle alert of gostandby / goactivated
     public void goActivated_Alert() {
         barcodeReaderTextArea.appendText("Alert: You have to set the Activation Response to Activated");
+        goActive();
     }
     public void goStandby_Alert() {
         barcodeReaderTextArea.appendText("Alert: You have to set the Activation Response to Standby");
+        goStandby();
     }
 
 

@@ -15,11 +15,11 @@
                <font>
                   <Font size="48.0" />
                </font></Label>
-                <Label fx:id="fxbarcodeworkinglabel" alignment="CENTER" layoutX="181.0" layoutY="34.0" minWidth="-Infinity" prefHeight="50.0" prefWidth="160.0" text="NOT work" textAlignment="CENTER">
+                <Label fx:id="fxbarcodeworkinglabel" alignment="CENTER" layoutX="181.0" layoutY="34.0" minWidth="-Infinity" prefHeight="50.0" prefWidth="160.0" text="Working" textAlignment="CENTER">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="fxBarcodeStatusLabel" alignment="CENTER" layoutX="341.0" layoutY="40.0" minWidth="-Infinity" prefHeight="38.0" prefWidth="140.0" text="Null" textAlignment="CENTER">
+                <Label fx:id="fxBarcodeStatusLabel" alignment="CENTER" layoutX="341.0" layoutY="40.0" minWidth="-Infinity" prefHeight="38.0" prefWidth="140.0" text="Activated" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font></Label>
