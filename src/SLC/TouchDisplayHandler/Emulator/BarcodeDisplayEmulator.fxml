@@ -15,14 +15,19 @@
                <font>
                   <Font size="48.0" />
                </font></Label>
-                <Label fx:id="fxbarcodenolabel" alignment="CENTER" layoutX="16.0" layoutY="7.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="649.0" text="NOT work" textAlignment="CENTER">
+                <Label fx:id="fxbarcodeworkinglabel" alignment="CENTER" layoutX="181.0" layoutY="34.0" minWidth="-Infinity" prefHeight="50.0" prefWidth="160.0" text="NOT work" textAlignment="CENTER">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="fxBarcodeStatusLabel" alignment="CENTER" layoutX="16.0" layoutY="231.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="649.0" text="Null" textAlignment="CENTER">
+                <Label fx:id="fxBarcodeStatusLabel" alignment="CENTER" layoutX="341.0" layoutY="40.0" minWidth="-Infinity" prefHeight="38.0" prefWidth="140.0" text="Null" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font></Label>
+                <Label alignment="CENTER" layoutX="248.0" layoutY="230.0" minWidth="-Infinity" text="Barcode No" textAlignment="CENTER">
+                    <font>
+                        <Font size="48.0" />
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
