@@ -49,6 +49,10 @@ public class SLSvr extends AppThread {
                     quit = true;
                     break;
 
+                case BarcodeVerification:
+                    verifyBarcode(msg.getDetails());
+                    break;
+
                 case BackupPasscodeMap:
                     backupLockerPasscodeMapToSvr(stringToMap(msg.getDetails()));
                     break;
@@ -64,10 +68,15 @@ public class SLSvr extends AppThread {
         log.info(id + ": terminating...");
     } //run
 
-    private void reserveLocker(String barcode,LockerSize size) {
-        String id = LockerManager.getInstance().reserveLocker(size).getLockerId();
-        reserveLockerMap.put(barcode, id);
-        LockerManager.getInstance().getLockerById(id).setLockerStatus(LockerStatus.Booked);
+    public void reserveLocker(String barcode,LockerSize size) {
+        Locker locker = LockerManager.getInstance().reserveLocker(size);
+        String lockerId;
+        if (locker != null)
+        {
+            lockerId = locker.getLockerId();
+            reserveLockerMap.put(barcode, lockerId);
+            LockerManager.getInstance().getLockerById(lockerId).setLockerStatus(LockerStatus.Booked);
+        }
     }
 
     private String verifyBarcode(String barcode) {

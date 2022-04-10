@@ -158,14 +158,16 @@ public class SLC extends AppThread {
 				//TODO cancel locker pickUpTimer
 				lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
 				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
-				LockerManager.getInstance().getLockerById(lockerId).setLock(false);
+				removeUsedPasscode(msg.getDetails());
+				svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
 			}
 			break;
 
 		case OpenLocker:
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Open);
-			removeUsedPasscode(msg.getDetails());
-			svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
+			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(false);
+			//TODO confirm which UI will display after staff check in (below in user pickup open locker GUI)
+			//touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, msg.getDetails()));
 			break;
 
 		case FinishPickup:
