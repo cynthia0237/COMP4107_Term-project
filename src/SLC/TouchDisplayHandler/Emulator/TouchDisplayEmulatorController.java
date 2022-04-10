@@ -158,21 +158,31 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
 
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
+
+        String paymentAmount = Integer.toString(getPaymentAmount("2"));
+        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
   
         //setTextPayment();
     }
 
     public void getPaymentDetail(ActionEvent event) throws IOException {
-        setTextPayment();
+        setTextPayment("2");
     }
 
-    public void setTextPayment(){
+    public int getPaymentAmount(String lateDay){
+        int totalCharge = 0;
+        String lateDate = lateDay;
+        totalCharge = calTotalCharge(lateDate);
+        return totalCharge;
+    }
+
+    public void setTextPayment(String lateDay){
         //test data
         int totalCharge = 0;
-        String sampleLateDate = "2";
+        String lateDate = lateDay;
         //
-        lateDayField.setText(sampleLateDate);
-        totalCharge = calTotalCharge(sampleLateDate);
+        lateDayField.setText(lateDate);
+        totalCharge = calTotalCharge(lateDate);
         totalChargeField.setText(String.valueOf("HK$"+totalCharge));
  
     }
@@ -192,6 +202,11 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
 
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoStandby,"Standby"));       
+    }
+
+    public void backTOMainPage(){
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoStandby,"Standby"));
     }
     //-------------------------------------
 

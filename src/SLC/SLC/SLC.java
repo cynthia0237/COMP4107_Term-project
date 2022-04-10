@@ -119,8 +119,19 @@ public class SLC extends AppThread {
 				}
 			break;
 
-		case OCR_OctopusCardRead:
-			log.info("Octopus Card Number: " + msg.getDetails());
+			case OCR_GoActive:
+			log.info("Activation Response: " + msg.getDetails());
+			break;
+
+			case OCR_GoStandby:
+			log.info("Standby Response: " + msg.getDetails());
+			break;
+			
+			case OCR_OctopusCardRead:
+			log.info("Octopus Card Number: " + msg.getDetails() + "settle the payment successfully");
+
+			//after payment action (go to the locker?)
+			
 			break;
 
 		//receive the barcode no from barcodeemulator

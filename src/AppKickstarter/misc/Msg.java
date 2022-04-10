@@ -104,6 +104,8 @@ public class Msg {
         /** Octopus Card Reader Go Activate */	OCR_GoActive,
         /** Octopus Card Reader Go Standby */	OCR_GoStandby,
         /** Octopus Card inserted */			OCR_OctopusCardRead,
+        /** Octopus Card receive payment request*/ OCR_ReceivePayment,
+        /** back to main page after payment*/      OCR_BackToMainPage,
         /** Passcode value */ Passcode,
 
         /** Check pickup passcode */            CheckPickupPasscode,

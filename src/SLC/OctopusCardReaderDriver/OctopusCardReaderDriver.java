@@ -34,6 +34,10 @@ public class OctopusCardReaderDriver extends HWHandler{
             case OCR_GoStandby:
                 handleGoStandby();
                 break;
+            
+            case OCR_ReceivePayment:
+                handlePaymentAmount(msg.getDetails());
+                break;
 
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
@@ -42,14 +46,14 @@ public class OctopusCardReaderDriver extends HWHandler{
 
     // handleGoActive
     protected void handleGoActive() {
-	log.info(id + ": Go Active");
+	log.info(id + ": Handle Go Active");
     } // handleGoActive
 
 
     //------------------------------------------------------------
     // handleGoStandby
     protected void handleGoStandby() {
-	log.info(id + ": Go Standby");
+	log.info(id + ": Handle Go Standby");
     } // handleGoStandby
 
 
@@ -58,4 +62,11 @@ public class OctopusCardReaderDriver extends HWHandler{
     protected void handlePoll() {
         log.info(id + ": Handle Poll");
     } // handlePoll
+
+    //------------------------------------------------------------
+    //handlePaymentAmount
+    protected void handlePaymentAmount(String amount){
+        log.info(id + ": Handle Payment Amount");
+    }//handlePaymentAmount
+
 } // OctopusCardReaderDriver

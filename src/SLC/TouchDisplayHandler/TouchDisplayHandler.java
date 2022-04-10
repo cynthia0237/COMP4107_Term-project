@@ -54,6 +54,10 @@ public class TouchDisplayHandler extends HWHandler {
                 handlePasscodeInput(msg);
                 break;
 
+            case OCR_BackToMainPage:
+                handleAfterPayment();
+                break;
+                
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
@@ -83,4 +87,9 @@ public class TouchDisplayHandler extends HWHandler {
     }
 
     protected void showOpenLockScreen(Msg msg){}
+
+
+    protected void handleAfterPayment() {
+        log.info(id + ": Handle After Payment");
+    }
 } // TouchDisplayHandler

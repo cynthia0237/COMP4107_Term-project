@@ -65,9 +65,15 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
             break;
 
             case "Activated":
-            case "Standby":
+                slc.send(new Msg(id, mbox, Msg.Type.OCR_GoActive, id + " Go Active"));
                 octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Activated");
                 octopusCardReaderEmulatorController.goActive();
+            break;
+
+            case "Standby":
+                slc.send(new Msg(id, mbox, Msg.Type.OCR_GoStandby, id + " Go Standby"));
+                octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Standby");
+                octopusCardReaderEmulatorController.goStandby();
             break;
         }
         
@@ -84,7 +90,13 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
             break;
 
             case "Activated":
+                slc.send(new Msg(id, mbox, Msg.Type.OCR_GoActive, id + " Go Active"));
+                octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Activated");
+                octopusCardReaderEmulatorController.goActive();
+            break;
+
             case "Standby":
+                slc.send(new Msg(id, mbox, Msg.Type.OCR_GoStandby, id + " Go Standby"));
                 octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader Standby");
                 octopusCardReaderEmulatorController.goStandby();
             break;
@@ -96,7 +108,7 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
     //------------------------------------------------------------
     // handlePoll
     protected void handlePoll() {
-        // super.handlePoll();
+        //super.handlePoll();
 
         switch (octopusCardReaderEmulatorController.getPollResp()) {
             case "ACK":
@@ -112,4 +124,18 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
                 break;
         }
     } // handlePoll
+
+
+    //------------------------------------------------------------
+    // handlePaymentAmount
+    protected void handlePaymentAmount(String amount){
+
+        super.handlePaymentAmount(amount);
+        octopusCardReaderEmulatorController.paymentAmount = Integer.parseInt(amount);
+        octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader ready to receive: HK$"+amount);
+        octopusCardReaderEmulatorController.appendTextArea("Waiting for the user to make the payment by sending the octopus card number!");
+
+    }
+    //handlePaymentAmount
+
 } // OctopusCardReaderEmulator

@@ -3,6 +3,7 @@ package SLC.OctopusCardReaderDriver.Emulator;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.MBox;
 import AppKickstarter.misc.Msg;
+import AppKickstarter.timer.Timer;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -21,6 +22,8 @@ public class OctopusCardReaderEmulatorController {
     private Logger log;
     private OctopusCardReaderEmulator octopusCardReaderEmulator;
     private MBox octopusCardReaderMBox;
+    private MBox touchDisplayMBox;
+    private Timer octopusCardReaderTimer;
     private String activationResp;
     private String standbyResp;
     private String pollResp;
@@ -32,6 +35,7 @@ public class OctopusCardReaderEmulatorController {
     public ChoiceBox pollRespCBox;
     private TextField remainingMoney;
     private int remainingMoney_int;
+    public int paymentAmount;
 
 
     //------------------------------------------------------------
@@ -41,6 +45,8 @@ public class OctopusCardReaderEmulatorController {
         this.appKickstarter = appKickstarter;
         this.log = log;
         this.octopusCardReaderEmulator = octopusCardReaderEmulator;
+        this.touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
+        //this.octopusCardReaderTimer.getMBox()
         this.octopusCardReaderMBox = appKickstarter.getThread("OctopusCardReaderDriver").getMBox();
         this.activationRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -78,20 +84,17 @@ public class OctopusCardReaderEmulatorController {
         switch (btn.getText()) {
             case "1":
                 octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard1"));
-                //remainingMoney.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCardMoney1"));
-                //remainingMoney_int = Integer.parseInt(remainingMoney.getText());
+ 
                 break;
 
             case "2":
                 octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard2"));
-                //remainingMoney.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCardMoney2"));
-                //remainingMoney_int = Integer.parseInt(remainingMoney.getText());
+
             break;
 
             case "3":
                 octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard3"));
-                //remainingMoney.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCardMoney3"));
-                //remainingMoney_int = Integer.parseInt(remainingMoney.getText());
+
             break;
 
             case "Reset":
@@ -101,7 +104,9 @@ public class OctopusCardReaderEmulatorController {
             case "Send":
                if(octopusCardReaderStatusField.getText().equals("Active")){
                 octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_OctopusCardRead, octopusCardNumField.getText()));
+                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_BackToMainPage, "MainPage"));
                 octopusCardReaderTextArea.appendText("Sending octopus card number " + octopusCardNumField.getText()+"\n");
+                octopusCardReaderTextArea.appendText("Transaction Success: received HK$" + paymentAmount + " from Octopus Card " + octopusCardNumField.getText()+"\n");
                 // remainingMoney_int -= 10;
                 // octopusCardReaderTextArea.appendText("The remaining money: " + remainingMoney_int + "\n");
                }
@@ -109,14 +114,11 @@ public class OctopusCardReaderEmulatorController {
 
             case "Activate":
                 octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoActive, octopusCardNumField.getText()));
-                
-                //octopusCardReaderTextArea.appendText("Removing card\n");
 
             break;
 
             case "Standby":
                 octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoStandby, octopusCardNumField.getText()));
-                //octopusCardReaderTextArea.appendText("Removing card\n");
 
             break;
 

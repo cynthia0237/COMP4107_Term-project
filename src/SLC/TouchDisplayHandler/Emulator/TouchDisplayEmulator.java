@@ -204,4 +204,11 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
             touchDisplayEmulatorController.showOpenLockerScreen(msg.getDetails());
         });
     }
+
+    //------------------------------------------------------------
+    // handleAfterPayment
+    protected void handleAfterPayment() {
+        touchDisplayEmulatorController.backTOMainPage();
+    }//handleAfterPayment
+    
 } // TouchDisplayEmulator
