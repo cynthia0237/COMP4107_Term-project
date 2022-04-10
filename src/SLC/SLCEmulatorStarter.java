@@ -2,6 +2,7 @@ package SLC;
 
 import AppKickstarter.timer.Timer;
 
+import DeliveryCompany.DeliveryCompanyEmulator;
 import SLC.SLC.SLC;
 import SLC.BarcodeReaderDriver.BarcodeReaderDriver;
 import SLC.BarcodeReaderDriver.Emulator.BarcodeReaderEmulator;
@@ -40,6 +41,9 @@ public class SLCEmulatorStarter extends SLCStarter {
     public static class Emulators extends Application {
         private static SLCEmulatorStarter slcEmulatorStarter;
 
+        //should be an outsider
+        private DeliveryCompanyEmulator deliveryCompanyEmulator = new DeliveryCompanyEmulator();
+
 	//----------------------------------------
 	// start
         public void start() {
@@ -73,6 +77,8 @@ public class SLCEmulatorStarter extends SLCStarter {
             touchDisplayEmulator.start();
             octopusCardReaderEmulator.start();
             lockerReaderEmulator.start();
+
+            deliveryCompanyEmulator.start();
 	    } catch (Exception e) {
             System.out.println("Emulators: start failed");
             e.printStackTrace();

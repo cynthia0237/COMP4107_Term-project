@@ -108,8 +108,7 @@ public class Msg {
 
         /** Check pickup passcode */            CheckPickupPasscode,
         /** Open Locker */                      OpenLocker,
-        /** Finish pickup -> close locker */    FinishPickup,
-        /** Staff finish check in */            FinishCheckin,
+        /** Close Locker */                     CloseLocker,
 
         /** Barcode Verification */             BarcodeVerification,
         /** Update server backup passcode map */ BackupPasscodeMap

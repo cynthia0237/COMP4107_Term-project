@@ -9,16 +9,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SLSvr extends AppThread {
+
+    static SLSvr instance = null;
+    private static AppKickstarter slcEmulatorStarter;
+
     private int pollingTime;
     private MBox slc;
 
     private HashMap<String, String> reserveLockerMap = new HashMap<>(); //barcode, lockerId
     private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
 
+    public static SLSvr getInstance(){
+        if(instance == null){
+            synchronized(SLSvr.class){
+                if(instance == null){
+                    System.out.println("cannot find svr");
+                }
+            }
+        }
+        return instance;
+    }
+
     public SLSvr(String id, AppKickstarter appKickstarter) throws Exception {
         super(id, appKickstarter);
         pollingTime = Integer.parseInt(appKickstarter.getProperty("SLSvr.PollingTime"));
-
+        instance = this;
         //For test
 
     } // SLC
@@ -68,7 +83,7 @@ public class SLSvr extends AppThread {
         log.info(id + ": terminating...");
     } //run
 
-    public void reserveLocker(String barcode,LockerSize size) {
+    public boolean reserveLocker(String barcode,LockerSize size) {
         Locker locker = LockerManager.getInstance().reserveLocker(size);
         String lockerId;
         if (locker != null)
@@ -76,7 +91,9 @@ public class SLSvr extends AppThread {
             lockerId = locker.getLockerId();
             reserveLockerMap.put(barcode, lockerId);
             LockerManager.getInstance().getLockerById(lockerId).setLockerStatus(LockerStatus.Booked);
+            return true;
         }
+        return false;
     }
 
     private String verifyBarcode(String barcode) {

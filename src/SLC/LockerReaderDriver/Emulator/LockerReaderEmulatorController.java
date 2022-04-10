@@ -98,8 +98,8 @@ public class LockerReaderEmulatorController {
 
             if (locker.getLockerStatus() == LockerStatus.Open) {
                 rect.setFill(Color.WHITE);
-                //TODO split to user or staff
-                lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.FinishPickup, lockerId));
+                lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.CloseLocker, lockerId));
+                //lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.FinishPickup, lockerId));
             }
         }
     }

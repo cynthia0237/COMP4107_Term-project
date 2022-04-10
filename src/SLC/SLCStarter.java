@@ -4,6 +4,7 @@ import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.Msg;
 import AppKickstarter.timer.Timer;
 
+import DeliveryCompany.DeliveryCompanyEmulator;
 import SLC.SLC.SLC;
 import SLC.BarcodeReaderDriver.BarcodeReaderDriver;
 import SLC.TouchDisplayHandler.TouchDisplayHandler;
@@ -76,6 +77,7 @@ public class SLCStarter extends AppKickstarter {
 	new Thread(octopusCardReaderDriver).start();
 	new Thread(lockerReaderDriver).start();
 	new Thread(svr).start();
+
     } // startHandlers
 
 

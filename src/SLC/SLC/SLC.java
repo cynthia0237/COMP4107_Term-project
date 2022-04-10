@@ -22,6 +22,7 @@ public class SLC extends AppThread {
 	private MBox svrMBox;
 
 	private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
+	boolean isStaff; //differentiate which type of user
 
 
     //------------------------------------------------------------
@@ -124,6 +125,7 @@ public class SLC extends AppThread {
 
 		//receive the barcode no from barcodeemulator
 		case BR_BarcodeRead:
+			isStaff = true;
 			//send message to server and verify
 
 			//get response from server
@@ -145,6 +147,7 @@ public class SLC extends AppThread {
 			break;
 
 		case CheckPickupPasscode:
+			isStaff = false;
 			String lockerId = checkPickupPasscode(msg.getDetails());
 			if (lockerId.equals("error")) {
 				//System.out.println("wrong passcode send msg");
@@ -170,9 +173,14 @@ public class SLC extends AppThread {
 			//touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, msg.getDetails()));
 			break;
 
-		case FinishPickup:
-			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Available);
+		case CloseLocker:
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(true);
+			if (isStaff) {
+				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.InUse);
+				//set Timer
+			} else {
+				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Available);
+			}
 			break;
 
 

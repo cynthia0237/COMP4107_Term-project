@@ -24,8 +24,8 @@ public class LockerReaderDriver extends HWHandler {
                 openLocker(msg);
                 break;
 
-            case FinishPickup:
-                slc.send(new Msg(id, mbox, Msg.Type.FinishPickup, msg.getDetails()));
+            case CloseLocker:
+                slc.send(new Msg(id, mbox, Msg.Type.CloseLocker, msg.getDetails()));
                 break;
 
             default:
