@@ -162,18 +162,8 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
         touchDisplayEmulatorController.updatebarcodeno(msg.getDetails());
     }
 
-    protected void handlePasscodeInput(Msg msg) {
-        switch (msg.getType()) {
-            case TD_WrongPasscode:
-                touchDisplayEmulatorController.updatePasscodeMsgLblText(msg.getDetails());
-                break;
-
-            default:
-                //correct
-        }
-    }
-
     //handle UpdateBarcode status
+
     //------------------------------------------------------------
     // handlePoll
     protected void handlePoll() {
@@ -193,6 +183,20 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 break;
         }
     } // handlePoll
+
+    protected void handlePasscodeInput(Msg msg) {
+        switch (msg.getType()) {
+            case TD_WrongPasscode:
+                touchDisplayEmulatorController.updatePasscodeMsgLblText(msg.getDetails());
+                break;
+
+            case TD_CorrectPasscode:
+                showOpenLockScreen(msg);
+
+            default:
+                //correct
+        }
+    }
 
     protected void showOpenLockScreen(Msg msg) {
         reloadStage("TouchDisplayOpenLocker.fxml");

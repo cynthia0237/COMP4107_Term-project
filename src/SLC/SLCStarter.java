@@ -22,6 +22,7 @@ public class SLCStarter extends AppKickstarter {
     protected TouchDisplayHandler touchDisplayHandler;
 	protected OctopusCardReaderDriver octopusCardReaderDriver;
 	protected LockerReaderDriver lockerReaderDriver;
+	protected SLSvr svr;
 
     //------------------------------------------------------------
     // main
@@ -74,6 +75,7 @@ public class SLCStarter extends AppKickstarter {
 	new Thread(touchDisplayHandler).start();
 	new Thread(octopusCardReaderDriver).start();
 	new Thread(lockerReaderDriver).start();
+	new Thread(svr).start();
     } // startHandlers
 
 
@@ -89,6 +91,7 @@ public class SLCStarter extends AppKickstarter {
 	touchDisplayHandler.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	octopusCardReaderDriver.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 	lockerReaderDriver.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
+	svr.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
 
 	timer.getMBox().send(new Msg(id, null, Msg.Type.Terminate, "Terminate now!"));
     } // stopApp

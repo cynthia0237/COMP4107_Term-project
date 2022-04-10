@@ -258,7 +258,7 @@ public class TouchDisplayEmulatorController {
 
             case "OK":
                 //System.out.println("submitted passcode " + passcodeTF.getText());
-                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_CheckPickupPasscode, passcodeTF.getText()));
+                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.CheckPickupPasscode, passcodeTF.getText()));
                 break;
         }
     }

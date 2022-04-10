@@ -36,10 +36,10 @@ public class BarcodeReaderEmulatorController {
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, BarcodeReaderEmulator barcodeReaderEmulator) {
         this.id = id;
         this.appKickstarter = appKickstarter;
-	this.log = log;
-	this.barcodeReaderEmulator = barcodeReaderEmulator;
-	this.barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
-    this.SLC = appKickstarter.getThread("SLC").getMBox();
+	    this.log = log;
+	    this.barcodeReaderEmulator = barcodeReaderEmulator;
+	    this.barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
+        this.SLC = appKickstarter.getThread("SLC").getMBox();
         this.activationRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -59,7 +59,7 @@ public class BarcodeReaderEmulatorController {
                 appendTextArea("Standby Response set to " + standbyRespCBox.getItems().get(newValue.intValue()).toString());
             }
         });
-	this.pollRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+	    this.pollRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 pollResp = pollRespCBox.getItems().get(newValue.intValue()).toString();

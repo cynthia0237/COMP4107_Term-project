@@ -3,11 +3,9 @@ package SLC.SLC;
 import AppKickstarter.AppKickstarter;
 import AppKickstarter.misc.*;
 import AppKickstarter.timer.Timer;
-import SLC.Locker.Locker;
 import SLC.Locker.LockerManager;
 import SLC.Locker.LockerStatus;
 
-import java.lang.invoke.SwitchPoint;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -21,6 +19,7 @@ public class SLC extends AppThread {
     private MBox touchDisplayMBox;
 	private MBox octopuscardReaderMBox;
 	private MBox lockerReaderMBox;
+	private MBox svrMBox;
 
 	private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
 
@@ -34,6 +33,8 @@ public class SLC extends AppThread {
 
 		//For test
 		genPickupPasscode("33");
+		genPickupPasscode("25");
+		//System.out.println(lockerPasscodeMap.toString());
 		//Callback cb = () -> genPickupPasscode("4");
 		//StaffPutCargoTask staffTask = new StaffPutCargoTask();
 		//staffTask.runWith(cb);
@@ -51,6 +52,7 @@ public class SLC extends AppThread {
 	octopuscardReaderMBox = appKickstarter.getThread("OctopusCardReaderDriver").getMBox();
 	touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
 	lockerReaderMBox = appKickstarter.getThread("LockerReaderDriver").getMBox();
+	svrMBox = appKickstarter.getThread("SLSvr").getMBox();
 
 	for (boolean quit = false; !quit;) {
 	    Msg msg = mbox.receive();
@@ -142,7 +144,7 @@ public class SLC extends AppThread {
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 			break;
 
-		case TD_CheckPickupPasscode:
+		case CheckPickupPasscode:
 			String lockerId = checkPickupPasscode(msg.getDetails());
 			if (lockerId.equals("error")) {
 				//System.out.println("wrong passcode send msg");
@@ -153,15 +155,17 @@ public class SLC extends AppThread {
 				//TODO check have payment or not
 
 				//if no payment
+				//TODO cancel locker pickUpTimer
 				lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
-				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_ShowOpenLocker, lockerId));
+				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
 				LockerManager.getInstance().getLockerById(lockerId).setLock(false);
-				LockerManager.getInstance().getLockerById(lockerId).setLockerStatus(LockerStatus.Open);
 			}
 			break;
 
 		case OpenLocker:
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Open);
+			removeUsedPasscode(msg.getDetails());
+			svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
 			break;
 
 		case FinishPickup:

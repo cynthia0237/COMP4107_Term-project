@@ -91,9 +91,8 @@ public class Msg {
         /** Health poll -ve acknowledgement */	PollNak,
 	    /** Update Display */			        TD_UpdateDisplay,
 	    /** Mouse Clicked */			        TD_MouseClicked,
-        /** Check pickup passcode */            TD_CheckPickupPasscode,
         /** Passcode input error */             TD_WrongPasscode,
-        /** Get open locker id to display */    TD_ShowOpenLocker,
+        /** correct passcode */                 TD_CorrectPasscode,
 
         /** Barcode Reader Go Activate */	    BR_GoActive,
         /** Barcode Reader Go Standby */	    BR_GoStandby,
@@ -107,8 +106,11 @@ public class Msg {
         /** Octopus Card inserted */			OCR_OctopusCardRead,
         /** Passcode value */ Passcode,
 
+        /** Check pickup passcode */            CheckPickupPasscode,
         /** Open Locker */                      OpenLocker,
-        /** Finish pickup -> close locker */    FinishPickup
+        /** Finish pickup -> close locker */    FinishPickup,
+
+        /** Update server backup passcode map */ BackupPasscodeMap
 
     } // Type
 } // Msg

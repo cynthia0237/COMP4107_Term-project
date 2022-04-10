@@ -55,6 +55,7 @@ public class SLCEmulatorStarter extends SLCStarter {
 	    TouchDisplayEmulator touchDisplayEmulator = null;
         OctopusCardReaderEmulator octopusCardReaderEmulator = null;
         LockerReaderEmulator lockerReaderEmulator = null;
+        SLSvr svr = null;
 
 	    // create emulators
 	    try {
@@ -64,6 +65,8 @@ public class SLCEmulatorStarter extends SLCStarter {
 	        touchDisplayEmulator = new TouchDisplayEmulator("TouchDisplayHandler", slcEmulatorStarter);
             octopusCardReaderEmulator = new OctopusCardReaderEmulator("OctopusCardReaderDriver", slcEmulatorStarter);
             lockerReaderEmulator = new LockerReaderEmulator("LockerReaderDriver", slcEmulatorStarter);
+            svr = new SLSvr("SLSvr", slcEmulatorStarter);
+
 
 		// start emulator GUIs
             barcodeReaderEmulator.start();
@@ -81,6 +84,7 @@ public class SLCEmulatorStarter extends SLCStarter {
 	    slcEmulatorStarter.setTouchDisplayHandler(touchDisplayEmulator);
         slcEmulatorStarter.setOctopusCardReaderDriver(octopusCardReaderEmulator);
         slcEmulatorStarter.setLockerReaderDriver(lockerReaderEmulator);
+        slcEmulatorStarter.setSLSvr(svr);
 
 	    // start threads
 	    new Thread(timer).start();
@@ -89,6 +93,7 @@ public class SLCEmulatorStarter extends SLCStarter {
 	    new Thread(touchDisplayEmulator).start();
         new Thread(octopusCardReaderEmulator).start();
         new Thread(lockerReaderEmulator).start();
+        new Thread(svr).start();
 	} // start
     } // Emulators
 
@@ -112,5 +117,8 @@ public class SLCEmulatorStarter extends SLCStarter {
     }
     private void setLockerReaderDriver(LockerReaderDriver lockerReaderDriver) {
         this.lockerReaderDriver = lockerReaderDriver;
+    }
+    private void setSLSvr(SLSvr svr) {
+        this.svr = svr;
     }
 } // SLCEmulatorStarter

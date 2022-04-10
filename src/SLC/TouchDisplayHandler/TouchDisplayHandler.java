@@ -44,12 +44,14 @@ public class TouchDisplayHandler extends HWHandler {
                 handle_BR_BarcodeNo_UpdateDisplay(msg);
                 break;
 
-            case TD_WrongPasscode:
-                handlePasscodeInput(msg);
+            case CheckPickupPasscode:
+                slc.send(new Msg(id, mbox, Msg.Type.CheckPickupPasscode, msg.getDetails()));
                 break;
 
-            case TD_ShowOpenLocker:
-                showOpenLockScreen(msg);
+            case TD_WrongPasscode:
+
+            case TD_CorrectPasscode:
+                handlePasscodeInput(msg);
                 break;
 
             default:
@@ -63,10 +65,6 @@ public class TouchDisplayHandler extends HWHandler {
     protected void handle_BR_BarcodeNo_UpdateDisplay(Msg msg){}
     //update barcode gui method---------End
 
-    protected void handlePasscodeInput(Msg msg) {
-        System.out.println("handlePasscodeInput");
-    }
-
     //------------------------------------------------------------
     // handleUpdateDisplay
     protected void handleUpdateDisplay(Msg msg) {
@@ -79,6 +77,10 @@ public class TouchDisplayHandler extends HWHandler {
     protected void handlePoll() {
         log.info(id + ": Handle Poll");
     } // handlePoll
+
+    protected void handlePasscodeInput(Msg msg) {
+        System.out.println("handlePasscodeInput");
+    }
 
     protected void showOpenLockScreen(Msg msg){}
 } // TouchDisplayHandler
