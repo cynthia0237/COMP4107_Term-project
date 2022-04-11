@@ -31,13 +31,17 @@ public class SLC extends AppThread {
     // SLC
     public SLC(String id, AppKickstarter appKickstarter) throws Exception {
 	super(id, appKickstarter);
+	
 	pollingTime = Integer.parseInt(appKickstarter.getProperty("SLC.PollingTime"));
-	lockerTimeLimit = 30;
+	lockerTimeLimit = 5;
 
 
 		//For test
 		genPickupPasscode("33");
 		genPickupPasscode("25");
+		LockerManager.getInstance().getLockerById("33").setStartTime(System.currentTimeMillis());
+
+		
 		//System.out.println(lockerPasscodeMap.toString());
 		//Callback cb = () -> genPickupPasscode("4");
 		//StaffPutCargoTask staffTask = new StaffPutCargoTask();
@@ -173,14 +177,16 @@ public class SLC extends AppThread {
 				int dueTime = checkPayment(lockerId);
 				if (dueTime > 0) {
 					//have payment active octopus
+					octopuscardReaderMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
+					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
+					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
+
 				} else {
 					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
 					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
 					removeUsedPasscode(msg.getDetails());
 					svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
 
-					octopuscardReaderMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
-					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
 				}
 
 			}

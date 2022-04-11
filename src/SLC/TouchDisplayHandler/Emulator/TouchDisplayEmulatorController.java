@@ -188,6 +188,18 @@ public class TouchDisplayEmulatorController {
   
     }
 
+    public void switchToPayment() {
+
+        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
+
+        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
+
+        //for testing
+        String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
+        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
+  
+    }
+
     public void getPaymentDetail(ActionEvent event) throws IOException {
         setTextPayment(lateTime);
     }
