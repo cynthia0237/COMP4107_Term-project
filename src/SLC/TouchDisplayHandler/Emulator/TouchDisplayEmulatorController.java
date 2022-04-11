@@ -150,6 +150,10 @@ public class TouchDisplayEmulatorController {
                 case "Enter Passcode":
                     touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, "EnterPasscode " + x + " " + y));
                     break;
+
+                case "Open Locker":
+                    touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "BlankScreen"));
+                    break;
             }
 
         }
@@ -239,16 +243,6 @@ public class TouchDisplayEmulatorController {
         
     }
 
-    //TODO put into SLC for check xy
-    public void onPickupBtnClick(ActionEvent event) {
-        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
-    }
-
-    public void showOpenLockerScreen(String lockerId) {
-        String id = String.format("%02d", Integer.parseInt(lockerId));
-        openLockerLbl.setText("Locker " + id +" will be open");
-    }
-
     public void onStaffLoginBtnClick(ActionEvent event) {
 
     }
@@ -264,35 +258,18 @@ public class TouchDisplayEmulatorController {
         barcodeReaderMBox.send(new Msg(id,touchDisplayMBox,Msg.Type.BR_GoActive,""));
     }
 
-    //region Control passcode enter
-//    public void onNumClick(MouseEvent event) {
-//        Pane pane = (Pane) event.getSource();
-//        textValue += pane.getId().replace("btn", "");
-//        passcodeTF.setText(textValue);
-//    }
-
-//    public void onSymbolClick(MouseEvent event) {
-//        Pane pane = (Pane) event.getSource();
-//        String symbol = pane.getId();
-//        switch (symbol) {
-//            case "C":
-//                if(!textValue.isEmpty())
-//                    textValue = textValue.substring(0,textValue.length()-1);
-//                passcodeTF.setText(textValue);
-//                break;
-//
-//            case "OK":
-//                //System.out.println("submitted passcode " + passcodeTF.getText());
-//                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.CheckPickupPasscode, passcodeTF.getText()));
-//                break;
-//        }
-//    }
+    //region Control pickup locker display
     public void setPasscodeTF(String passcode) {
         Platform.runLater(() -> passcodeTF.setText(passcode));
     }
 
     public void updatePasscodeMsgLblText(String msg) {
         Platform.runLater(() -> passcodeMsgLbl.setText(msg));
+    }
+
+    public void showOpenLockerScreen(String lockerId) {
+        String id = String.format("%02d", Integer.parseInt(lockerId));
+        openLockerLbl.setText("Locker " + id +" will be open");
     }
 
     //endregion
