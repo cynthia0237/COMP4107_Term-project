@@ -45,7 +45,8 @@ public class TouchDisplayEmulatorController {
     //payment
     public TextField lateDayField;
     public TextField totalChargeField;
-    public String lateTime;
+    //private String lateTime = "0";
+    public int lateDay;
 
 
     private Stage stage;
@@ -109,7 +110,6 @@ public class TouchDisplayEmulatorController {
             }
         });
         this.selectedScreen = screenSwitcherCBox.getValue().toString();
-        lateTime = "1";
 
     } // initialize
 
@@ -183,8 +183,8 @@ public class TouchDisplayEmulatorController {
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
 
         //for testing
-        String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
-        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
+        //String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
+        //octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
   
     }
 
@@ -195,36 +195,48 @@ public class TouchDisplayEmulatorController {
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
 
         //for testing
-        String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
-        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
+        //String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
+        //octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
   
     }
 
-    public void getPaymentDetail(ActionEvent event) throws IOException {
-        setTextPayment(lateTime);
+    public void setLateDay(int lateDay){
+        Platform.runLater(() -> this.lateDay = lateDay);
+
     }
 
-    public int getPaymentAmount(String lateDay){
-        int totalCharge = 0;
-        String lateDate = lateDay;
-        totalCharge = calTotalCharge(lateDate);
-        return totalCharge;
+    public void getPaymentDetail(ActionEvent event) {
+        //log.info(id + "  :   "+this.lateTime);
+        setTextPayment(lateDay);
+        
+        //Platform.runLater(() -> setTextPayment(lateDay));
     }
 
-    public void setTextPayment(String lateDay){
+    // public void getPaymentDetail(String lateDay){
+    //     setTextPayment(lateDay);
+    // }
+
+    // public int getPaymentAmount(String lateDay){
+    //     int totalCharge = 0;
+    //     String lateDate = lateDay;
+    //     totalCharge = calTotalCharge(lateDate);
+    //     return totalCharge;
+    // }
+
+    public void setTextPayment(int lateDay){
         //test data
         int totalCharge = 0;
-        String lateDate = lateDay;
+        //String lateDate = lateTime;
         //
-        lateDayField.setText(lateDate);
-        totalCharge = calTotalCharge(lateDate);
+        lateDayField.setText(Integer.toString(lateDay));
+        totalCharge = calTotalCharge(lateDay);
         totalChargeField.setText(String.valueOf("HK$"+totalCharge));
  
     }
 
-    public int calTotalCharge(String lateDay){
-        int day = Integer.parseInt(lateDay);
-        return day * 10;
+    public int calTotalCharge(int lateDay){
+        //int day = Integer.parseInt(lateDay);
+        return lateDay * 10;
     }
 
     public void switchToMainMenu_octopus(ActionEvent event) throws IOException {

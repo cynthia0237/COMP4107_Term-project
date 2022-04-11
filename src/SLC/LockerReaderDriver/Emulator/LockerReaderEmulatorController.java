@@ -55,6 +55,7 @@ public class LockerReaderEmulatorController {
 
         //Debug use
 //        LockerManager.getInstance().printLockers();
+        LockerManager.getInstance().getLockerById("33").setStartTime(System.currentTimeMillis());
 //        //test auto open
 //        openLocker(getRectNodeInFxml("1"));
 //        openLocker(getRectNodeInFxml("28"));

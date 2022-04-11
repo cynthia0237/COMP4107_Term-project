@@ -39,9 +39,7 @@ public class SLC extends AppThread {
 		//For test
 		genPickupPasscode("33");
 		genPickupPasscode("25");
-		LockerManager.getInstance().getLockerById("33").setStartTime(System.currentTimeMillis());
-
-		
+	
 		//System.out.println(lockerPasscodeMap.toString());
 		//Callback cb = () -> genPickupPasscode("4");
 		//StaffPutCargoTask staffTask = new StaffPutCargoTask();
@@ -177,9 +175,9 @@ public class SLC extends AppThread {
 				int dueTime = checkPayment(lockerId);
 				if (dueTime > 0) {
 					//have payment active octopus
-					octopuscardReaderMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
-					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
-					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
+					octopuscardReaderMBox.send(new Msg(id, octopuscardReaderMBox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
+					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_ReceiveLateDay, Integer.toString(dueTime)));
+					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_SwitchToPayment, "Payment"));
 
 				} else {
 					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));

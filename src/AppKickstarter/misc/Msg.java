@@ -94,6 +94,7 @@ public class Msg {
         /** Passcode input error */             TD_WrongPasscode,
         /** correct passcode */                 TD_CorrectPasscode,
         /** Display user input passcode */      TD_SetPasscodeTF,
+        /**  receive late day from slc */       TD_ReceiveLateDay,
 
         /** Barcode Reader Go Activate */	    BR_GoActive,
         /** Barcode Reader Go Standby */	    BR_GoStandby,

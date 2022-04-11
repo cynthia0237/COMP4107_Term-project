@@ -62,12 +62,12 @@ public class TouchDisplayHandler extends HWHandler {
                 handleAfterPayment();
                 break;
 
-            case OCR_ReceiveLateDay:
+            case TD_ReceiveLateDay:
                 handleLateDay(msg.getDetails());
                 break;
 
             case OCR_SwitchToPayment:
-                handleLateDay(msg.getDetails());
+                handleSwitchToPayment();
                 break;
             
             default:
