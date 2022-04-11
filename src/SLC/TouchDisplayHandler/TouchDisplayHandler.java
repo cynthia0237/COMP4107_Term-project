@@ -44,6 +44,10 @@ public class TouchDisplayHandler extends HWHandler {
                 handle_BR_BarcodeNo_UpdateDisplay(msg);
                 break;
 
+            case TD_SetPasscodeTF:
+                setPasscodeTF(msg);
+                break;
+
             case CheckPickupPasscode:
                 slc.send(new Msg(id, mbox, Msg.Type.CheckPickupPasscode, msg.getDetails()));
                 break;
@@ -72,7 +76,7 @@ public class TouchDisplayHandler extends HWHandler {
     //------------------------------------------------------------
     // handleUpdateDisplay
     protected void handleUpdateDisplay(Msg msg) {
-	log.info(id + ": update display -- " + msg.getDetails());
+	    log.info(id + ": update display -- " + msg.getDetails());
     } // handleUpdateDisplay
 
 
@@ -86,7 +90,7 @@ public class TouchDisplayHandler extends HWHandler {
         System.out.println("handlePasscodeInput");
     }
 
-    protected void showOpenLockScreen(Msg msg){}
+    protected void setPasscodeTF(Msg msg) { }
 
 
     protected void handleAfterPayment() {

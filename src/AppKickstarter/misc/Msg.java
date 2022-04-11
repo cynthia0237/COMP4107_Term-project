@@ -93,6 +93,7 @@ public class Msg {
 	    /** Mouse Clicked */			        TD_MouseClicked,
         /** Passcode input error */             TD_WrongPasscode,
         /** correct passcode */                 TD_CorrectPasscode,
+        /** Display user input passcode */      TD_SetPasscodeTF,
 
         /** Barcode Reader Go Activate */	    BR_GoActive,
         /** Barcode Reader Go Standby */	    BR_GoStandby,

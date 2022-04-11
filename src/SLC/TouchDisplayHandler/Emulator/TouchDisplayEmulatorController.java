@@ -101,9 +101,9 @@ public class TouchDisplayEmulatorController {
                         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
                     break;
 
-//                    case "EnterPasscode":
-//                        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
-//                        break;
+                    case "Enter Passcode":
+                        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
+                        break;
                 }
             }
         });
@@ -130,10 +130,27 @@ public class TouchDisplayEmulatorController {
     // td_mouseClick
     public void td_mouseClick(MouseEvent mouseEvent) {
         int x = (int) mouseEvent.getX();
-	int y = (int) mouseEvent.getY();
+	    int y = (int) mouseEvent.getY();
 
-	log.fine(id + ": mouse clicked: -- (" + x + ", " + y + ")");
-	touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
+	    log.fine(id + ": mouse clicked: -- (" + x + ", " + y + ")");
+	    //touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
+
+	    if (getPollResp().equals("ACK")) {
+	        switch (getSelectedScreen()) {
+                case "Blank":
+                    touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+                    break;
+
+                case "Main Menu":
+                    touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, "MainMenu " + x + " " + y));
+                    break;
+
+                case "Enter Passcode":
+                    touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, "EnterPasscode " + x + " " + y));
+                    break;
+            }
+
+        }
     } // td_mouseClick
 
     //----------------------------------------------------------------------
@@ -220,15 +237,6 @@ public class TouchDisplayEmulatorController {
         
     }
 
-    public void switchToMainMenu_mouse(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("TouchDisplayMainMenu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
-    }
-
     //TODO put into SLC for check xy
     public void onPickupBtnClick(ActionEvent event) {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
@@ -255,27 +263,30 @@ public class TouchDisplayEmulatorController {
     }
 
     //region Control passcode enter
-    public void onNumClick(MouseEvent event) {
-        Pane pane = (Pane) event.getSource();
-        textValue += pane.getId().replace("btn", "");
-        passcodeTF.setText(textValue);
-    }
+//    public void onNumClick(MouseEvent event) {
+//        Pane pane = (Pane) event.getSource();
+//        textValue += pane.getId().replace("btn", "");
+//        passcodeTF.setText(textValue);
+//    }
 
-    public void onSymbolClick(MouseEvent event) {
-        Pane pane = (Pane) event.getSource();
-        String symbol = pane.getId();
-        switch (symbol) {
-            case "C":
-                if(!textValue.isEmpty())
-                    textValue = textValue.substring(0,textValue.length()-1);
-                passcodeTF.setText(textValue);
-                break;
-
-            case "OK":
-                //System.out.println("submitted passcode " + passcodeTF.getText());
-                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.CheckPickupPasscode, passcodeTF.getText()));
-                break;
-        }
+//    public void onSymbolClick(MouseEvent event) {
+//        Pane pane = (Pane) event.getSource();
+//        String symbol = pane.getId();
+//        switch (symbol) {
+//            case "C":
+//                if(!textValue.isEmpty())
+//                    textValue = textValue.substring(0,textValue.length()-1);
+//                passcodeTF.setText(textValue);
+//                break;
+//
+//            case "OK":
+//                //System.out.println("submitted passcode " + passcodeTF.getText());
+//                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.CheckPickupPasscode, passcodeTF.getText()));
+//                break;
+//        }
+//    }
+    public void setPasscodeTF(String passcode) {
+        Platform.runLater(() -> passcodeTF.setText(passcode));
     }
 
     public void updatePasscodeMsgLblText(String msg) {

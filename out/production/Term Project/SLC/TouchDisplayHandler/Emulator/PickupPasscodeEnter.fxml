@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SLC.TouchDisplayHandler.Emulator.TouchDisplayEmulatorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#td_mouseClick" prefHeight="570.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SLC.TouchDisplayHandler.Emulator.TouchDisplayEmulatorController">
     <children>
       <AnchorPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="682.0">
          <children>
@@ -31,7 +31,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Pane fx:id="btn1" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0">
+                  <Pane fx:id="btn1" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="1" textAlignment="CENTER">
@@ -41,7 +41,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn2" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  <Pane fx:id="btn2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="2" textAlignment="CENTER">
@@ -51,7 +51,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn3" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                  <Pane fx:id="btn3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="3" textAlignment="CENTER">
@@ -61,7 +61,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn4" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <Pane fx:id="btn4" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="4" textAlignment="CENTER">
@@ -71,7 +71,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn5" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Pane fx:id="btn5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="5" textAlignment="CENTER">
@@ -81,7 +81,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn6" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Pane fx:id="btn6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="6" textAlignment="CENTER">
@@ -91,7 +91,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn7" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                  <Pane fx:id="btn7" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="7" textAlignment="CENTER">
@@ -101,7 +101,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn8" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Pane fx:id="btn8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="8" textAlignment="CENTER">
@@ -111,7 +111,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn9" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Pane fx:id="btn9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="9" textAlignment="CENTER">
@@ -121,7 +121,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="C" onMouseClicked="#onSymbolClick" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                  <Pane fx:id="C" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="C" textAlignment="CENTER">
@@ -131,7 +131,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btn0" onMouseClicked="#onNumClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Pane fx:id="btn0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="14.0" text="0" textAlignment="CENTER">
@@ -141,7 +141,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="OK" onMouseClicked="#onSymbolClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Pane fx:id="OK" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dadada" height="76.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="130.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="14.0" text="OK" textAlignment="CENTER">
@@ -189,12 +189,13 @@
                     </items>
                 </ChoiceBox>
                 <Label text="Screen Switcher (for hacking): " GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                <ChoiceBox fx:id="screenSwitcherCBox" prefHeight="25.0" prefWidth="177.0" value="Main Menu" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <ChoiceBox fx:id="screenSwitcherCBox" prefHeight="25.0" prefWidth="177.0" value="Enter Passcode" GridPane.columnIndex="3" GridPane.rowIndex="0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Blank" />
                             <String fx:value="Main Menu" />
                             <String fx:value="Confirmation" />
+                            <String fx:value="Enter Passcode" />
                         </FXCollections>
                     </items>
                 </ChoiceBox>

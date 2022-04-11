@@ -53,12 +53,14 @@
                     </items>
                 </ChoiceBox>
                 <Label text="Screen Switcher (for hacking): " GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                <ChoiceBox fx:id="screenSwitcherCBox" prefHeight="25.0" prefWidth="177.0" value="Main Menu" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <ChoiceBox fx:id="screenSwitcherCBox" prefHeight="25.0" prefWidth="177.0" value="Open Locker" GridPane.columnIndex="3" GridPane.rowIndex="0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Blank" />
                             <String fx:value="Main Menu" />
                             <String fx:value="Confirmation" />
+                            <String fx:value="Enter Passcode" />
+                            <String fx:value="Open Locker" />
                         </FXCollections>
                     </items>
                 </ChoiceBox>

@@ -192,9 +192,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 
             case TD_CorrectPasscode:
                 showOpenLockScreen(msg);
-
-            default:
-                //correct
+                break;
         }
     }
 
@@ -203,6 +201,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
         Platform.runLater(() -> {
             touchDisplayEmulatorController.showOpenLockerScreen(msg.getDetails());
         });
+    }
+
+    protected void setPasscodeTF(Msg msg) {
+        touchDisplayEmulatorController.setPasscodeTF(msg.getDetails());
     }
 
     //------------------------------------------------------------

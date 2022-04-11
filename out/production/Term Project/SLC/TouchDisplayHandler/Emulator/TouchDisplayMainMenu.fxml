@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SLC.TouchDisplayHandler.Emulator.TouchDisplayEmulatorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SLC.TouchDisplayHandler.Emulator.TouchDisplayEmulatorController">
     <children>
         <AnchorPane prefHeight="480.0" prefWidth="640.0" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="20">
             <children>
@@ -21,12 +21,13 @@
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" AnchorPane.bottomAnchor="70" AnchorPane.leftAnchor="0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" AnchorPane.bottomAnchor="70" AnchorPane.rightAnchor="0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" layoutX="1.0" layoutY="271.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="480.0" onMouseClicked="#td_mouseClick" stroke="BLACK" strokeType="OUTSIDE" width="640" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Button fx:id="pickupBtn" layoutY="270.0" mnemonicParsing="false" onAction="#onPickupBtnClick" prefHeight="72.0" prefWidth="302.0" text="Parcer Pickup">
+            <Label layoutX="68.0" layoutY="286.0" text="Parcer Pickup">
                <font>
-                  <Font size="27.0" />
+                  <Font size="28.0" />
                </font>
-            </Button>
+            </Label>
             <Button layoutX="8.0" layoutY="204.0" mnemonicParsing="false" onAction="#switchToPayment" prefHeight="50.0" prefWidth="291.0" text="Go to Payment Page" />
             <Button fx:id="staffLoginBtn" layoutX="340.0" layoutY="270.0" mnemonicParsing="false" onAction="#onStaffLoginBtnClick" prefHeight="72.0" prefWidth="302.0" text="Staff Login">
                <font>

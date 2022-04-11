@@ -24,6 +24,7 @@ public class SLC extends AppThread {
 	private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
 	boolean isStaff; //differentiate which type of user
 	int lockerTimeLimit; //in second
+	String passcode = "";
 
 
     //------------------------------------------------------------
@@ -216,6 +217,81 @@ public class SLC extends AppThread {
 	// processMouseClicked
     private void processMouseClicked(Msg msg) {
 	// *** process mouse click here!!! ***
+		String[] subStrs;
+		String scene = "";
+		int x = 0, y = 0;
+		if (msg.getDetails().contains(" ")) {
+			subStrs = msg.getDetails().split(" ");
+			scene = subStrs[0];
+			x = Integer.parseInt(subStrs[1]);
+			y = Integer.parseInt(subStrs[2]);
+			System.out.println("processMouseClicked " + subStrs[0] + " " + x + " " + y);
+		}
+
+		switch (scene) {
+			case "MainMenu":
+				if (0 <= x && x<= 300) {
+					if (270 <= y && y <= 340) {
+						//Enter passcode page
+						touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
+					}
+				}
+				break;
+
+			case "EnterPasscode":
+				if (177 <= y && y <= 253) {
+					if (142 <= x && x <= 272) {
+						passcode += 1;
+					}
+					if (276 <= x && x <= 406) {
+						passcode += 2;
+					}
+					if (410 <= x && x <= 540) {
+						passcode += 3;
+					}
+				}
+
+				if (265 <= y && y <= 341) {
+					if (142 <= x && x <= 272) {
+						passcode += 4;
+					}
+					if (276 <= x && x <= 406) {
+						passcode += 5;
+					}
+					if (410 <= x && x <= 540) {
+						passcode += 6;
+					}
+				}
+
+				if (349 <= y && y <= 425) {
+					if (142 <= x && x <= 272) {
+						passcode += 7;
+					}
+					if (276 <= x && x <= 406) {
+						passcode += 8;
+					}
+					if (410 <= x && x <= 540) {
+						passcode += 9;
+					}
+				}
+
+				if (433 <= y && y <= 509) {
+					if (142 <= x && x <= 272) {
+						if(!passcode.isEmpty())
+							passcode = passcode.substring(0, passcode.length()-1);
+					}
+					if (276 <= x && x <= 406) {
+						passcode += 0;
+					}
+					if (410 <= x && x <= 540) {
+						touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.CheckPickupPasscode, passcode));
+					}
+				}
+
+				touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_SetPasscodeTF, passcode));
+				System.out.println(passcode);
+				break;
+		}
     } // processMouseClicked
 
 
