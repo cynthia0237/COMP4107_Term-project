@@ -23,6 +23,7 @@ public class SLC extends AppThread {
 
 	private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
 	boolean isStaff; //differentiate which type of user
+	int lockerTimeLimit; //in second
 
 
     //------------------------------------------------------------
@@ -30,6 +31,7 @@ public class SLC extends AppThread {
     public SLC(String id, AppKickstarter appKickstarter) throws Exception {
 	super(id, appKickstarter);
 	pollingTime = Integer.parseInt(appKickstarter.getProperty("SLC.PollingTime"));
+	lockerTimeLimit = 30;
 
 
 		//For test
@@ -167,13 +169,16 @@ public class SLC extends AppThread {
 			} else {
 				System.out.println("correct passcode - LockerId: " + lockerId);
 				//TODO check have payment or not
+				int dueTime = checkPayment(lockerId);
+				if (dueTime > 0) {
+					//have payment active octopus
+				} else {
+					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
+					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
+					removeUsedPasscode(msg.getDetails());
+					svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
+				}
 
-				//if no payment
-				//TODO cancel locker pickUpTimer
-				lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
-				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
-				removeUsedPasscode(msg.getDetails());
-				svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
 			}
 			break;
 
@@ -187,8 +192,8 @@ public class SLC extends AppThread {
 		case CloseLocker:
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(true);
 			if (isStaff) {
+				LockerManager.getInstance().getLockerById(msg.getDetails()).setStartTime(System.currentTimeMillis());
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.InUse);
-				//set Timer
 			} else {
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Available);
 			}
@@ -244,5 +249,15 @@ public class SLC extends AppThread {
 		return "error";
 	}
 	//endregion
+
+	public int checkPayment(String lockerId) {
+    	long spentTime = System.currentTimeMillis() - LockerManager.getInstance().getLockerById(lockerId).getStartTime();
+    	int useTime = (int)(spentTime / 1000) - lockerTimeLimit;
+    	if (useTime > 0) {
+			return (useTime / lockerTimeLimit + ((useTime % lockerTimeLimit == 0) ? 0 : 1));
+		}
+
+    	return -1;
+	}
 
 } // SLC

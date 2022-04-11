@@ -25,7 +25,7 @@
         </AnchorPane>
         <AnchorPane prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
             <children>
-                <Label prefWidth="100.0" text="Octopus Card No.: " AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <Label prefWidth="100.0" text="     Number:" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
                 <TextField fx:id="octopusCardNumField" layoutX="103.0" prefHeight="30.0" prefWidth="207.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
         </AnchorPane>
@@ -47,7 +47,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Octopus Card Reader Status:   " GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Status:   " GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <TextField fx:id="octopusCardReaderStatusField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <Label text="Activation Response:   " GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <ChoiceBox fx:id="activationRespCBox" value="Activated" GridPane.columnIndex="1" GridPane.rowIndex="1">

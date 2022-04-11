@@ -5,6 +5,7 @@ public class Locker {
     private LockerSize size;
     private LockerStatus status;
     private boolean lock;
+    private long startTime;
 
     public Locker(String id, LockerSize size)
     {
@@ -36,6 +37,18 @@ public class Locker {
 
     public void setLock(boolean lock) {
         this.lock = lock;
+    }
+
+    public void setStartTime(long time) {
+        startTime = time;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void resetStartTime() {
+        startTime = 0;
     }
 
 }
