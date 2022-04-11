@@ -175,9 +175,9 @@ public class SLC extends AppThread {
 				int dueTime = checkPayment(lockerId);
 				if (dueTime > 0) {
 					//have payment active octopus
-					octopuscardReaderMBox.send(new Msg(id, octopuscardReaderMBox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
-					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_ReceiveLateDay, Integer.toString(dueTime)));
+					octopuscardReaderMBox.send(new Msg(id, octopuscardReaderMBox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));				
 					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_SwitchToPayment, "Payment"));
+					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_ReceiveLateDay, Integer.toString(dueTime)));
 
 				} else {
 					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));

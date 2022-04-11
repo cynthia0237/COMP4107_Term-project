@@ -172,27 +172,29 @@ public class TouchDisplayEmulatorController {
 
     //-----------------------------------
     //octopus scene
-    public void switchToPayment(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("TouchDisplayPayment.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
+    // public void switchToPayment(ActionEvent event) throws IOException {
+    //     root = FXMLLoader.load(getClass().getResource("TouchDisplayPayment.fxml"));
+    //     stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    //     scene = new Scene(root);
+    //     stage.setScene(scene);
+    //     stage.show();
+    //     touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
 
-        octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
+    //     octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
 
-        //for testing
-        //String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
-        //octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
+    //     //for testing
+    //     //String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
+    //     //octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
   
-    }
+    // }
 
     public void switchToPayment() {
+       
 
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
 
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
+     
 
         //for testing
         //String paymentAmount = Integer.toString(getPaymentAmount(lateTime));

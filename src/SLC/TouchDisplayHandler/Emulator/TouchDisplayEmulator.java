@@ -23,6 +23,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     private String id;
     private Stage myStage;
     private TouchDisplayEmulatorController touchDisplayEmulatorController;
+    public int lateDay;
 
     //------------------------------------------------------------
     // TouchDisplayEmulator
@@ -73,6 +74,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 		    touchDisplayEmulatorController = (TouchDisplayEmulatorController) loader.getController();
 		    touchDisplayEmulatorController.initialize(id, slcStarter, log, touchDisplayEmulator, pollResp);
 		    myStage.setScene(new Scene(root, WIDTH, HEIGHT));
+            touchDisplayEmulatorController.lateDay = lateDay;
 		} catch (Exception e) {
 		    log.severe(id + ": failed to load " + fxmlFName);
 		    e.printStackTrace();
@@ -172,6 +174,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
         switch (touchDisplayEmulatorController.getPollResp()) {
             case "ACK":
                 slc.send(new Msg(id, mbox, Msg.Type.PollAck, id + " is up!"));
+               
                 break;
 
             case "NAK":
@@ -219,7 +222,9 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 
         super.handleLateDay(lateTime);
         //touchDisplayEmulatorController.setLateDay(Integer.parseInt(lateTime));
-        touchDisplayEmulatorController.lateDay = Integer.parseInt(lateTime);
+        
+        lateDay = Integer.parseInt(lateTime);
+       
 
     }
     //handleLateDay
