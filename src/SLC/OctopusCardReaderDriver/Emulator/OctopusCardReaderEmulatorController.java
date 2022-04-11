@@ -107,8 +107,6 @@ public class OctopusCardReaderEmulatorController {
                 touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_BackToMainPage, "MainPage"));
                 octopusCardReaderTextArea.appendText("Sending octopus card number " + octopusCardNumField.getText()+"\n");
                 octopusCardReaderTextArea.appendText("Transaction Success: received HK$" + paymentAmount + " from Octopus Card " + octopusCardNumField.getText()+"\n");
-                // remainingMoney_int -= 10;
-                // octopusCardReaderTextArea.appendText("The remaining money: " + remainingMoney_int + "\n");
                }
             break;
 

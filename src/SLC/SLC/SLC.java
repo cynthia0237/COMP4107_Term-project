@@ -122,20 +122,20 @@ public class SLC extends AppThread {
 				}
 			break;
 
-			case OCR_GoActive:
-			log.info("Activation Response: " + msg.getDetails());
-			break;
+		case OCR_GoActive:
+		log.info("Activation Response: " + msg.getDetails());
+		break;
 
-			case OCR_GoStandby:
-			log.info("Standby Response: " + msg.getDetails());
-			break;
-			
-			case OCR_OctopusCardRead:
-			log.info("Octopus Card Number: " + msg.getDetails() + "settle the payment successfully");
+		case OCR_GoStandby:
+		log.info("Standby Response: " + msg.getDetails());
+		break;
+		
+		case OCR_OctopusCardRead:
+		log.info("Octopus Card Number: " + msg.getDetails() + "settle the payment successfully");
 
-			//after payment action (go to the locker?)
-			
-			break;
+		//after payment action (go to the locker?)
+		
+		break;
 
 		//receive the barcode no from barcodeemulator
 		case BR_BarcodeRead:
@@ -178,6 +178,9 @@ public class SLC extends AppThread {
 					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
 					removeUsedPasscode(msg.getDetails());
 					svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
+
+					octopuscardReaderMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
+					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));
 				}
 
 			}

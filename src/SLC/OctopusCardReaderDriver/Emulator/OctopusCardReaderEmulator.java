@@ -127,7 +127,7 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
 
 
     //------------------------------------------------------------
-    // handlePaymentAmount
+    // handlePaymentAmount (for testing only)
     protected void handlePaymentAmount(String amount){
 
         super.handlePaymentAmount(amount);
@@ -137,5 +137,17 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
 
     }
     //handlePaymentAmount
+
+    //------------------------------------------------------------
+    // handleLateDay
+    protected void handleLateDay(String lateDay){
+
+        super.handleLateDay(lateDay);
+        octopusCardReaderEmulatorController.paymentAmount = Integer.parseInt(lateDay) * 10;
+        octopusCardReaderEmulatorController.appendTextArea("Octopus Card Reader ready to receive: HK$"+octopusCardReaderEmulatorController.paymentAmount);
+        octopusCardReaderEmulatorController.appendTextArea("Waiting for the user to make the payment by sending the octopus card number!");
+
+    }
+    //handleLateDay
 
 } // OctopusCardReaderEmulator

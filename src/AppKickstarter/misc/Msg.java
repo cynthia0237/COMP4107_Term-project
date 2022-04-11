@@ -107,6 +107,7 @@ public class Msg {
         /** Octopus Card inserted */			OCR_OctopusCardRead,
         /** Octopus Card receive payment request*/ OCR_ReceivePayment,
         /** back to main page after payment*/      OCR_BackToMainPage,
+        /** receive late day from slc*/            OCR_ReceiveLateDay,
         /** Passcode value */ Passcode,
 
         /** Check pickup passcode */            CheckPickupPasscode,

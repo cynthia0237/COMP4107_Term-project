@@ -61,6 +61,10 @@ public class TouchDisplayHandler extends HWHandler {
             case OCR_BackToMainPage:
                 handleAfterPayment();
                 break;
+
+            case OCR_ReceiveLateDay:
+                handleLateDay(msg.getDetails());
+                break;
                 
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
@@ -96,4 +100,11 @@ public class TouchDisplayHandler extends HWHandler {
     protected void handleAfterPayment() {
         log.info(id + ": Handle After Payment");
     }
+
+    //------------------------------------------------------------
+    //handleLateDay
+    protected void handleLateDay(String lateDay){
+        log.info(id + ": Handle late day");
+    }//handleLateDay
+    
 } // TouchDisplayHandler

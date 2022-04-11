@@ -212,5 +212,16 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     protected void handleAfterPayment() {
         touchDisplayEmulatorController.backTOMainPage();
     }//handleAfterPayment
+
+    //------------------------------------------------------------
+    // handleLateDay
+    protected void handleLateDay(String lateDay){
+
+        //super.handleLateDay(lateDay);
+        touchDisplayEmulatorController.lateTime = lateDay;
+
+
+    }
+    //handleLateDay
     
 } // TouchDisplayEmulator

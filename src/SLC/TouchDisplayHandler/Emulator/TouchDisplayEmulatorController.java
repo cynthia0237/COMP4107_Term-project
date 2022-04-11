@@ -45,6 +45,7 @@ public class TouchDisplayEmulatorController {
     //payment
     public TextField lateDayField;
     public TextField totalChargeField;
+    public String lateTime;
 
 
     private Stage stage;
@@ -108,6 +109,7 @@ public class TouchDisplayEmulatorController {
             }
         });
         this.selectedScreen = screenSwitcherCBox.getValue().toString();
+        lateTime = "1";
 
     } // initialize
 
@@ -176,14 +178,14 @@ public class TouchDisplayEmulatorController {
 
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
 
-        String paymentAmount = Integer.toString(getPaymentAmount("2"));
+        //for testing
+        String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
   
-        //setTextPayment();
     }
 
     public void getPaymentDetail(ActionEvent event) throws IOException {
-        setTextPayment("2");
+        setTextPayment(lateTime);
     }
 
     public int getPaymentAmount(String lateDay){
