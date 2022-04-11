@@ -97,10 +97,10 @@ public class SLSvr extends AppThread {
     }
 
     private String verifyBarcode(String barcode) {
-        if (reserveLockerMap.containsValue(barcode)) {
+        if (reserveLockerMap.containsKey(barcode)) {
             for(Map.Entry<String, String> entry : reserveLockerMap.entrySet()) {
-                if(entry.getValue().equals(barcode)) {
-                    return entry.getKey();
+                if(entry.getKey().equals(barcode)) {
+                    return entry.getValue();
                 }
             }
         }
