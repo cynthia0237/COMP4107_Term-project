@@ -170,21 +170,25 @@ public class SLC extends AppThread {
 				touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_WrongPasscode, "Invalid Passcode Please enter again"));
 
 			} else {
-				System.out.println("correct passcode - LockerId: " + lockerId);
+				log.info(id + " correct passcode - LockerId: " + lockerId);
 				//TODO check have payment or not
 				int dueTime = checkPayment(lockerId);
 				if (dueTime > 0) {
+					log.info(id + " have payment");
 					//have payment active octopus
 					octopuscardReaderMBox.send(new Msg(id, octopuscardReaderMBox, Msg.Type.OCR_ReceiveLateDay, Integer.toString(dueTime)));				
+
+					//touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
+
 					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_SwitchToPayment, "Payment"));
 					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_ReceiveLateDay, Integer.toString(dueTime)));
 
 					octopuscardReaderMBox.send(new Msg(id, octopuscardReaderMBox, Msg.Type.OCR_ReceiveLockerId, lockerId));
 
 				} else {
+					log.info(id + " no payment");
 					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
 					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
-					
 				}
 
 			}
@@ -204,8 +208,10 @@ public class SLC extends AppThread {
 			if (isStaff) {
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setStartTime(System.currentTimeMillis());
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.InUse);
+				log.info(id + ": (Staff) finish check in locker " + msg.getDetails() + "set status to InUse");
 			} else {
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Available);
+				log.info(id + ": (Customer) finish pick up locker " + msg.getDetails() + "set status to Available");
 			}
 			break;
 
@@ -310,20 +316,22 @@ public class SLC extends AppThread {
 		int number = rand.nextInt(99999999);
 
 		String passcode = String.format("%08d", number);
-		System.out.println("lockerId: " + lockerId + " gen passcode: " + passcode);
 		lockerPasscodeMap.put(lockerId, passcode);
+		log.info(id + " lockerId: " + lockerId + " gen passcode: " + passcode);
 	}
 
 	private void removeUsedPasscode(String lockerId) {
 		if (lockerPasscodeMap.containsKey(lockerId)) {
 			lockerPasscodeMap.remove(lockerId);
+			log.info(id + " locker " + lockerId + " passcode is removed");
 		}
 		else {
-			System.out.println("cannot find key " + lockerId + " in lockerPasscodeMap");
+			log.info(id + " cannot remove used passcode because cannot find key " + lockerId + " in lockerPasscodeMap");
 		}
 	}
 
 	public String checkPickupPasscode(String passcode) {
+		log.info(id + ":checking pickup passcode");
 		if (lockerPasscodeMap.containsValue(passcode)) {
 			for(Map.Entry<String, String> entry : lockerPasscodeMap.entrySet()) {
 				if(entry.getValue().equals(passcode)) {
@@ -336,6 +344,7 @@ public class SLC extends AppThread {
 	//endregion
 
 	public int checkPayment(String lockerId) {
+		log.info(id + ": checking have payment or not");
     	long spentTime = System.currentTimeMillis() - LockerManager.getInstance().getLockerById(lockerId).getStartTime();
     	int useTime = (int)(spentTime / 1000) - lockerTimeLimit;
     	if (useTime > 0) {

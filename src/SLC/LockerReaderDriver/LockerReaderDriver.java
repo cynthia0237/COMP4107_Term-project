@@ -22,10 +22,12 @@ public class LockerReaderDriver extends HWHandler {
             case OpenLocker:
                 slc.send(new Msg(id, mbox, Msg.Type.OpenLocker, msg.getDetails()));
                 openLocker(msg);
+                log.info(id + " open locker " + msg.getDetails());
                 break;
 
             case CloseLocker:
                 slc.send(new Msg(id, mbox, Msg.Type.CloseLocker, msg.getDetails()));
+                log.info(id + " close locker " + msg.getDetails());
                 break;
 
             default:
