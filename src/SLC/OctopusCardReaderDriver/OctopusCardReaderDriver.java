@@ -43,6 +43,10 @@ public class OctopusCardReaderDriver extends HWHandler{
                 handleLateDay(msg.getDetails());
             break;
 
+            case OCR_ReceiveLockerId:
+                handleLockerId(msg.getDetails());
+                break;
+
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
         }
@@ -78,5 +82,11 @@ public class OctopusCardReaderDriver extends HWHandler{
     protected void handleLateDay(String lateDay){
         log.info(id + ": Handle late day");
     }//handleLateDay
+
+    //------------------------------------------------------------
+    //handleLockerId
+    protected void handleLockerId(String lockerId){
+        log.info(id + ": Handle locker id");
+    }//handleLockerId
 
 } // OctopusCardReaderDriver

@@ -150,4 +150,15 @@ public class OctopusCardReaderEmulator extends OctopusCardReaderDriver {
     }
     //handleLateDay
 
+    //------------------------------------------------------------
+    // handleLockerId
+    protected void handleLockerId(String lockerId){
+
+        //super.handleLockerId(lockerId);
+        octopusCardReaderEmulatorController.lockerId = Integer.parseInt(lockerId);
+
+    }
+    //handleLockerId
+
+
 } // OctopusCardReaderEmulator

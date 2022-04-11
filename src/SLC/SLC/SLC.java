@@ -179,18 +179,20 @@ public class SLC extends AppThread {
 					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_SwitchToPayment, "Payment"));
 					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_ReceiveLateDay, Integer.toString(dueTime)));
 
+					octopuscardReaderMBox.send(new Msg(id, octopuscardReaderMBox, Msg.Type.OCR_ReceiveLockerId, lockerId));
+
 				} else {
 					lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker, lockerId));
 					touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, lockerId));
-					removeUsedPasscode(msg.getDetails());
-					svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
-
+					
 				}
 
 			}
 			break;
 
 		case OpenLocker:
+			removeUsedPasscode(msg.getDetails());
+			svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Open);
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(false);
 			//TODO confirm which UI will display after staff check in (below in user pickup open locker GUI)

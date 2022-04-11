@@ -23,6 +23,7 @@ public class OctopusCardReaderEmulatorController {
     private OctopusCardReaderEmulator octopusCardReaderEmulator;
     private MBox octopusCardReaderMBox;
     private MBox touchDisplayMBox;
+    private MBox lockerReaderMBox;
     private Timer octopusCardReaderTimer;
     private String activationResp;
     private String standbyResp;
@@ -36,6 +37,7 @@ public class OctopusCardReaderEmulatorController {
     private TextField remainingMoney;
     private int remainingMoney_int;
     public int paymentAmount;
+    public int lockerId;
 
 
     //------------------------------------------------------------
@@ -46,6 +48,7 @@ public class OctopusCardReaderEmulatorController {
         this.log = log;
         this.octopusCardReaderEmulator = octopusCardReaderEmulator;
         this.touchDisplayMBox = appKickstarter.getThread("TouchDisplayHandler").getMBox();
+        this.lockerReaderMBox = appKickstarter.getThread("LockerReaderDriver").getMBox();
         //this.octopusCardReaderTimer.getMBox()
         this.octopusCardReaderMBox = appKickstarter.getThread("OctopusCardReaderDriver").getMBox();
         this.activationRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -104,9 +107,13 @@ public class OctopusCardReaderEmulatorController {
             case "Send":
                if(octopusCardReaderStatusField.getText().equals("Active")){
                 octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_OctopusCardRead, octopusCardNumField.getText()));
-                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_BackToMainPage, "MainPage"));
+                //touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_BackToMainPage, "MainPage"));
+                lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.OpenLocker, Integer.toString(lockerId)));
+                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_CorrectPasscode, Integer.toString(lockerId)));
+                octopusCardReaderTextArea.appendText("locker id " + lockerId +"\n");
                 octopusCardReaderTextArea.appendText("Sending octopus card number " + octopusCardNumField.getText()+"\n");
                 octopusCardReaderTextArea.appendText("Transaction Success: received HK$" + paymentAmount + " from Octopus Card " + octopusCardNumField.getText()+"\n");
+                
                }
             break;
 

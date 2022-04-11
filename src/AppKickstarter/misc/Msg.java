@@ -110,6 +110,7 @@ public class Msg {
         /** back to main page after payment*/      OCR_BackToMainPage,
         /** receive late day from slc*/            OCR_ReceiveLateDay,
          /** receive late day from slc*/           OCR_SwitchToPayment,
+         /** receive lockerId from slc*/        OCR_ReceiveLockerId,
         /** Passcode value */ Passcode,
 
         /** Check pickup passcode */            CheckPickupPasscode,
