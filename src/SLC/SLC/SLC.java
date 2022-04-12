@@ -211,6 +211,7 @@ public class SLC extends AppThread {
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(true);
 			if (isStaff) {
 				genPickupPasscode(msg.getDetails());
+				svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setStartTime(System.currentTimeMillis());
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.InUse);
 				log.info(id + ": (Staff) finish check in locker " + msg.getDetails() + "set status to InUse");

@@ -12,16 +12,16 @@ Group member: Leung Cynthia&emsp;&emsp;&emsp; &nbsp; &nbsp; 21201943
 
 ---
 
-* [AppKickstarter/](.\src\AppKickstarter)
-  * [misc/](.\src\AppKickstarter\misc)
-    * [AppThread.java](.\src\AppKickstarter\misc\AppThread.java)
-    * [Lib.java](.\src\AppKickstarter\misc\Lib.java)
-    * [LogFormatter.java](.\src\AppKickstarter\misc\LogFormatter.java)
-    * [MBox.java](.\src\AppKickstarter\misc\MBox.java)
-    * [Msg.java](.\src\AppKickstarter\misc\Msg.java)
-  * [timer/](.\src\AppKickstarter\timer)
-    * [Timer.java](.\src\AppKickstarter\timer\Timer.java)
-  * [AppKickstarter.java](.\src\AppKickstarter\AppKickstarter.java)
+* AppKickstarter
+  * misc
+    * AppThread.java
+    * Lib.java
+    * LogFormatter.java
+    * MBox.java
+    * Msg.java
+  * timer
+    * Timer.java
+  * AppKickstarter.java
 
 <br/>
 
@@ -29,10 +29,10 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
-* [DeliveryCompany/](.\src\DeliveryCompany)
-  * [DeliveryCompany.fxml](.\src\DeliveryCompany\DeliveryCompany.fxml)
-  * [DeliveryCompanyController.java](.\src\DeliveryCompany\DeliveryCompanyController.java)
-  * [DeliveryCompanyEmulator.java](.\src\DeliveryCompany\DeliveryCompanyEmulator.java)
+* DeliveryCompan
+  * DeliveryCompany.fxml
+  * DeliveryCompanyController.java
+  * DeliveryCompanyEmulator.java
 
 <u>DeliveryCompany </u>
 
@@ -40,25 +40,25 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
-* [SLC/](.\src\SLC)
-  * [BarcodeReaderDriver/](.\src\SLC\BarcodeReaderDriver)
-    * [Emulator/](.\src\SLC\BarcodeReaderDriver\Emulator)
-      * [BarcodeReaderEmulator.fxml](.\src\SLC\BarcodeReaderDriver\Emulator\BarcodeReaderEmulator.fxml)
-      * [BarcodeReaderEmulator.java](.\src\SLC\BarcodeReaderDriver\Emulator\BarcodeReaderEmulator.java)
-      * [BarcodeReaderEmulatorController.java](.\src\SLC\BarcodeReaderDriver\Emulator\BarcodeReaderEmulatorController.java)
-    * [BarcodeReaderDriver.java](.\src\SLC\BarcodeReaderDriver\BarcodeReaderDriver.java)
-  * [LockerReaderDriver/](.\src\SLC\LockerReaderDriver)
-    * [Emulator/](.\src\SLC\LockerReaderDriver\Emulator)
-      * [LockerReaderEmulator.fxml](.\src\SLC\LockerReaderDriver\Emulator\LockerReaderEmulator.fxml)
-      * [LockerReaderEmulator.java](.\src\SLC\LockerReaderDriver\Emulator\LockerReaderEmulator.java)
-      * [LockerReaderEmulatorController.java](.\src\SLC\LockerReaderDriver\Emulator\LockerReaderEmulatorController.java)
-    * [LockerReaderDriver.java](.\src\SLC\LockerReaderDriver\LockerReaderDriver.java)
-  * [OctopusCardReaderDriver/](.\src\SLC\OctopusCardReaderDriver)
-    * [Emulator/](.\src\SLC\OctopusCardReaderDriver\Emulator)
-      * [OctopusCardReaderEmulator.fxml](.\src\SLC\OctopusCardReaderDriver\Emulator\OctopusCardReaderEmulator.fxml)
-      * [OctopusCardReaderEmulator.java](.\src\SLC\OctopusCardReaderDriver\Emulator\OctopusCardReaderEmulator.java)
-      * [OctopusCardReaderEmulatorController.java](.\src\SLC\OctopusCardReaderDriver\Emulator\OctopusCardReaderEmulatorController.java)
-    * [OctopusCardReaderDriver.java](.\src\SLC\OctopusCardReaderDriver\OctopusCardReaderDriver.java)
+* SLC
+  * BarcodeReaderDriver
+    * Emulator
+      * BarcodeReaderEmulator.fxml
+      * BarcodeReaderEmulator.java
+      * BarcodeReaderEmulatorController.java
+    * BarcodeReaderDriver.java
+  * LockerReaderDriver
+    * Emulator
+      * LockerReaderEmulator.fxml
+      * LockerReaderEmulator.java
+      * LockerReaderEmulatorController.java
+    * LockerReaderDriver.java
+  * OctopusCardReaderDriver
+    * Emulator
+      * OctopusCardReaderEmulator.fxml
+      * OctopusCardReaderEmulator.java
+      * OctopusCardReaderEmulatorController.java
+    * OctopusCardReaderDriver.java
 
 <u>BarcodeReaderDriver, LockerReaderDriver and OctopusCardReaderDriver</u>
 
@@ -70,12 +70,12 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
-* [SLC/](.\src\SLC)
-  * [Locker/](.\src\SLC\Locker)
-    * [Locker.java](.\src\SLC\Locker\Locker.java)
-    * [LockerManager.java](.\src\SLC\Locker\LockerManager.java)
-    * [LockerSize.java](.\src\SLC\Locker\LockerSize.java)
-    * [LockerStatus.java](.\src\SLC\Locker\LockerStatus.java)
+* SLC
+  * Locker
+    * Locker.java
+    * LockerManager.java
+    * LockerSize.java
+    * LockerStatus.java
 
 <u>Locker</u>
 
@@ -93,9 +93,9 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
-* [SLC/](.\src\SLC)
-  * [SLC/](.\src\SLC\SLC)
-    * [SLC.java](.\src\SLC\SLC\SLC.java)
+* SLC
+  * SLC
+    * SLC.java
 
 <u>SLC.java</u>
 
@@ -103,18 +103,18 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
-* [SLC/](.\src\SLC)
-  * [TouchDisplayHandler/](.\src\SLC\TouchDisplayHandler)
-    * [Emulator/](.\src\SLC\TouchDisplayHandler\Emulator)
-      * [BarcodeDisplayEmulator.fxml](.\src\SLC\TouchDisplayHandler\Emulator\BarcodeDisplayEmulator.fxml)
-      * [PickupPasscodeEnter.fxml](.\src\SLC\TouchDisplayHandler\Emulator\PickupPasscodeEnter.fxml)
-      * [TouchDisplayEmulator.fxml](.\src\SLC\TouchDisplayHandler\Emulator\TouchDisplayEmulator.fxml)
-      * [TouchDisplayEmulator.java](.\src\SLC\TouchDisplayHandler\Emulator\TouchDisplayEmulator.java)
-      * [TouchDisplayEmulatorController.java](.\src\SLC\TouchDisplayHandler\Emulator\TouchDisplayEmulatorController.java)
-      * [TouchDisplayMainMenu.fxml](.\src\SLC\TouchDisplayHandler\Emulator\TouchDisplayMainMenu.fxml)
-      * [TouchDisplayOpenLocker.fxml](.\src\SLC\TouchDisplayHandler\Emulator\TouchDisplayOpenLocker.fxml)
-      * [TouchDisplayPayment.fxml](.\src\SLC\TouchDisplayHandler\Emulator\TouchDisplayPayment.fxml)
-    * [TouchDisplayHandler.java](.\src\SLC\TouchDisplayHandler\TouchDisplayHandler.java)
+* SLC
+  * TouchDisplayHandler
+    * Emulator
+      * BarcodeDisplayEmulator.fxml
+      * PickupPasscodeEnter.fxml
+      * TouchDisplayEmulator.fxml
+      * TouchDisplayEmulator.java
+      * TouchDisplayEmulatorController.java
+      * TouchDisplayMainMenu.fxml
+      * TouchDisplayOpenLocker.fxml
+      * TouchDisplayPayment.fxml
+    * TouchDisplayHandler.java
 
 <u>TouchDisplayHandler</u>
 
@@ -125,8 +125,8 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
-* [SLC/](.\src\SLC)
-  * [SLSvr.java](.\src\SLC\SLSvr.java)
+* SLC
+  * SLSvr.java
 
 <u>SLSvr.java</u>
 
@@ -135,9 +135,9 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
-* [SLC/](.\src\SLC)
-  * [SLCEmulatorStarter.java](.\src\SLC\SLCEmulatorStarter.java)
-  * [SLCStarter.java](.\src\SLC\SLCStarter.java)
+* SLC
+  * SLCEmulatorStarter.java
+  * SLCStarter.java
 
 <u>SLCEmulatorStarter.java</u>
 
@@ -155,3 +155,142 @@ AppKickstarter is proved by Dr. Yau the details can refer from the PowerPoint
 
 ---
 
+**Compile Programme**
+
+* If you have IntrlliJ IDEA application you can set the Run/Debug Configurations The Name is SLCEmulatorStarter. For the Build and run choose the java 8 environment.
+
+* For window / apple user using the cmd / Terminal to compile programme
+
+1. Open cmd or Terminal
+2. cd to the project directory
+
+```
+3. type 
+javac AppKickstarter/*.java AppKickstarter/misc/*.java AppKickstarter/timer/*.java DeliveryCompany/*.java SLC/*.java SLC/BarcodeReaderDriver/*.java SLC/BarcodeReaderDriver/Emulator*.java SLC/HWHandler/*.java SLC/Locker/*.java SLC/LockerReaderDriver/*.java SLC/LockerReaderDriver/Emulator*.java SLC/OctopusCardReaderDriver/*.java SLC/OctopusCardReaderDriver/Emulator*.java SLC/TouchDisplayHandler/*.java SLC/TouchDisplayHandler/Emulator*.java SLC/*.java
+in one line on the cmd / Terminal
+```
+
+**Start and stop the system**
+
+* For IntrlliJ IDEA user
+  * Click run to start the system
+  * Close the one of the java application to stop the system
+
+* For the user using the terminal or cmd
+  1. cd to the project directory
+
+  ```
+  2. java SLCEmulatorStarter to start the system
+  ```
+
+  * Close the one of the java application to stop the system
+
+---
+<br/>
+
+## System flow
+
+<u>Step of Reserve Locker</u>
+
+1. Use the Delivery Company emulator choose the barcode and the size of the locker
+2. Click the "Send to Server" button to reserve the locker
+3. The textArea will display the message success or not to reserve the locker
+
+<u>Step of Scan Barcode</u>
+
+1. Click the blank screen to start use the system
+2. Select "Scan Barcode" in the main page
+3. Select the barcode and click the "Send Barcode" button in Barcode Reader emulator
+4. Touch Screen Display will show the barcode number and locker number
+5. The relatively locker will open (which will turn to black color and show in Locker Reader emulator)
+
+<u>Step of Parcer Pickup</u>
+
+1. Click the blank screen to start use the system
+2. Select "Parcer Pickup" in the main page
+3. Enter the pickup passcode
+    * If enter passcode is incorrect system will require input again
+    * If passcod is correct will check have payment or not
+      * If no payment the relatively locker will open (which will turn to black color and show in Locker Reader emulator) and show which locker will be open in the touch display
+      * If have payment touch display will turn to page of payment and the system will active Octopus Card Reader
+4. Click the locker to close it
+5. Update display to the blacnk screen after close the locker
+
+<u>Step of Payment</u>
+
+1. Check the late day and the total charge on the touch display screen by clicking the "Get Detail"
+2. "Total charge" is get from the equation of (late day * 10)
+3. The Octopus Card Reader waits for the user to make the payment by bringing his/her Octopus Card to the Reader
+4. Select one of number to choose a default Octopus Card number (1, 2, and 3)
+5. Press "Send" button to make the payment
+6. The Octopus Card Reader collects the money from the Octopus Card (assume that the transaction must be success in anyway)
+7. Display the message in the octopus card reader to check what have done
+8. The relatively locker will open (which will turn to black color and show in Locker Reader emulator) and show which locker will be open in the touch display
+9. Octopus Card Reader will go to standby mode
+
+<u>Detail of open locker</u>
+
+1. SLC will check the current user is staff or not
+
+If is staff
+
+2. SLC will send the message to server to remove the used barcode
+
+If is customer
+2. SLC will remove the used passcode
+3. SLC will send the message to the server, let the server backup the passcode
+
+<u>Detail of close locker</u>
+
+Close the locker means finsh check in or pickup parcer
+
+1. SLC will check the current user is staff or not
+
+If is staff
+
+2. SLC will generate 8-digit pickup passcode for the locker and log the message
+3. SLC will send the message to the server, let the server backup the passcode
+4. SLC will set the locker startTime (For check the payment use)
+5. SLC will set the locker status to InUse and log the message
+
+If is customer
+
+2. SLC will set the locker status to Available and log the message
+
+---
+<br/>
+
+## Response and Health Poll
+
+*Touch Display response and health poll*
+<u>About the health poll</u>
+
+* When the poll response is NAK, it doesn't have any repose in the Touch Display which means you click you cannot turn to any scene or do other processes
+
+<u>About the ACK response</u>
+
+* You can use the touch display and TouchDisplayHandler will send the process message to SLC to let SLC do the xy position checking
+* The system will log the TouchDisplayHandler is up message
+
+<u>About the Ignore response</u>
+
+* You still can use the touch display and TouchDisplayHandler will send the process message to SLC to let SLC do the XY position checking
+* There dont have any poll message will log
+
+<br/>
+
+*Octopus Card Reader response and health poll*
+
+<u>About the health poll</u>
+
+* When the poll response is NAK, you can’t do anything in the Octopus Card Reader
+
+<u>About the active response</u>
+
+* When the active response is "Activated", it should become active, and send a reply to SLC: "Octopus Card Reader: Go Active"
+* When the active response is "Standby", it should become standby, and send a reply to SLC: "Octopus Card Reader: Go Standby"
+* When the active response is "Ignore", it ignore the message and do not give any reply
+
+<u>About the standby response</u>
+
+* Same logic from the active response and do the same thing as the active response.
