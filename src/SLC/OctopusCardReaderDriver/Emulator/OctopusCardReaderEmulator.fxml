@@ -81,15 +81,5 @@
                 </ChoiceBox>
             </children>
         </GridPane>
-      <Button layoutX="246.0" layoutY="285.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="70.0" text="Standby">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="151.0" layoutY="285.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="30.0" prefWidth="70.0" text="Activate">
-         <font>
-            <Font size="12.0" />
-         </font>
-      </Button>
     </children>
 </AnchorPane>

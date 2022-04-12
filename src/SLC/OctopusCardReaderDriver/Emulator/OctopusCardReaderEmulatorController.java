@@ -106,6 +106,7 @@ public class OctopusCardReaderEmulatorController {
                 case "Send":
                 if(octopusCardReaderStatusField.getText().equals("Active")){
                     octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_OctopusCardRead, octopusCardNumField.getText()));
+                    octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoStandby, "Standby"));
                     //touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_BackToMainPage, "MainPage"));
                     lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.OpenLocker, Integer.toString(lockerId)));
                     touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_CorrectPasscode, Integer.toString(lockerId)));
