@@ -152,7 +152,6 @@ public class SLC extends AppThread {
 				lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker,msg.getDetails()));
 				//remove used barcode
 				svrMBox.send(new Msg(id,mbox,Msg.Type.RemoveUsedBarcode, msg.getDetails()));
-				//TODO open locker
 
 			}
 			break;

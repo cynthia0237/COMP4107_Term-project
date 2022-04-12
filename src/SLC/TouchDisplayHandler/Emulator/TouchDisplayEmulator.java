@@ -1,5 +1,6 @@
 package SLC.TouchDisplayHandler.Emulator;
 
+import AppKickstarter.misc.MBox;
 import SLC.SLCStarter;
 import SLC.TouchDisplayHandler.TouchDisplayHandler;
 import AppKickstarter.misc.Msg;
@@ -24,6 +25,7 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
     private Stage myStage;
     private TouchDisplayEmulatorController touchDisplayEmulatorController;
     public int lateDay;
+    private MBox barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
 
     //------------------------------------------------------------
     // TouchDisplayEmulator
@@ -103,6 +105,8 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 break;
 
             case "BarcodePage":
+                //send the message to active
+                barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoActive,""));
                 reloadStage("BarcodeDisplayEmulator.fxml");
                 break;
 
