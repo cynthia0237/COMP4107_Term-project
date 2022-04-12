@@ -72,7 +72,11 @@ public class SLSvr extends AppThread {
                     break;
 
                 case BackupPasscodeMap:
-                    backupLockerPasscodeMapToSvr(stringToMap(msg.getDetails()));
+                    if (msg.getDetails().equals("{}")){
+                        lockerPasscodeMap.clear();
+                    } else {
+                        backupLockerPasscodeMapToSvr(stringToMap(msg.getDetails()));
+                    }
                     break;
 
                 case RemoveUsedBarcode:
