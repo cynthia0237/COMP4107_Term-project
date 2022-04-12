@@ -326,6 +326,10 @@ public class SLC extends AppThread {
 				if (30 <= x && x <= 75 && 24 <= y && y <= 60) {
 					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
 				}
+
+				if (260 <= x && x <= 395 && 315 <= y && y <= 362) {
+					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_GetPaymentDetail, "PaymentDetail"));
+				}
 				break;
 
 		}

@@ -193,6 +193,9 @@ public class TouchDisplayEmulatorController {
         
         //Platform.runLater(() -> setTextPayment(lateDay));
     }
+    public void getPaymentDetail() {
+        setTextPayment(lateDay);
+    }
 
     public void setTextPayment(int lateDay){
         //test data

@@ -34,8 +34,6 @@ public class OctopusCardReaderEmulatorController {
     public ChoiceBox standbyRespCBox;
     public ChoiceBox activationRespCBox;
     public ChoiceBox pollRespCBox;
-    private TextField remainingMoney;
-    private int remainingMoney_int;
     public int paymentAmount;
     public int lockerId;
 

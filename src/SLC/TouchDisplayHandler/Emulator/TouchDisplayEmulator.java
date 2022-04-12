@@ -234,4 +234,15 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
 
     }
     //handleSwitchToPayment
+
+    //------------------------------------------------------------
+    // handleGetPaymentDetail
+    protected void handleGetPaymentDetail(){
+
+        //super.handleGetPaymentDetail();
+        touchDisplayEmulatorController.getPaymentDetail();
+
+    }
+    //handleGetPaymentDetail
+
 } // TouchDisplayEmulator

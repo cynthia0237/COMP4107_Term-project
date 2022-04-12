@@ -69,6 +69,10 @@ public class TouchDisplayHandler extends HWHandler {
             case OCR_SwitchToPayment:
                 handleSwitchToPayment();
                 break;
+
+            case TD_GetPaymentDetail:
+                handleGetPaymentDetail();
+                break;
             
             default:
                 log.warning(id + ": unknown message type: [" + msg + "]");
@@ -116,5 +120,11 @@ public class TouchDisplayHandler extends HWHandler {
     protected void handleSwitchToPayment(){
         log.info(id + ": Handle switch scene");
     }//handleSwitchToPayment
+
+    //------------------------------------------------------------
+    //handleGetPaymentDetail
+    protected void handleGetPaymentDetail(){
+        log.info(id + ": Handle get payment detail ");
+    }//handleGetPaymentDetail
 
 } // TouchDisplayHandler
