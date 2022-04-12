@@ -36,30 +36,34 @@ public class BarcodeReaderEmulatorController {
     public void initialize(String id, AppKickstarter appKickstarter, Logger log, BarcodeReaderEmulator barcodeReaderEmulator) {
         this.id = id;
         this.appKickstarter = appKickstarter;
-	    this.log = log;
-	    this.barcodeReaderEmulator = barcodeReaderEmulator;
-	    this.barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
+        this.log = log;
+        this.barcodeReaderEmulator = barcodeReaderEmulator;
+        this.barcodeReaderMBox = appKickstarter.getThread("BarcodeReaderDriver").getMBox();
         this.SLC = appKickstarter.getThread("SLC").getMBox();
         this.activationRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 activationResp = activationRespCBox.getItems().get(newValue.intValue()).toString();
-                //set status to standby
-                goActive();
-                SLC.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoActive_Response,activationResp));
-                appendTextArea("Activation Response set to " + activationRespCBox.getItems().get(newValue.intValue()).toString());
+                if(!pollResp.equals("NAK")) {
+                    //set status to standby
+                    goActive();
+                    SLC.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoActive_Response, activationResp));
+                    appendTextArea("Activation Response set to " + activationRespCBox.getItems().get(newValue.intValue()).toString());
+                }
             }
         });
         this.standbyRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 standbyResp = standbyRespCBox.getItems().get(newValue.intValue()).toString();
-                goStandby();
-                SLC.send(new Msg(id,barcodeReaderMBox,Msg.Type.BR_GoStandby_Response,standbyResp));
-                appendTextArea("Standby Response set to " + standbyRespCBox.getItems().get(newValue.intValue()).toString());
+                if(!pollResp.equals("NAK")) {
+                    goStandby();
+                    SLC.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoStandby_Response, standbyResp));
+                    appendTextArea("Standby Response set to " + standbyRespCBox.getItems().get(newValue.intValue()).toString());
+                }
             }
         });
-	    this.pollRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+        this.pollRespCBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 pollResp = pollRespCBox.getItems().get(newValue.intValue()).toString();
@@ -76,63 +80,68 @@ public class BarcodeReaderEmulatorController {
     //------------------------------------------------------------
     // buttonPressed
     public void buttonPressed(ActionEvent actionEvent) {
-	Button btn = (Button) actionEvent.getSource();
+        Button btn = (Button) actionEvent.getSource();
+        if(!pollResp.equals("NAK")){
+        switch (btn.getText()) {
+            case "Barcode 1":
+                barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode1"));
+                break;
 
-	switch (btn.getText()) {
-	    case "Barcode 1":
-	        barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode1"));
-	        break;
+            case "Barcode 2":
+                barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode2"));
+                break;
 
-	    case "Barcode 2":
-		barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode2"));
-		break;
+            case "Barcode 3":
+                barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode3"));
+                break;
 
-	    case "Barcode 3":
-		barcodeNumField.setText(appKickstarter.getProperty("BarcodeReader.Barcode3"));
-		break;
+            case "Reset":
+                barcodeNumField.setText("");
+                break;
 
-	    case "Reset":
-		barcodeNumField.setText("");
-		break;
+            case "Send Barcode":
+                //if status is activated -> send
+                if (barcodeReaderStatusField.getText().equals("Active")) {
+                    //get the barcode no and send it
+                    barcodeReaderMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_BarcodeRead, barcodeNumField.getText()));
+                    barcodeReaderTextArea.appendText("Sending barcode " + barcodeNumField.getText() + "\n");
+                }
 
-	    case "Send Barcode":
-            //if status is activated -> send
-            if (barcodeReaderStatusField.getText().equals("Active"))  {
-                //get the barcode no and send it
-                barcodeReaderMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_BarcodeRead, barcodeNumField.getText()));
-                barcodeReaderTextArea.appendText("Sending barcode " + barcodeNumField.getText()+"\n");
-            }
+                break;
 
-		break;
-
-	    case "Activate/Standby":
+            case "Activate/Standby":
                 barcodeReaderMBox.send(new Msg(id, barcodeReaderMBox, Msg.Type.BR_GoActive, barcodeNumField.getText()));
                 barcodeReaderTextArea.appendText("Removing card\n");
-		break;
-        case "Activate":
-            //Quick active
-            goActive();
-            break;
+                break;
+            case "Activate":
+                //Quick active
+                goActive();
+                break;
 
-        case "Standby":
-            //Quick standby
-            goStandby();
-            break;
+            case "Standby":
+                //Quick standby
+                goStandby();
+                break;
 
-	    default:
-	        log.warning(id + ": unknown button: [" + btn.getText() + "]");
-		break;
-	}
+            default:
+                log.warning(id + ": unknown button: [" + btn.getText() + "]");
+                break;
+        }
     } // buttonPressed
+}
 
     //handle alert of gostandby / goactivated
     public void goActivated_Alert() {
-        barcodeReaderTextArea.appendText("Alert: You have to set the Activation Response to Activated");
-        goActive();
+        if(!pollResp.equals("NAK")) {
+            barcodeReaderTextArea.appendText("Alert: You have to set the Activation Response to Activated");
+            goActive();
+        }
     }
     public void goStandby_Alert() {
-        barcodeReaderTextArea.appendText("Alert: You have to set the Activation Response to Standby");
-        goStandby();
+        if(!pollResp.equals("NAK")) {
+            barcodeReaderTextArea.appendText("Alert: You have to set the Activation Response to Standby");
+            goStandby();
+        }
     }
 
 
@@ -146,27 +155,35 @@ public class BarcodeReaderEmulatorController {
     //------------------------------------------------------------
     // goActive
     public void goActive() {
-        updateBarcodeReaderStatus("Active");
+        if(!pollResp.equals("NAK")) {
+            updateBarcodeReaderStatus("Active");
+        }
     } // goActive
 
 
     //------------------------------------------------------------
     // goStandby
     public void goStandby() {
-        updateBarcodeReaderStatus("Standby");
+        if(!pollResp.equals("NAK")) {
+            updateBarcodeReaderStatus("Standby");
+        }
     } // goStandby
 
 
     //------------------------------------------------------------
     // updateBarcodeReaderStatus
     private void updateBarcodeReaderStatus(String status) {
-        barcodeReaderStatusField.setText(status);
+        if(!pollResp.equals("NAK")) {
+            barcodeReaderStatusField.setText(status);
+        }
     } // updateBarcodeReaderStatus
 
 
     //------------------------------------------------------------
     // appendTextArea
     public void appendTextArea(String status) {
-	barcodeReaderTextArea.appendText(status+"\n");
+        if(!pollResp.equals("NAK")) {
+            barcodeReaderTextArea.appendText(status + "\n");
+        }
     } // appendTextArea
 } // BarcodeReaderEmulatorController
