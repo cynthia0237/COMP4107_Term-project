@@ -19,6 +19,8 @@ public class SLSvr extends AppThread {
     private HashMap<String, String> reserveLockerMap = new HashMap<>(); //barcode, lockerId
     private HashMap<String, String> lockerPasscodeMap = new HashMap<>(); //id, passcode
 
+    private String currentBarcode = "";
+
     public static SLSvr getInstance(){
         if(instance == null){
             synchronized(SLSvr.class){
@@ -66,6 +68,7 @@ public class SLSvr extends AppThread {
 
                 case BarcodeVerification:
                     verifyBarcode(msg.getDetails());
+                    currentBarcode = msg.getDetails();
                     break;
 
                 case BackupPasscodeMap:
@@ -73,7 +76,8 @@ public class SLSvr extends AppThread {
                     break;
 
                 case RemoveUsedBarcode:
-                    removeUsedBarcode(msg.getDetails());
+                    removeUsedBarcode(currentBarcode);
+                    currentBarcode = "";
                     break;
 
                 default:
@@ -135,10 +139,12 @@ public class SLSvr extends AppThread {
         String[] keyPairVal = mapStr.split(", ");
         HashMap<String, String> map = new HashMap<>();
 
-        for(String pair : keyPairVal)
-        {
-            String[] entry = pair.split("=");
-            map.put(entry[0].trim(), entry[1].trim());
+        if (keyPairVal != null) {
+            for(String pair : keyPairVal)
+            {
+                String[] entry = pair.split("=");
+                map.put(entry[0].trim(), entry[1].trim());
+            }
         }
 
         return map;

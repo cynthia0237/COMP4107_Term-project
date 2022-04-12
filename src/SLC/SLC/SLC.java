@@ -37,13 +37,9 @@ public class SLC extends AppThread {
 
 
 		//For test
-		genPickupPasscode("33");
-		genPickupPasscode("25");
-	
-		//System.out.println(lockerPasscodeMap.toString());
-		//Callback cb = () -> genPickupPasscode("4");
-		//StaffPutCargoTask staffTask = new StaffPutCargoTask();
-		//staffTask.runWith(cb);
+		//genPickupPasscode("33");
+		//genPickupPasscode("25");
+
 
     } // SLC
 
@@ -141,6 +137,7 @@ public class SLC extends AppThread {
 		//--------------------------------------------------------------------------------------------------------------
 		//receive the server verification of barcode
 		case barcodechecklockerid:
+			isStaff = true;
 			System.out.println("testing barcode locker id: "+msg.getDetails());
 			//get locker value from server
 			if(msg.getDetails().equals("error"))
@@ -150,9 +147,6 @@ public class SLC extends AppThread {
 				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.barcodechecklockerid,msg.getDetails()));
 				//open locker
 				lockerReaderMBox.send(new Msg(id, mbox, Msg.Type.OpenLocker,msg.getDetails()));
-				//remove used barcode
-				svrMBox.send(new Msg(id,mbox,Msg.Type.RemoveUsedBarcode, msg.getDetails()));
-				//TODO open locker
 
 			}
 			break;
@@ -202,8 +196,13 @@ public class SLC extends AppThread {
 			break;
 
 		case OpenLocker:
-			removeUsedPasscode(msg.getDetails());
-			svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
+			if (isStaff) {
+				svrMBox.send(new Msg(id,mbox,Msg.Type.RemoveUsedBarcode, ""));
+			} else {
+				removeUsedPasscode(msg.getDetails());
+				svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
+			}
+
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Open);
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(false);
 			break;
@@ -211,6 +210,7 @@ public class SLC extends AppThread {
 		case CloseLocker:
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(true);
 			if (isStaff) {
+				genPickupPasscode(msg.getDetails());
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setStartTime(System.currentTimeMillis());
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.InUse);
 				log.info(id + ": (Staff) finish check in locker " + msg.getDetails() + "set status to InUse");
