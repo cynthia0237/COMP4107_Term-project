@@ -164,6 +164,7 @@ public class SLC extends AppThread {
 
 		case CheckPickupPasscode:
 			isStaff = false;
+			passcode = "";
 			String lockerId = checkPickupPasscode(msg.getDetails());
 			if (lockerId.equals("error")) {
 				//System.out.println("wrong passcode send msg");
@@ -199,8 +200,6 @@ public class SLC extends AppThread {
 			svrMBox.send(new Msg(id, mbox, Msg.Type.BackupPasscodeMap, lockerPasscodeMap.toString()));
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Open);
 			LockerManager.getInstance().getLockerById(msg.getDetails()).setLock(false);
-			//TODO confirm which UI will display after staff check in (below in user pickup open locker GUI)
-			//touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_CorrectPasscode, msg.getDetails()));
 			break;
 
 		case CloseLocker:
@@ -213,6 +212,7 @@ public class SLC extends AppThread {
 				LockerManager.getInstance().getLockerById(msg.getDetails()).setLockerStatus(LockerStatus.Available);
 				log.info(id + ": (Customer) finish pick up locker " + msg.getDetails() + "set status to Available");
 			}
+			touchDisplayMBox.send(new Msg(id, mbox, Msg.Type.TD_UpdateDisplay, "BlankScreen"));
 			break;
 
 
@@ -249,11 +249,21 @@ public class SLC extends AppThread {
 					if (270 <= y && y <= 340) {
 						//Enter passcode page
 						touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "EnterPasscode"));
+						passcode = "";
+					}
+
+					if (340 < y && y <= 410) {
+						//Enter scan barcode page
+						touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "BarcodePage"));
 					}
 				}
 				break;
 
 			case "EnterPasscode":
+				if (30 <= x && x <= 75 && 24 <= y && y <= 60) {
+					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+				}
+
 				if (177 <= y && y <= 253) {
 					if (142 <= x && x <= 272) {
 						passcode += 1;
@@ -304,8 +314,20 @@ public class SLC extends AppThread {
 				}
 
 				touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_SetPasscodeTF, passcode));
-				System.out.println(passcode);
 				break;
+
+			case "Barcode":
+				if (30 <= x && x <= 75 && 24 <= y && y <= 60) {
+					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+				}
+				break;
+
+			case "Payment":
+				if (30 <= x && x <= 75 && 24 <= y && y <= 60) {
+					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
+				}
+				break;
+
 		}
     } // processMouseClicked
 

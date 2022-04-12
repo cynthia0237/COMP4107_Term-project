@@ -65,9 +65,10 @@
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Blank" />
                             <String fx:value="Main Menu" />
-                            <String fx:value="Confirmation" />
+                            <String fx:value="Scan Barcode" />
+                            <String fx:value="Enter Passcode" />
+                            <String fx:value="Open Locker" />
                             <String fx:value="Payment" />
-                            <String fx:value="EnterPasscode" />
                         </FXCollections>
                     </items>
                 </ChoiceBox>

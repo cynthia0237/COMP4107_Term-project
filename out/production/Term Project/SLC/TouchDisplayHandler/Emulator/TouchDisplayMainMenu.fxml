@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,23 +21,18 @@
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" AnchorPane.bottomAnchor="70" AnchorPane.leftAnchor="0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" AnchorPane.bottomAnchor="70" AnchorPane.rightAnchor="0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" layoutX="1.0" layoutY="271.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="480.0" onMouseClicked="#td_mouseClick" stroke="BLACK" strokeType="OUTSIDE" width="640" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="white" height="70.0" layoutX="341.0" layoutY="271.0" stroke="BLACK" strokeType="OUTSIDE" width="300.0" />
             <Label layoutX="68.0" layoutY="286.0" text="Parcer Pickup">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
-            <Button layoutX="8.0" layoutY="204.0" mnemonicParsing="false" onAction="#switchToPayment" prefHeight="50.0" prefWidth="291.0" text="Go to Payment Page" />
-            <Button fx:id="staffLoginBtn" layoutX="340.0" layoutY="270.0" mnemonicParsing="false" onAction="#onStaffLoginBtnClick" prefHeight="72.0" prefWidth="302.0" text="Staff Login">
+            <Label layoutX="71.0" layoutY="357.0" text="Scan Barcode">
                <font>
                   <Font size="27.0" />
                </font>
-            </Button>
-                <Button layoutY="340.0" mnemonicParsing="false" onAction="#barcodebuttonclicked" prefHeight="72.0" prefWidth="302.0" text="Scan Barcode">
-                    <font>
-                        <Font size="27.0" />
-                    </font>
-                </Button>
+            </Label>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="480.0" onMouseClicked="#td_mouseClick" stroke="BLACK" strokeType="OUTSIDE" width="640" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
         </AnchorPane>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d7d7d7" height="50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="680.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -70,7 +64,10 @@
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Blank" />
                             <String fx:value="Main Menu" />
-                            <String fx:value="Confirmation" />
+                            <String fx:value="Scan Barcode" />
+                            <String fx:value="Enter Passcode" />
+                            <String fx:value="Open Locker" />
+                            <String fx:value="Payment" />
                         </FXCollections>
                     </items>
                 </ChoiceBox>

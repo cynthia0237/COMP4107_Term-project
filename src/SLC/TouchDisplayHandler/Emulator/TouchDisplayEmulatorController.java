@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 
@@ -58,6 +59,7 @@ public class TouchDisplayEmulatorController {
     public Label fxbarcodeworkinglabel;
     public Label fxBarcodeNoLabel;
 
+    public Label timeLbl, dateLbl;
     public Label passcodeMsgLbl;
     public Label openLockerLbl;
 
@@ -95,10 +97,6 @@ public class TouchDisplayEmulatorController {
                         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
                         break;
 
-                    case "Confirmation":
-                        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Confirmation"));
-                        break;
-
                     case "Payment":
                         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
                     break;
@@ -110,6 +108,7 @@ public class TouchDisplayEmulatorController {
             }
         });
         this.selectedScreen = screenSwitcherCBox.getValue().toString();
+
 
     } // initialize
 
@@ -137,7 +136,7 @@ public class TouchDisplayEmulatorController {
 	    log.fine(id + ": mouse clicked: -- (" + x + ", " + y + ")");
 	    //touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, x + " " + y));
 
-	    if (getPollResp().equals("ACK")) {
+	    if (getPollResp().equals("ACK") || getPollResp().equals("Ignore")) {
 	        switch (getSelectedScreen()) {
                 case "Blank":
                     touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
@@ -153,6 +152,14 @@ public class TouchDisplayEmulatorController {
 
                 case "Open Locker":
                     touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "BlankScreen"));
+                    break;
+
+                case "Scan Barcode":
+                    touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, "Barcode " + x + " " + y));
+                    break;
+
+                case "Payment":
+                    touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_MouseClicked, "Payment " + x + " " + y));
                     break;
             }
 
@@ -170,36 +177,9 @@ public class TouchDisplayEmulatorController {
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Confirmation"));
     }
 
-    //-----------------------------------
-    //octopus scene
-    // public void switchToPayment(ActionEvent event) throws IOException {
-    //     root = FXMLLoader.load(getClass().getResource("TouchDisplayPayment.fxml"));
-    //     stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    //     scene = new Scene(root);
-    //     stage.setScene(scene);
-    //     stage.show();
-    //     touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
-
-    //     octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
-
-    //     //for testing
-    //     //String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
-    //     //octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
-  
-    // }
-
     public void switchToPayment() {
-       
-
         touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Payment"));
-
         octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_GoActive,"Active"));
-     
-
-        //for testing
-        //String paymentAmount = Integer.toString(getPaymentAmount(lateTime));
-        //octopusCardReaderMBox.send(new Msg(id,octopusCardReaderMBox,Msg.Type.OCR_ReceivePayment,paymentAmount));
-  
     }
 
     public void setLateDay(int lateDay){
@@ -213,17 +193,6 @@ public class TouchDisplayEmulatorController {
         
         //Platform.runLater(() -> setTextPayment(lateDay));
     }
-
-    // public void getPaymentDetail(String lateDay){
-    //     setTextPayment(lateDay);
-    // }
-
-    // public int getPaymentAmount(String lateDay){
-    //     int totalCharge = 0;
-    //     String lateDate = lateDay;
-    //     totalCharge = calTotalCharge(lateDate);
-    //     return totalCharge;
-    // }
 
     public void setTextPayment(int lateDay){
         //test data
@@ -269,20 +238,6 @@ public class TouchDisplayEmulatorController {
         
     }
 
-    public void onStaffLoginBtnClick(ActionEvent event) {
-
-    }
-
-    public void barcodebuttonclicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("BarcodeDisplayEmulator.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "Barcodepage"));
-        //send the msg to alert barcode go to active
-        barcodeReaderMBox.send(new Msg(id,touchDisplayMBox,Msg.Type.BR_GoActive,""));
-    }
 
     //region Control pickup locker display
     public void setPasscodeTF(String passcode) {
@@ -316,5 +271,9 @@ public class TouchDisplayEmulatorController {
     public void updatebarcodeno(String response) {
         //set to activated/standby
         Platform.runLater(() -> fxBarcodeNoLabel.setText(response));
+    }
+
+    public void setTimeLbl() {
+
     }
 } // TouchDisplayEmulatorController

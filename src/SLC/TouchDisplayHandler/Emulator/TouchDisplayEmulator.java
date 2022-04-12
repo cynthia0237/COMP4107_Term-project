@@ -98,15 +98,11 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
                 reloadStage("TouchDisplayMainMenu.fxml");
                 break;
 
-            case "Confirmation":
-                reloadStage("TouchDisplayConfirmation.fxml");
-                break;
-
             case "Payment":
                 reloadStage("TouchDisplayPayment.fxml");
                 break;
 
-            case "Barcodepage":
+            case "BarcodePage":
                 reloadStage("BarcodeDisplayEmulator.fxml");
                 break;
 
