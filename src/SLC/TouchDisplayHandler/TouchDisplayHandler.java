@@ -48,6 +48,7 @@ public class TouchDisplayHandler extends HWHandler {
             case barcodechecklockerid:
                 handle_BR_LockerId_UpdateDisplay(msg);
                 break;
+
             case TD_SetPasscodeTF:
                 setPasscodeTF(msg);
                 break;

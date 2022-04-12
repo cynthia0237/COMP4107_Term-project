@@ -325,6 +325,9 @@ public class SLC extends AppThread {
 
 			case "Barcode":
 				if (30 <= x && x <= 75 && 24 <= y && y <= 60) {
+					//send the message to barcode to be standby
+					barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
+					//back to mainmenu
 					touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_UpdateDisplay, "MainMenu"));
 				}
 				break;
