@@ -148,10 +148,9 @@ public class SLC extends AppThread {
 			else{
 				//get locker id--> send to barcode touch screen
 				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.barcodechecklockerid,msg.getDetails()));
+				//TODO open locker
+
 			}
-			//send the locker id to touch screen(barcode page)
-
-
 			break;
 
 		//receive the barcode no from barcodeemulator
