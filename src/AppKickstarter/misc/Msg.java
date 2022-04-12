@@ -119,8 +119,9 @@ public class Msg {
         /** Close Locker */                     CloseLocker,
         /** server send back the locker id to SLC(Verified barcode)*/ barcodechecklockerid,
 
-        /** Barcode Verification */             BarcodeVerification,
-        /** Update server backup passcode map */ BackupPasscodeMap
+        /** Barcode Verification */              BarcodeVerification,
+        /** Update server backup passcode map */ BackupPasscodeMap,
+        /** Remove used barcode in server */     RemoveUsedBarcode
 
     } // Type
 } // Msg

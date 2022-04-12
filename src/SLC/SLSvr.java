@@ -72,6 +72,9 @@ public class SLSvr extends AppThread {
                     backupLockerPasscodeMapToSvr(stringToMap(msg.getDetails()));
                     break;
 
+                case RemoveUsedBarcode:
+                    removeUsedBarcode(msg.getDetails());
+                    break;
 
                 default:
                     log.warning(id + ": unknown message type: [" + msg + "]");
@@ -84,6 +87,10 @@ public class SLSvr extends AppThread {
     } //run
 
     public boolean reserveLocker(String barcode,LockerSize size) {
+        if (reserveLockerMap.containsKey(barcode)) {
+            log.info(id + ": barcode - " + barcode + " already reserve locker");
+            return false;
+        }
         Locker locker = LockerManager.getInstance().reserveLocker(size);
         String lockerId;
         if (locker != null)
@@ -97,6 +104,7 @@ public class SLSvr extends AppThread {
     }
 
     private String verifyBarcode(String barcode) {
+        log.info(id + ": verifying barcode");
         if (reserveLockerMap.containsKey(barcode)) {
             for(Map.Entry<String, String> entry : reserveLockerMap.entrySet()) {
                 //If get the available barcode
@@ -114,6 +122,7 @@ public class SLSvr extends AppThread {
     private void removeUsedBarcode(String barcode) {
         if (reserveLockerMap.containsKey(barcode)) {
             reserveLockerMap.remove(barcode);
+            log.info(id + ": remove used barcode - " + barcode);
         }
         else {
             System.out.println("cannot find barcode " + barcode + " in reserveLockerMap");

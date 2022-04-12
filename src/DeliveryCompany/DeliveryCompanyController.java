@@ -19,7 +19,7 @@ public class DeliveryCompanyController {
         if(SLSvr.getInstance().reserveLocker(barcode, LockerSize.valueOf(size))) {
             companyTextArea.appendText("locker reserved for barcode - " + barcode + "\n");
         } else {
-            companyTextArea.appendText("do not have suitable locker for barcode - " + barcode + "\n");
+            companyTextArea.appendText("do not have suitable locker for barcode - " + barcode + " or the barcode already reserve a locker\n");
         }
 
 
