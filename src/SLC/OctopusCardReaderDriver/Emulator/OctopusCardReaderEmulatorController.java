@@ -84,52 +84,54 @@ public class OctopusCardReaderEmulatorController {
     public void buttonPressed(ActionEvent actionEvent) {
         Button btn = (Button) actionEvent.getSource();
 
-        switch (btn.getText()) {
-            case "1":
-                octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard1"));
- 
+        if(!pollResp.equals("NAK")){
+            switch (btn.getText()) {
+                case "1":
+                    octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard1"));
+    
+                    break;
+
+                case "2":
+                    octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard2"));
+
                 break;
 
-            case "2":
-                octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard2"));
+                case "3":
+                    octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard3"));
 
-            break;
+                break;
 
-            case "3":
-                octopusCardNumField.setText(appKickstarter.getProperty("OctopusCardReader.OctopusCard3"));
+                case "Reset":
+                    octopusCardNumField.setText("");
+                break;
 
-            break;
+                case "Send":
+                if(octopusCardReaderStatusField.getText().equals("Active")){
+                    octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_OctopusCardRead, octopusCardNumField.getText()));
+                    //touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_BackToMainPage, "MainPage"));
+                    lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.OpenLocker, Integer.toString(lockerId)));
+                    touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_CorrectPasscode, Integer.toString(lockerId)));
+                    octopusCardReaderTextArea.appendText("locker id " + lockerId +"\n");
+                    octopusCardReaderTextArea.appendText("Sending octopus card number " + octopusCardNumField.getText()+"\n");
+                    octopusCardReaderTextArea.appendText("Transaction Success: received HK$" + paymentAmount + " from Octopus Card " + octopusCardNumField.getText()+"\n");
+                    
+                }
+                break;
 
-            case "Reset":
-                octopusCardNumField.setText("");
-            break;
+                case "Activate":
+                    octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoActive, octopusCardNumField.getText()));
 
-            case "Send":
-               if(octopusCardReaderStatusField.getText().equals("Active")){
-                octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_OctopusCardRead, octopusCardNumField.getText()));
-                //touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.OCR_BackToMainPage, "MainPage"));
-                lockerReaderMBox.send(new Msg(id, lockerReaderMBox, Msg.Type.OpenLocker, Integer.toString(lockerId)));
-                touchDisplayMBox.send(new Msg(id, touchDisplayMBox, Msg.Type.TD_CorrectPasscode, Integer.toString(lockerId)));
-                octopusCardReaderTextArea.appendText("locker id " + lockerId +"\n");
-                octopusCardReaderTextArea.appendText("Sending octopus card number " + octopusCardNumField.getText()+"\n");
-                octopusCardReaderTextArea.appendText("Transaction Success: received HK$" + paymentAmount + " from Octopus Card " + octopusCardNumField.getText()+"\n");
-                
-               }
-            break;
+                break;
 
-            case "Activate":
-                octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoActive, octopusCardNumField.getText()));
+                case "Standby":
+                    octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoStandby, octopusCardNumField.getText()));
 
-            break;
+                break;
 
-            case "Standby":
-                octopusCardReaderMBox.send(new Msg(id, octopusCardReaderMBox, Msg.Type.OCR_GoStandby, octopusCardNumField.getText()));
-
-            break;
-
-            default:
-                log.warning(id + ": unknown button: [" + btn.getText() + "]");
-            break;
+                default:
+                    log.warning(id + ": unknown button: [" + btn.getText() + "]");
+                break;
+            }
         }
     } // buttonPressed
 
