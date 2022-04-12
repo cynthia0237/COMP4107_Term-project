@@ -1,10 +1,10 @@
 # Group 1 Smart Locker Controlling System
 
-Group member: Leung Cynthia&emsp;&emsp;&emsp; &nbsp; &nbsp; 21201943
+Group member: Leung Cynthia
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Chan Ho Lam Thomas&emsp;21221839
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Chan Ho Lam Thomas
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Chan chak nam&emsp;&emsp;&emsp;&emsp;21237395
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Chan Chak Nam
 
 <br/>
 
@@ -184,6 +184,8 @@ in one line on the cmd / Terminal
   ```
 
   * Close the one of the java application to stop the system
+
+Note that : If close the application of the delivery company is, the system won't stop because the delivery company will be regarded as an outsider
 
 ---
 <br/>
