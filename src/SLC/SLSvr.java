@@ -99,11 +99,15 @@ public class SLSvr extends AppThread {
     private String verifyBarcode(String barcode) {
         if (reserveLockerMap.containsKey(barcode)) {
             for(Map.Entry<String, String> entry : reserveLockerMap.entrySet()) {
+                //If get the available barcode
                 if(entry.getKey().equals(barcode)) {
+                    //send the locker id to SLC
+                    slc.send(new Msg(id,mbox,Msg.Type.barcodechecklockerid,entry.getValue()));
                     return entry.getValue();
                 }
             }
         }
+        slc.send(new Msg(id,mbox,Msg.Type.barcodechecklockerid,"error"));
         return "error";
     }
 

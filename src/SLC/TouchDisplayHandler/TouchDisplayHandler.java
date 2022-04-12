@@ -44,6 +44,10 @@ public class TouchDisplayHandler extends HWHandler {
                 handle_BR_BarcodeNo_UpdateDisplay(msg);
                 break;
 
+            //Update barcode touchscreen GUI------------Barcode --> Locker ID
+            case barcodechecklockerid:
+                handle_BR_LockerId_UpdateDisplay(msg);
+                break;
             case TD_SetPasscodeTF:
                 setPasscodeTF(msg);
                 break;
@@ -83,6 +87,7 @@ public class TouchDisplayHandler extends HWHandler {
     protected void handle_BR_GoActive_Status_UpdateDisplay(Msg msg){}
     protected void handle_BR_GoStandby_Status_UpdateDisplay(Msg msg){}
     protected void handle_BR_BarcodeNo_UpdateDisplay(Msg msg){}
+    protected void handle_BR_LockerId_UpdateDisplay(Msg msg){}
     //update barcode gui method---------End
 
     //------------------------------------------------------------

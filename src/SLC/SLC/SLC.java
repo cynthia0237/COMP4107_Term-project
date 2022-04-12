@@ -138,30 +138,33 @@ public class SLC extends AppThread {
 		//after payment action (go to the locker?)
 		
 		break;
+		//--------------------------------------------------------------------------------------------------------------
+		//receive the server verification of barcode
+		case barcodechecklockerid:
+			System.out.println("testing barcode locker id: "+msg.getDetails());
+			//get locker value from server
+			if(msg.getDetails().equals("error"))
+				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.barcodechecklockerid,"error"));
+			else{
+				//get locker id--> send to barcode touch screen
+				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.barcodechecklockerid,msg.getDetails()));
+			}
+			//send the locker id to touch screen(barcode page)
+
+
+			break;
 
 		//receive the barcode no from barcodeemulator
 		case BR_BarcodeRead:
-			isStaff = true;
-			//send message to server and verify
-
-			//get response from server
-			boolean serverResponse = true;
-			if(serverResponse){
-				//TODO save the locker and passcode in SLC
-				//TODO check locker availability -> Open -> Store it????
-				String Lockerid = "";
-
-
-				//return the message to touchscreen and give the locker to distribute the locker
-				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.BR_BarcodeRead,msg.getDetails()));
-			}else{
-				//if the response is null -> restart again
-				touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.BR_BarcodeRead,""));
-			}
+			//Send back the barcode no to touch display
+			touchDisplayMBox.send(new Msg(id,mbox,Msg.Type.BR_BarcodeRead,msg.getDetails()));
+			//Request Verify the Barcode No
+			svrMBox.send(new Msg(id,mbox,Msg.Type.BarcodeVerification, msg.getDetails()));
 			//set back the barcode to standby
 			barcodeReaderMBox.send(new Msg(id,mbox,Msg.Type.BR_GoStandby,""));
 			break;
 
+		//--------------------------------------------------------------------------------------------------------------
 		case CheckPickupPasscode:
 			isStaff = false;
 			passcode = "";

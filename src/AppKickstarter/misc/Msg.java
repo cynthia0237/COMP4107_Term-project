@@ -117,6 +117,7 @@ public class Msg {
         /** Check pickup passcode */            CheckPickupPasscode,
         /** Open Locker */                      OpenLocker,
         /** Close Locker */                     CloseLocker,
+        /** server send back the locker id to SLC(Verified barcode)*/ barcodechecklockerid,
 
         /** Barcode Verification */             BarcodeVerification,
         /** Update server backup passcode map */ BackupPasscodeMap

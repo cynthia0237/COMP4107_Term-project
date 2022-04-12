@@ -160,7 +160,10 @@ public class TouchDisplayEmulator extends TouchDisplayHandler {
         touchDisplayEmulatorController.updatebarcodeno(msg.getDetails());
     }
 
-    //handle UpdateBarcode status
+    //Update Barcode page locker id
+    protected void handle_BR_LockerId_UpdateDisplay(Msg msg){
+        touchDisplayEmulatorController.updatebarcodepagelockerId(msg.getDetails());
+    }
 
     //------------------------------------------------------------
     // handlePoll
