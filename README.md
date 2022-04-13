@@ -283,6 +283,7 @@ If is customer
 * There dont have any poll message will log
 
 <br/>
+
 *Barcode Reader response and health poll*
 
 <u>About the health poll</u>
@@ -298,7 +299,8 @@ If is customer
 <u>About the standby response</u>
 * Same logic from the active response and do the same thing as the active response.
 
-<br>
+</br>
+
 *Octopus Card Reader response and health poll*
 
 <u>About the health poll</u>
