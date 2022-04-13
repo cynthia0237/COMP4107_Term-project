@@ -200,11 +200,14 @@ Note that : If close the application of the delivery company is, the system won'
 
 <u>Step of Scan Barcode</u>
 
-1. Click the blank screen to start use the system
-2. Select "Scan Barcode" in the main page
-3. Select the barcode and click the "Send Barcode" button in Barcode Reader emulator
-4. Touch Screen Display will show the barcode number and locker number
-5. The relatively locker will open (which will turn to black color and show in Locker Reader emulator)
+1.	Click the blank screen to start use the system
+2.	Select "Scan Barcode" in the main page
+3.	Select the barcode and click the "Send Barcode" button in Barcode Reader emulator
+4.	Sending the barcode No to SLC and to server to verify the barcode
+5.	Verify Barcode to return the locker id
+6.	Touch Screen Display will show the barcode number and locker number
+7.	The relatively locker will open (which will turn to black color and show in Locker Reader emulator)
+
 
 <u>Step of Parcer Pickup</u>
 
@@ -280,7 +283,22 @@ If is customer
 * There dont have any poll message will log
 
 <br/>
+**Barcode Reader response and health poll**
 
+<u>About the health poll</u>
+
+* When the poll response is NAK, you can’t do anything in the Barcode Reader and can’t receive any things outside.
+
+<u>About the active response Status</u>
+
+* “Activated”: the barcode will be activated and allowed to scan the barcode. Also, sending the reply to SLC  showing the working and activated status in touchscreen(barcode)
+* “Standby”: the barcode will be set to standby and not available to scan. Then, sending the response to SLCshowing the not working and standby status in touchscreen(barcode)
+* “Ignore”: the barcode will do nothing with the incoming request. The touchscreen(barcode) will show not working.
+
+<u>About the standby response</u>
+* Same logic from the active response and do the same thing as the active response.
+
+<br>
 *Octopus Card Reader response and health poll*
 
 <u>About the health poll</u>
