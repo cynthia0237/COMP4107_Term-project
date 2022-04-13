@@ -284,19 +284,19 @@ If is customer
 
 <br/>
 
-*Barcode Reader response and health poll*
+**Barcode Reader response and health poll**
 
-<u>About the health poll</u>
+<u><ins>About the health poll</ins></u>
 
 * When the poll response is NAK, you can’t do anything in the Barcode Reader and can’t receive any things outside.
 
-<u>About the active response Status</u>
+<u><ins>About the active response Status</ins></u>
 
 * “Activated”: the barcode will be activated and allowed to scan the barcode. Also, sending the reply to SLC  showing the working and activated status in touchscreen(barcode)
 * “Standby”: the barcode will be set to standby and not available to scan. Then, sending the response to SLCshowing the not working and standby status in touchscreen(barcode)
 * “Ignore”: the barcode will do nothing with the incoming request. The touchscreen(barcode) will show not working.
 
-<u>About the standby response</u>
+<u><ins>About the standby response</ins></u>
 * Same logic from the active response and do the same thing as the active response.
 
 </br>
