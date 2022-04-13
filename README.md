@@ -283,7 +283,7 @@ If is customer
 * There dont have any poll message will log
 
 <br/>
-**Barcode Reader response and health poll**
+*Barcode Reader response and health poll*
 
 <u>About the health poll</u>
 
